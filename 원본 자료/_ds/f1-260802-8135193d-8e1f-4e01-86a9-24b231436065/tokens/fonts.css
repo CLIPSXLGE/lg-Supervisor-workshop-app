@@ -1,0 +1,8 @@
+/* Saira Condensed / Semi Condensed — SUBSTITUTION for the wide-condensed racing display +
+   timing numerals in the reference graphics. No such binary was supplied. Swap for @font-face
+   rules if the real display face arrives. (@import must stay first in the file.) */
+@import url("https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@500;600;700;800;900&family=Saira+Semi+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800;1,900&family=Saira:wght@400;500;600;700&display=swap");
+/* esamanru — supplied Korean/Latin core family (3 weights). */
+@font-face{font-family:"esamanru";src:url("../assets/fonts/esamanru-Light.ttf") format("truetype");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"esamanru";src:url("../assets/fonts/esamanru-Medium.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"esamanru";src:url("../assets/fonts/esamanru-Bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}

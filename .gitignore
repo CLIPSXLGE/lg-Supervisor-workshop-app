@@ -1,0 +1,16 @@
+# 원본 참고자료 (PRD, 스크린샷, 편집 도구 원본 - 배포에 불필요, 용량 큼)
+원본 자료/uploads/
+원본 자료/*.pptx
+원본 자료/*standalone*.html
+원본 자료/pasted-*.png
+원본 자료/source_file-*.txt
+원본 자료/.thumbnail
+원본 자료/image-*.webp
+
+# OS / 편집기
+.DS_Store
+Thumbs.db
+
+# Vercel
+.vercel
+node_modules/

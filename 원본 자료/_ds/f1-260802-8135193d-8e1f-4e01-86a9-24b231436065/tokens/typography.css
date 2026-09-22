@@ -1,0 +1,43 @@
+:root{
+  /* families */
+  --font-core:"esamanru","Saira",system-ui,-apple-system,"Malgun Gothic",sans-serif;
+  --font-display:"Saira Condensed","esamanru",system-ui,sans-serif;
+  --font-numeric:"Saira Semi Condensed","Saira",system-ui,sans-serif;
+  --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+  /* weights */
+  --fw-light:300; /* @kind other */
+  --fw-medium:500; /* @kind other */
+  --fw-semibold:600; /* @kind other */
+  --fw-bold:700; /* @kind other */
+  --fw-black:900; /* @kind other */
+
+  /* display scale — headline / broadcast titles */
+  --fs-hero:112px; --lh-hero:.86; /* @kind other */
+  --ls-hero:-.02em; /* @kind other */
+  --fs-display-1:72px; --lh-display-1:.9; /* @kind other */
+  --ls-display-1:-.015em; /* @kind other */
+  --fs-display-2:52px; --lh-display-2:.94; /* @kind other */
+  --fs-display-3:38px; --lh-display-3:1; /* @kind other */
+
+  /* headings */
+  --fs-h1:30px; --fs-h2:24px; --fs-h3:20px; --fs-h4:17px;
+  --lh-heading:1.2; /* @kind other */
+
+  /* body */
+  --fs-body-lg:17px; --fs-body:15px; --fs-body-sm:13px; --fs-caption:12px;
+  --lh-body:1.55; /* @kind other */
+  --lh-tight:1.35; /* @kind other */
+
+  /* eyebrow / label — always uppercase + tracked out */
+  --fs-label:12px; --fs-label-sm:10px;
+  --ls-label:.16em; /* @kind other */
+  --ls-eyebrow:.26em; /* @kind other */
+
+  /* numerals — timing, positions, points */
+  --fs-num-xl:88px; --fs-num-lg:48px; --fs-num-md:28px; --fs-num-sm:18px;
+  --ls-num:-.01em; /* @kind other */
+
+  /* the signature racing skew */
+  --italic-skew:-9deg; /* @kind other */
+}
