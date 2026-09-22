@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>반장 리더십 RACE · 강사용</title>
+<style>
+  :root{ --bg:#06070A; --card:#111318; --input:#2C313C; --border:rgba(255,255,255,.24);
+    --red:#E10600; --teal:#00D2BE; --amber:#FFD400; --blue:#3671C6; --text:#fff; --muted:#B4BBC7; --light:#DCE0E7; }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;word-break:keep-all}
+  input,button{font-family:inherit}
+  header{position:sticky;top:0;z-index:5;background:#06070A;border-bottom:1px solid rgba(255,255,255,.12);padding:14px 24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  header h1{font-size:18px;font-weight:900;margin:0;letter-spacing:.04em}
+  .codebox{display:flex;align-items:center;gap:8px}
+  .codebox input{background:var(--input);border:1px solid var(--border);color:#fff;font-weight:700;font-size:16px;padding:8px 10px;width:100px;border-radius:4px}
+  .codebox button{background:var(--red);border:none;color:#fff;font-weight:700;padding:9px 14px;border-radius:4px;cursor:pointer}
+  .live{margin-left:auto;display:flex;align-items:center;gap:6px;font-weight:700;font-size:12px;color:var(--teal)}
+  .dot{width:8px;height:8px;border-radius:99px;background:var(--teal);animation:p 1.2s infinite}
+  @keyframes p{0%,100%{opacity:1}50%{opacity:.2}}
+  nav{display:flex;gap:4px;padding:12px 24px 0;flex-wrap:wrap}
+  nav button{background:transparent;border:none;color:var(--muted);font-weight:700;font-size:14px;padding:10px 16px;cursor:pointer;border-bottom:2px solid transparent}
+  nav button.on{color:#fff;border-color:var(--red)}
+  main{padding:20px 24px 60px;max-width:1200px;margin:0 auto}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+  .card{background:var(--card);border-radius:6px;padding:18px;border:1px solid rgba(255,255,255,.06)}
+  .stat{font-size:40px;font-weight:900}
+  .lbl{font-weight:700;font-size:12px;letter-spacing:.12em;color:var(--light)}
+  .muted{color:var(--muted);font-size:14px}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.08)}
+  th{color:var(--light);font-weight:700;font-size:12px;letter-spacing:.06em}
+  .badge{display:inline-block;padding:3px 9px;border-radius:99px;font-size:12px;font-weight:700}
+  .empty{padding:40px;text-align:center;color:var(--muted)}
+  .bar{height:8px;background:#20242D;border-radius:99px;overflow:hidden;margin-top:6px}
+  .bar i{display:block;height:100%}
+  .teamname{font-weight:900;font-size:20px}
+  .approach{background:#1A1D24;border-radius:4px;padding:10px 12px;margin-top:6px;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <h1>반장 리더십 RACE · 강사 화면</h1>
+  <div class="codebox">
+    <input id="code-input" type="text" inputmode="numeric" maxlength="4" placeholder="입장코드">
+    <button id="code-apply">적용</button>
+  </div>
+  <span class="live"><span class="dot"></span>LIVE</span>
+</header>
+<nav id="nav"></nav>
+<main id="main"></main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script src="lgws-sync.js"></script>
+<script src="slides.js"></script>
+</body>
+</html>
