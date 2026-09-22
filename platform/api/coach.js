@@ -28,7 +28,10 @@ export default async function handler(req, res) {
       messages: [{ role: "user", content: JSON.stringify(input) }],
     }),
   });
-  if (!r.ok) return res.status(502).json({ error: "AI 호출 실패", status: r.status });
+  if (!r.ok) {
+    const detail = await r.text().catch(() => "");
+    return res.status(502).json({ error: "AI 호출 실패", status: r.status, detail: detail.slice(0, 500) });
+  }
   const j = await r.json();
   const text = (j.content || []).map(c => c.text || "").join("");
   try { return res.status(200).json(JSON.parse(text.replace(/^```json|```$/g, "").trim())); }
