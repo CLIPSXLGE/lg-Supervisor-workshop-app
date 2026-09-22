@@ -1,0 +1,26 @@
+:root{
+  --shadow-1:0 1px 2px rgba(0,0,0,.5);
+  --shadow-2:0 4px 16px rgba(0,0,0,.45);
+  --shadow-3:0 16px 48px rgba(0,0,0,.55);
+  --shadow-accent:0 8px 28px rgba(225,6,0,.35);
+  --glow-accent:0 0 0 1px rgba(225,6,0,.5),0 0 24px rgba(225,6,0,.28);
+  --inset-top-light:inset 0 1px 0 rgba(255,255,255,.06);
+
+  --focus-ring:0 0 0 2px var(--carbon-950),0 0 0 4px var(--red-500);
+
+  /* protection gradient under text on photography */
+  --scrim-bottom:linear-gradient(to top,rgba(6,7,10,.95) 0%,rgba(6,7,10,.75) 35%,rgba(6,7,10,0) 100%); /* @kind other */
+  --scrim-left:linear-gradient(to right,rgba(6,7,10,.95) 0%,rgba(6,7,10,0) 70%); /* @kind other */
+
+  /* accent field behind podium / hero blocks */
+  --grad-accent:linear-gradient(100deg,var(--red-600) 0%,var(--red-500) 55%,#FF3B33 100%);
+  --grad-carbon:linear-gradient(160deg,var(--carbon-850) 0%,var(--carbon-950) 100%);
+
+  /* carbon weave + grid textures (pure CSS, no image asset needed) */
+  --texture-carbon:repeating-linear-gradient(45deg,rgba(255,255,255,.022) 0 2px,transparent 2px 4px),repeating-linear-gradient(-45deg,rgba(255,255,255,.022) 0 2px,transparent 2px 4px); /* @kind other */
+  --texture-grid:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px) 0 0/32px 32px,linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px) 0 0/32px 32px; /* @kind other */
+  --texture-speedlines:repeating-linear-gradient(100deg,rgba(255,255,255,.05) 0 2px,transparent 2px 12px); /* @kind other */
+
+  --blur-glass:saturate(160%) blur(18px); /* @kind other */
+  --scrim-glass:rgba(11,13,18,.72);
+}

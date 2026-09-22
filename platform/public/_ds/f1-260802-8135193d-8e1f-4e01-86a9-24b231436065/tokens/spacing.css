@@ -1,0 +1,18 @@
+:root{
+  --space-0:0px; --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px;
+  --space-5:20px; --space-6:24px; --space-7:32px; --space-8:40px; --space-9:56px;
+  --space-10:72px; --space-11:96px; --space-12:128px;
+
+  --gutter-screen:24px; --gutter-screen-lg:48px;
+  --max-content:1280px; --max-prose:64ch;
+
+  /* control heights */
+  --control-sm:32px; --control-md:40px; --control-lg:48px;
+
+  /* radii — hardware, not soft. Bars are square; cards are barely rounded. */
+  --radius-0:0px; --radius-1:2px; --radius-2:4px; --radius-3:8px; --radius-4:12px;
+  --radius-pill:999px;
+
+  /* the parallelogram cut used on bars, badges and stripes */
+  --cut-sm:8px; --cut-md:14px; --cut-lg:24px;
+}

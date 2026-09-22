@@ -1,0 +1,10 @@
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg-page);color:var(--text-body);font-family:var(--font-core);font-size:var(--fs-body);line-height:var(--lh-body);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--font-display);color:var(--text-primary);line-height:var(--lh-heading);margin:0;font-weight:var(--fw-bold)}
+a{color:var(--red-400);text-decoration:none;border-bottom:1px solid rgba(255,42,33,.35);transition:color var(--dur-2) var(--ease-out),border-color var(--dur-2) var(--ease-out)}
+a:hover{color:var(--red-300);border-bottom-color:var(--red-300)}
+:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+::selection{background:var(--red-500);color:#fff}
+.apex-eyebrow{font-family:var(--font-display);font-weight:var(--fw-bold);font-size:var(--fs-label);letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--text-muted)}
+.apex-num{font-family:var(--font-numeric);font-weight:var(--fw-black);font-variant-numeric:tabular-nums;letter-spacing:var(--ls-num)}
+.apex-skew{transform:skewX(var(--italic-skew))}

@@ -1,27 +1,813 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>반장 리더십 RACE</title>
-<style>
-  body{margin:0;min-height:100vh;background:#06070A;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;display:flex;align-items:center;justify-content:center;padding:20px}
-  .wrap{max-width:420px;width:100%;display:flex;flex-direction:column;gap:14px}
-  h1{font-size:24px;font-weight:900;margin:0 0 6px;text-align:center}
-  p{color:#B4BBC7;text-align:center;margin:0 0 18px;font-size:14px}
-  a.card{display:block;background:#111318;border:1px solid rgba(255,255,255,.14);border-radius:6px;padding:20px;color:#fff;text-decoration:none}
-  a.card b{display:block;font-size:18px;margin-bottom:4px}
-  a.card span{color:#B4BBC7;font-size:13px}
-  a.card.red{border-left:4px solid #E10600}
-  a.card.teal{border-left:4px solid #00D2BE}
-</style>
+<script src="/shared/ws-config.js"></script>
+<script src="/shared/ws-data.js"></script>
+<script src="/support.js"></script>
 </head>
 <body>
-<div class="wrap">
-  <h1>반장 리더십 RACE</h1>
-  <p>2026 LG전자 서비스센터 반장 워크숍</p>
-  <a class="card red" href="./mobile.html"><b>📱 교육생용 모바일 웹앱</b><span>입장 · 자가진단 · 아침 조회 · AI 리더십 코치</span></a>
-  <a class="card teal" href="./slides.html"><b>🖥️ 강사용 실시간 화면</b><span>참가자 현황을 실시간으로 확인</span></a>
+<x-dc>
+<helmet>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="/_ds/f1-260802-8135193d-8e1f-4e01-86a9-24b231436065/tokens/fonts.css">
+<link rel="stylesheet" href="/_ds/f1-260802-8135193d-8e1f-4e01-86a9-24b231436065/tokens/colors.css">
+<link rel="stylesheet" href="/_ds/f1-260802-8135193d-8e1f-4e01-86a9-24b231436065/tokens/typography.css">
+<link rel="stylesheet" href="/_ds/f1-260802-8135193d-8e1f-4e01-86a9-24b231436065/tokens/spacing.css">
+<link rel="stylesheet" href="/_ds/f1-260802-8135193d-8e1f-4e01-86a9-24b231436065/tokens/effects.css">
+<link rel="stylesheet" href="/_ds/f1-260802-8135193d-8e1f-4e01-86a9-24b231436065/tokens/motion.css">
+<link rel="stylesheet" href="/_ds/f1-260802-8135193d-8e1f-4e01-86a9-24b231436065/tokens/base.css">
+<link rel="stylesheet" href="/_ds/f1-260802-8135193d-8e1f-4e01-86a9-24b231436065/styles.css">
+<script src="/_ds/f1-260802-8135193d-8e1f-4e01-86a9-24b231436065/_ds_bundle.js"></script>
+<style>
+body{margin:0;background:#06070A}
+a{color:var(--red-400);text-decoration:none}
+a:hover{color:var(--red-300)}
+input,textarea,button{font-family:var(--font-core)}
+@keyframes riseIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.25}}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#06070A;color:#fff;font-family:var(--font-core);display:flex;flex-direction:column">
+
+<sc-if value="{{ showJoin }}" hint-placeholder-val="{{ true }}">
+<div style="flex:1;display:flex;flex-direction:column;padding:34px 20px 40px;gap:20px">
+<div style="display:flex;gap:8px">
+<div style="width:24px;height:36px;background:#111318;border-radius:999px;display:flex;align-items:center;justify-content:center"><div style="width:15px;height:15px;border-radius:999px;background:#E10600"></div></div>
+<div style="width:24px;height:36px;background:#111318;border-radius:999px;display:flex;align-items:center;justify-content:center"><div style="width:15px;height:15px;border-radius:999px;background:#FFD400"></div></div>
+<div style="width:24px;height:36px;background:#111318;border-radius:999px;display:flex;align-items:center;justify-content:center"><div style="width:15px;height:15px;border-radius:999px;background:#00D2BE"></div></div>
 </div>
+<div>
+<div style="font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.14em;color:#DCE0E7;margin-bottom:10px">2026 LG전자 서비스센터 반장 워크숍</div>
+<div style="font-family:var(--font-display);font-weight:900;font-size:34px;line-height:1;letter-spacing:.02em;transform:skewX(-9deg);white-space:nowrap">반장 리더십 RACE</div>
+</div>
+<div style="width:120px;height:5px;background:#E10600;transform:skewX(-9deg)"></div>
+
+<div style="display:flex;flex-direction:column;gap:14px">
+<label style="display:flex;flex-direction:column;gap:7px">
+<span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">입장코드</span>
+<input type="text" inputMode="numeric" maxLength="4" placeholder="숫자 4자리 (강사 안내)" value="{{ inCode }}" onChange="{{ onInCode }}" style="background:#2C313C;border:1px solid rgba(255,255,255,.34);color:#fff;font-weight:700;font-size:20px;letter-spacing:.06em;padding:14px 16px;outline:none;height:56px;box-sizing:border-box">
+</label>
+<label style="display:flex;flex-direction:column;gap:7px">
+<span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">이름</span>
+<input type="text" placeholder="이름을 입력하세요" value="{{ inName }}" onChange="{{ onInName }}" style="background:#2C313C;border:1px solid rgba(255,255,255,.34);color:#fff;font-weight:700;font-size:20px;padding:14px 16px;outline:none;height:56px;box-sizing:border-box">
+</label>
+<div style="display:flex;flex-direction:column;gap:7px">
+<span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">오늘 배정된 조 번호</span>
+<div style="display:flex;flex-wrap:wrap;gap:6px">
+<sc-for list="{{ teamNos }}" as="t" hint-placeholder-count="8">
+<button type="button" onClick="{{ t.pick }}" style="flex:1;min-width:52px;height:56px;background:{{ t.bg }};color:{{ t.fg }};border:1px solid {{ t.bd }};font-weight:700;font-size:20px;cursor:pointer">{{ t.n }}</button>
+</sc-for>
+</div>
+</div>
+<label style="display:flex;flex-direction:column;gap:7px">
+<span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">우리 조 팀명</span>
+<input type="text" placeholder="예) 피트크루" value="{{ inTeamName }}" onChange="{{ onTeamName }}" style="background:#2C313C;border:1px solid rgba(255,255,255,.34);color:#fff;font-weight:700;font-size:20px;padding:14px 16px;outline:none;height:56px;box-sizing:border-box">
+</label>
+</div>
+
+<sc-if value="{{ joinError }}" hint-placeholder-val="{{ false }}">
+<div style="background:#2A0A08;border-left:4px solid #E10600;padding:13px 16px;font-size:16px;color:#FF9A94">{{ joinError }}</div>
+</sc-if>
+
+<button type="button" onClick="{{ doJoin }}" style="background:{{ joinBg }};color:{{ joinFg }};border:none;padding:18px;font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:.16em;cursor:pointer;min-height:60px;margin-top:auto">입장하기</button>
+<div style="font-size:13px;color:#B4BBC7;line-height:1.5;word-break:keep-all">같은 이름으로 다시 접속하면 기존 참가자로 이어집니다.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showApp }}" hint-placeholder-val="{{ false }}">
+
+<sc-if value="{{ indexOpen }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ closeIndex }}" style="position:fixed;inset:0;z-index:20;background:rgba(6,7,10,.7)"></div>
+<div style="position:fixed;top:0;left:0;bottom:0;width:78%;max-width:320px;z-index:21;background:#0C0E12;border-right:1px solid rgba(255,255,255,.14);display:flex;flex-direction:column;animation:riseIn .2s cubic-bezier(.16,1,.3,1) both">
+<div style="height:4px;background:#E10600"></div>
+<div style="padding:20px 18px 14px;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid rgba(255,255,255,.12)">
+<span style="font-family:var(--font-display);font-weight:700;font-size:11px;letter-spacing:.16em;color:#DCE0E7">TODAY'S ACTIVITIES</span>
+<span style="font-size:19px;font-weight:700">오늘의 활동</span>
+</div>
+<div style="flex:1;overflow-y:auto;padding:10px 0">
+<sc-for list="{{ indexItems }}" as="ix" hint-placeholder-count="6">
+<button type="button" onClick="{{ ix.go }}" style="width:100%;background:{{ ix.bg }};border:none;border-left:4px solid {{ ix.accent }};color:#fff;cursor:pointer;padding:14px 18px;display:flex;flex-direction:column;gap:4px;text-align:left;min-height:56px">
+<span style="font-family:var(--font-numeric);font-weight:900;font-size:13px;color:{{ ix.accent }}">{{ ix.no }}</span>
+<span style="font-size:16px;font-weight:700">{{ ix.label }}</span>
+<span style="font-size:13px;color:#B4BBC7">{{ ix.state }}</span>
+</button>
+</sc-for>
+</div>
+<button type="button" onClick="{{ logout }}" style="margin:12px 18px 22px;background:transparent;color:#DCE0E7;border:1px solid rgba(255,255,255,.26);padding:14px;font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.16em;cursor:pointer;min-height:50px">퇴장하기</button>
+</div>
+</sc-if>
+
+<div style="position:sticky;top:0;z-index:5;background:#06070A;border-bottom:1px solid rgba(255,255,255,.12)">
+<div style="height:4px;background:#E10600"></div>
+<div style="padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px">
+<button type="button" onClick="{{ toggleIndex }}" style="display:flex;align-items:center;gap:10px;background:transparent;border:none;padding:4px 0;cursor:pointer;min-height:44px;min-width:0;text-align:left">
+<span style="display:flex;flex-direction:column;gap:4px;width:20px;flex-shrink:0">
+<span style="height:2px;background:#E10600;display:block"></span>
+<span style="height:2px;background:#fff;display:block"></span>
+<span style="height:2px;background:#fff;display:block"></span>
+</span>
+<span style="display:flex;flex-direction:column;gap:2px;min-width:0">
+<span style="font-family:var(--font-display);font-weight:900;font-size:13px;letter-spacing:.14em;transform:skewX(-9deg);white-space:nowrap;color:#fff">반장 리더십 RACE</span>
+<span style="font-size:13px;color:#DCE0E7;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ me }}</span>
+</span>
+</button>
+<span style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+<span style="display:flex;align-items:center;gap:6px;font-family:var(--font-display);font-weight:700;font-size:11px;letter-spacing:.14em;color:#00D2BE"><span style="width:7px;height:7px;border-radius:999px;background:#00D2BE;animation:pulseDot 1.2s infinite"></span>LIVE</span>
+</span>
+</div>
+<div style="padding:0 16px 10px;display:flex;align-items:center;gap:8px">
+<span style="background:#E10600;color:#fff;font-weight:700;font-size:14px;padding:7px 12px;display:flex;align-items:center;gap:8px"><span style="font-family:var(--font-numeric);font-weight:900">{{ actNo }}</span><span>{{ actLabel }}</span></span>
+</div>
+</div>
+
+<div style="flex:1;padding:20px 16px 44px;display:flex;flex-direction:column;gap:18px">
+
+<sc-if value="{{ isTeam }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:16px">
+<div>
+<div style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#FF2A21">ONE TEAM</div>
+<h2 style="margin:8px 0 0;font-size:24px;font-weight:700;line-height:1.35;word-break:keep-all">우리 팀의 이름과 구호를 정해주세요</h2>
+<p style="margin:8px 0 0;font-size:15px;color:#DCE0E7;word-break:keep-all">조별로 대표 1명만 입력합니다. 전송하면 강사 화면에 바로 표기됩니다.</p>
+</div>
+<div style="background:#111318;border-left:4px solid {{ teamColor }};padding:16px;display:flex;flex-direction:column;gap:13px">
+<div style="display:flex;align-items:baseline;gap:10px">
+<span style="font-family:var(--font-numeric);font-weight:900;font-size:22px;color:{{ teamColor }}">{{ teamNoLabel }}</span>
+<span style="font-size:14px;color:#B4BBC7">{{ me }}</span>
+</div>
+<label style="display:flex;flex-direction:column;gap:6px">
+<span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">팀 이름</span>
+<input type="text" placeholder="예) 피트크루" value="{{ tnDraft }}" onChange="{{ onTn }}" style="background:#2C313C;border:1px solid rgba(255,255,255,.34);color:#fff;font-weight:700;font-size:19px;padding:13px;outline:none;min-height:52px;box-sizing:border-box" />
+</label>
+<label style="display:flex;flex-direction:column;gap:6px">
+<span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">구호</span>
+<textarea placeholder="예) 먼저 보고 먼저 움직인다" rows="2" value="{{ tsDraft }}" onChange="{{ onTs }}" style="background:#2C313C;border:1px solid rgba(255,255,255,.34);color:#fff;font-size:17px;line-height:1.5;padding:13px;outline:none;resize:none;box-sizing:border-box"></textarea>
+</label>
+<label style="display:flex;flex-direction:column;gap:6px">
+<span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">대표 이름</span>
+<input type="text" placeholder="입력하는 대표 이름" value="{{ trDraft }}" onChange="{{ onTr }}" style="background:#2C313C;border:1px solid rgba(255,255,255,.34);color:#fff;font-size:17px;padding:13px;outline:none;min-height:52px;box-sizing:border-box" />
+</label>
+<button type="button" onClick="{{ sendTeam }}" style="background:{{ tmBg }};color:{{ tmFg }};border:none;padding:15px;font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:.16em;cursor:pointer;min-height:52px">{{ tmBtn }}</button>
+</div>
+<sc-if value="{{ tmSaved }}" hint-placeholder-val="{{ false }}">
+<div style="background:#0E1A16;border-left:4px solid #00D2BE;padding:14px 16px;font-size:15px;color:#9BE9DC;word-break:keep-all;animation:riseIn .3s cubic-bezier(.16,1,.3,1) both">전송되었습니다. 다시 수정해 전송하면 강사 화면도 함께 바뀝니다.</div>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isDiag }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:14px">
+<div>
+<div style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#FF2A21">SELF DIAGNOSIS</div>
+<h2 style="margin:8px 0 0;font-size:24px;font-weight:700;line-height:1.35;word-break:keep-all">반장 리더십 자가진단</h2>
+<p style="margin:8px 0 0;font-size:15px;color:#DCE0E7;word-break:keep-all">평소 현장에서의 나와 가까운 응답을 골라주세요.</p>
+</div>
+
+<div style="display:flex;justify-content:space-between;align-items:center;font-size:14px;color:#DCE0E7">
+<span>{{ diagArea }}</span>
+<span style="font-family:var(--font-numeric);font-weight:900;font-size:17px;color:#fff">{{ diagDone }} / 20</span>
+</div>
+<div style="height:6px;background:#20242D;overflow:hidden"><div style="height:100%;width:{{ diagPct }};background:{{ diagColor }};transition:width .24s cubic-bezier(.16,1,.3,1)"></div></div>
+<div style="display:flex;gap:6px;font-size:11px;color:#B4BBC7;text-align:center">
+<span style="flex:1">전혀 아니다</span><span style="flex:1">아니다</span><span style="flex:1">보통</span><span style="flex:1">그렇다</span><span style="flex:1">매우 그렇다</span>
+</div>
+
+<sc-for list="{{ diagItems }}" as="q" hint-placeholder-count="5">
+<div style="background:#111318;border-left:3px solid {{ q.mark }};padding:14px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;gap:10px;align-items:flex-start">
+<span style="font-family:var(--font-numeric);font-weight:900;font-size:15px;color:#B4BBC7;min-width:24px">{{ q.no }}</span>
+<span style="font-size:16px;line-height:1.45;word-break:keep-all;flex:1">{{ q.text }}</span>
+</div>
+<div style="display:flex;gap:6px">
+<sc-for list="{{ q.scale }}" as="s" hint-placeholder-count="5">
+<button type="button" onClick="{{ s.pick }}" style="flex:1;min-height:50px;background:{{ s.bg }};color:{{ s.fg }};border:1px solid {{ s.bd }};cursor:pointer;font-family:var(--font-numeric);font-weight:900;font-size:18px">{{ s.v }}</button>
+</sc-for>
+</div>
+</div>
+</sc-for>
+
+<div style="display:flex;gap:8px">
+<button type="button" onClick="{{ diagPrev }}" style="flex:1;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.26);padding:16px;font-size:16px;cursor:pointer;min-height:56px">이전</button>
+<button type="button" onClick="{{ diagNext }}" style="flex:2;background:#E10600;color:#fff;border:none;padding:16px;font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.16em;cursor:pointer;min-height:56px">{{ diagNextLabel }}</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isResult }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:14px">
+<div>
+<div style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#FF2A21">DIAGNOSIS RESULT</div>
+<h2 style="margin:8px 0 0;font-size:24px;font-weight:700;line-height:1.35;word-break:keep-all">나의 진단 결과</h2>
+</div>
+<div style="background:#E10600;color:#fff;padding:22px;display:flex;flex-direction:column;gap:8px">
+<span style="font-family:var(--font-display);font-weight:700;font-size:11px;letter-spacing:.18em;opacity:.85">총점</span>
+<span style="display:flex;align-items:flex-end;justify-content:space-between;gap:12px">
+<span style="font-family:var(--font-numeric);font-weight:900;font-size:56px;line-height:.9;transform:skewX(-9deg)">{{ totalScore }}</span>
+<span style="font-family:var(--font-numeric);font-weight:900;font-size:22px;line-height:1">/ 100</span>
+</span>
+<span style="font-size:16px;line-height:1.5;word-break:keep-all;opacity:.92">{{ totalNote }}</span>
+</div>
+<sc-for list="{{ areaScores }}" as="a" hint-placeholder-count="4">
+<div style="background:#111318;padding:13px 15px;display:flex;flex-direction:column;gap:7px">
+<div style="display:flex;justify-content:space-between;align-items:baseline">
+<span style="font-size:16px;font-weight:700">{{ a.name }}</span>
+<span style="font-family:var(--font-numeric);font-weight:900;font-size:21px;color:{{ a.color }}">{{ a.score }} / 25</span>
+</div>
+<div style="height:9px;background:#20242D;overflow:hidden"><div style="height:100%;width:{{ a.pct }};background:{{ a.color }};transition:width .3s cubic-bezier(.16,1,.3,1)"></div></div>
+</div>
+</sc-for>
+<div style="font-size:13px;color:#B4BBC7;word-break:keep-all">영역별 5문항 합계(5~25)이며, 네 영역을 더한 값이 총점입니다.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isBp }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:16px">
+<div>
+<div style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#FF2A21">OUR MORNING</div>
+<h2 style="margin:8px 0 0;font-size:24px;font-weight:700;line-height:1.35;word-break:keep-all">우리 반은 아침 조회를 이렇게 하고 있다</h2>
+<p style="margin:8px 0 0;font-size:15px;color:#DCE0E7;word-break:keep-all">지금 우리 반의 방식을 짧게 적어주세요. 강사 화면에 모아서 함께 봅니다.</p>
+</div>
+<div style="background:#111318;border-left:4px solid #3671C6;padding:16px;display:flex;flex-direction:column;gap:12px">
+<label style="display:flex;flex-direction:column;gap:6px">
+<span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">주기 · 시간</span>
+<input type="text" placeholder="예) 매일 아침 / 10분" value="{{ bpWhen }}" onChange="{{ onBpWhen }}" style="background:#2C313C;border:1px solid rgba(255,255,255,.34);color:#fff;font-size:17px;padding:13px;outline:none;min-height:52px;box-sizing:border-box">
+</label>
+<label style="display:flex;flex-direction:column;gap:6px">
+<span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">우리 반의 진행 방식</span>
+<textarea placeholder="예) 어제 지연 건을 먼저 확인하고, 오늘 예약 순서를 함께 본다" rows="3" value="{{ bpHow }}" onChange="{{ onBpHow }}" style="background:#2C313C;border:1px solid rgba(255,255,255,.34);color:#fff;font-size:17px;line-height:1.5;padding:13px;outline:none;resize:none;box-sizing:border-box"></textarea>
+</label>
+<label style="display:flex;flex-direction:column;gap:6px">
+<span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">가장 효과 있었던 한 가지</span>
+<input type="text" placeholder="예) 인정 한마디를 마지막에 넣는다" value="{{ bpBest }}" onChange="{{ onBpBest }}" style="background:#2C313C;border:1px solid rgba(255,255,255,.34);color:#fff;font-size:17px;padding:13px;outline:none;min-height:52px;box-sizing:border-box">
+</label>
+<button type="button" onClick="{{ sendBp }}" style="background:{{ bpBg }};color:{{ bpFg }};border:none;padding:15px;font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:.16em;cursor:pointer;min-height:52px">{{ bpBtn }}</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCoach }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:16px">
+
+<sc-if value="{{ coachIsIntro }}" hint-placeholder-val="{{ true }}">
+<div>
+<div style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#FF2A21">AI LEADERSHIP COACH</div>
+<h2 style="margin:8px 0 0;font-size:24px;font-weight:700;line-height:1.35;word-break:keep-all">AI 리더십 코치</h2>
+<p style="margin:8px 0 0;font-size:15px;color:#DCE0E7;word-break:keep-all">우리 반 구성원을 평가하는 시간이 아닙니다. 최근의 행동을 떠올리고, 지금 이 구성원에게 어떤 리더십이 필요한지 생각해보는 시간입니다.</p>
+</div>
+<div style="background:#0E1A16;border-left:4px solid #00D2BE;padding:14px 16px;font-size:15px;color:#9BE9DC;word-break:keep-all;margin-top:12px">구성원 실명 대신 이니셜이나 별칭을 사용하고, 실제 관찰한 업무 행동 중심으로 입력해주세요.</div>
+<label style="display:flex;flex-direction:column;gap:7px;margin-top:14px">
+<span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">오늘 조금 더 깊게 생각해보고 싶은 구성원 (이니셜/별칭)</span>
+<input type="text" placeholder="예) K" value="{{ coachTarget }}" onChange="{{ onCoachTarget }}" style="background:#2C313C;border:1px solid rgba(255,255,255,.34);color:#fff;font-weight:700;font-size:19px;padding:13px;outline:none;min-height:52px;box-sizing:border-box">
+</label>
+<button type="button" onClick="{{ coachStart }}" style="margin-top:12px;background:{{ coachStartBg }};color:{{ coachStartFg }};border:none;padding:16px;font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.1em;cursor:pointer;min-height:54px">이 구성원 살펴보기</button>
+</sc-if>
+
+<sc-if value="{{ coachIsObserve }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#FF2A21">관찰 사실 정리</div>
+<h2 style="margin:8px 0 0;font-size:22px;font-weight:700;line-height:1.35;word-break:keep-all">최근 1년, {{ coachTarget }}님은 실제로 어떻게 행동했나요?</h2>
+</div>
+<label style="display:flex;flex-direction:column;gap:6px;margin-top:14px">
+<span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">내가 긍정적으로 보는 모습은 무엇인가요?</span>
+<textarea rows="2" placeholder="예) 본인이 바쁜 상황에도, 새로 입사한 후배의 수리 방향을 잡아줌" value="{{ coachPos }}" onChange="{{ onCoachPos }}" style="background:#2C313C;border:1px solid rgba(255,255,255,.34);color:#fff;font-size:16px;line-height:1.5;padding:13px;outline:none;resize:none;box-sizing:border-box"></textarea>
+</label>
+<label style="display:flex;flex-direction:column;gap:6px;margin-top:12px">
+<span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">내가 아쉽게 느끼는 모습은 무엇인가요?</span>
+<textarea rows="2" placeholder="예) 최근 추가 역할 제안에는 예전보다 참여가 줄어듦" value="{{ coachNeg }}" onChange="{{ onCoachNeg }}" style="background:#2C313C;border:1px solid rgba(255,255,255,.34);color:#fff;font-size:16px;line-height:1.5;padding:13px;outline:none;resize:none;box-sizing:border-box"></textarea>
+</label>
+<div style="margin-top:12px">
+<div style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7;margin-bottom:8px">최근 모습은 어떤가요?</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ recentOptions }}" as="r" hint-placeholder-count="4">
+<div onClick="{{ r.pick }}" style="border:1px solid rgba(255,255,255,.34);background:{{ r.bg }};color:{{ r.fg }};padding:10px 14px;font-size:14px;border-radius:999px;cursor:pointer">{{ r.label }}</div>
+</sc-for>
+</div>
+</div>
+<button type="button" onClick="{{ coachToObserveScore }}" style="margin-top:14px;background:{{ coachObserveBg }};color:{{ coachObserveFg }};border:none;padding:16px;font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.1em;cursor:pointer;min-height:54px">현재 상태 생각해보기</button>
+</sc-if>
+
+<sc-if value="{{ coachIsScore }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#FF2A21">역량·동기 판단</div>
+<h2 style="margin:8px 0 0;font-size:22px;font-weight:700;line-height:1.35;word-break:keep-all">관찰 사실을 기준으로 현재 상태를 표시해주세요</h2>
+</div>
+<div style="background:#111318;padding:16px;margin-top:14px">
+<div style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">역량 — 현재 맡은 업무를 어느 정도 안정적으로 수행하나요?</div>
+<div style="font-weight:900;font-size:32px;color:#00D2BE;margin:8px 0 4px">{{ coachComp }}</div>
+<input type="range" min="1" max="10" value="{{ coachComp }}" onChange="{{ onCoachComp }}" style="width:100%">
+<div style="font-size:13px;color:#B4BBC7;margin-top:8px;word-break:keep-all">1~3 많은 지원 필요 · 4~5 일부 지원 필요 · 6~7 대부분 독립 수행 · 8~10 다른 구성원도 지원 가능</div>
+</div>
+<div style="background:#111318;padding:16px;margin-top:12px">
+<div style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">동기 — 최근 일에 몰입하고 노력하려는 모습은 어느 정도인가요?</div>
+<div style="font-weight:900;font-size:32px;color:#00D2BE;margin:8px 0 4px">{{ coachMot }}</div>
+<input type="range" min="1" max="10" value="{{ coachMot }}" onChange="{{ onCoachMot }}" style="width:100%">
+<div style="font-size:13px;color:#B4BBC7;margin-top:8px;word-break:keep-all">1~3 몰입 행동 잘 안 보임 · 4~5 상황별 차이 · 6~7 꾸준히 참여 · 8~10 자발적·주도적 시도</div>
+</div>
+<button type="button" onClick="{{ coachToType }}" style="margin-top:14px;background:#E10600;color:#fff;border:none;padding:16px;font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.1em;cursor:pointer;min-height:54px">현재 위치 확인하기</button>
+</sc-if>
+
+<sc-if value="{{ coachIsType }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#FF2A21">현재 상태 결과</div>
+<h2 style="margin:8px 0 0;font-size:22px;font-weight:700;line-height:1.35;word-break:keep-all">현재 관찰한 모습만 보면 ‘{{ coachQuadrantLabel }}’에 가까워 보입니다</h2>
+</div>
+<div style="background:#E10600;color:#fff;padding:20px;margin-top:14px;display:flex;justify-content:space-between;font-size:15px">
+<span>역량 {{ coachComp }}</span><span>동기 {{ coachMot }}</span>
+</div>
+<sc-if value="{{ coachBoundary }}" hint-placeholder-val="{{ false }}">
+<div style="background:#0E1A16;border-left:4px solid #00D2BE;padding:14px 16px;font-size:15px;color:#9BE9DC;word-break:keep-all;margin-top:10px">현재 경계에 가까운 위치입니다. 유형 자체보다 앞으로 관찰되는 행동을 함께 확인해보세요.</div>
+</sc-if>
+<div style="background:#111318;padding:16px;margin-top:10px">
+<div style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7;margin-bottom:6px">현재 리더십 초점</div>
+<div style="font-size:16px;line-height:1.55;word-break:keep-all">{{ coachQuadrantFocus }}</div>
+</div>
+<div style="font-size:13px;color:#B4BBC7;margin-top:10px;word-break:keep-all">유형보다 중요한 것은 지금 이 구성원에게 어떤 리더십이 필요한지입니다.</div>
+<button type="button" onClick="{{ coachToHypothesis }}" style="margin-top:14px;background:#E10600;color:#fff;border:none;padding:16px;font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.1em;cursor:pointer;min-height:54px">내 리더십 생각해보기</button>
+</sc-if>
+
+<sc-if value="{{ coachIsHypo }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#FF2A21">반장의 리더십 가설</div>
+<h2 style="margin:8px 0 0;font-size:22px;font-weight:700;line-height:1.35;word-break:keep-all">지금 이 구성원에게 가장 필요한 것은 무엇이라고 생각하시나요?</h2>
+<p style="margin:8px 0 0;font-size:14px;color:#B4BBC7">최대 2개까지 선택할 수 있습니다.</p>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px">
+<sc-for list="{{ needOptions }}" as="n" hint-placeholder-count="9">
+<div onClick="{{ n.pick }}" style="border:1px solid rgba(255,255,255,.34);background:{{ n.bg }};color:{{ n.fg }};padding:10px 14px;font-size:14px;border-radius:999px;cursor:pointer">{{ n.label }}</div>
+</sc-for>
+</div>
+<h2 style="margin:20px 0 0;font-size:18px;font-weight:700;word-break:keep-all">반장님이 지금과 조금 다르게 해볼 수 있는 것은 무엇일까요?</h2>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px">
+<sc-for list="{{ changeOptions }}" as="c" hint-placeholder-count="7">
+<div onClick="{{ c.pick }}" style="border:1px solid rgba(255,255,255,.34);background:{{ c.bg }};color:{{ c.fg }};padding:10px 14px;font-size:14px;border-radius:999px;cursor:pointer">{{ c.label }}</div>
+</sc-for>
+</div>
+<input type="text" placeholder="직접 입력" value="{{ coachChangeCustom }}" onChange="{{ onCoachChangeCustom }}" style="margin-top:10px;width:100%;background:#2C313C;border:1px solid rgba(255,255,255,.34);color:#fff;font-size:16px;padding:13px;outline:none;box-sizing:border-box">
+<sc-if value="{{ coachError }}" hint-placeholder-val="{{ false }}">
+<div style="background:#2A0A08;border-left:4px solid #E10600;padding:13px 16px;font-size:15px;color:#FF9A94;margin-top:10px">{{ coachError }}</div>
+</sc-if>
+<button type="button" onClick="{{ coachRunAi }}" style="margin-top:14px;background:{{ coachHypoBg }};color:{{ coachHypoFg }};border:none;padding:16px;font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.1em;cursor:pointer;min-height:54px">{{ coachRunLabel }}</button>
+</sc-if>
+
+<sc-if value="{{ coachIsResult }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#FF2A21">AI COACHING</div>
+<h2 style="margin:8px 0 0;font-size:22px;font-weight:700;line-height:1.35;word-break:keep-all">AI 코치의 생각</h2>
+<p style="margin:8px 0 0;font-size:14px;color:#B4BBC7;word-break:keep-all">AI는 정답이 아닙니다. 반장님의 판단을 보완하는 참고 의견입니다.</p>
+</div>
+<sc-if value="{{ coachGoodStart }}" hint-placeholder-val="{{ false }}">
+<div style="background:#111318;padding:14px;margin-top:10px"><div style="font-family:var(--font-display);font-weight:700;font-size:12px;color:#00D2BE;margin-bottom:6px">지금 판단에서 좋은 출발점</div><div style="font-size:15px;line-height:1.55;word-break:keep-all">{{ coachGoodStart }}</div></div>
+</sc-if>
+<sc-if value="{{ coachCheckMore }}" hint-placeholder-val="{{ false }}">
+<div style="background:#111318;padding:14px;margin-top:10px"><div style="font-family:var(--font-display);font-weight:700;font-size:12px;color:#FFD400;margin-bottom:6px">한 번 더 확인해볼 것</div><div style="font-size:15px;line-height:1.55;word-break:keep-all">{{ coachCheckMore }}</div></div>
+</sc-if>
+<sc-if value="{{ coachOtherView }}" hint-placeholder-val="{{ false }}">
+<div style="background:#111318;padding:14px;margin-top:10px"><div style="font-family:var(--font-display);font-weight:700;font-size:12px;color:#3671C6;margin-bottom:6px">놓치고 있을 수 있는 관점</div><div style="font-size:15px;line-height:1.55;word-break:keep-all">{{ coachOtherView }}</div></div>
+</sc-if>
+<div style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7;margin:16px 0 4px">시도해볼 접근 — 선택 또는 수정해서 포함하세요</div>
+<sc-for list="{{ coachApproaches }}" as="ap" hint-placeholder-count="3">
+<div style="background:#111318;padding:14px;margin-top:8px;border:1px solid {{ ap.border }}">
+<div style="font-weight:700;font-size:16px">{{ ap.title }}</div>
+<div style="font-size:14px;color:#DCE0E7;margin-top:6px;word-break:keep-all">{{ ap.how }}</div>
+<div style="font-size:13px;color:#B4BBC7;margin-top:6px;word-break:keep-all">{{ ap.why }}</div>
+<button type="button" onClick="{{ ap.toggle }}" style="margin-top:10px;background:{{ ap.btnBg }};color:{{ ap.btnFg }};border:1px solid rgba(255,255,255,.34);padding:10px;font-size:13px;cursor:pointer;width:100%">{{ ap.btnLabel }}</button>
+</div>
+</sc-for>
+<sc-if value="{{ coachAvoid }}" hint-placeholder-val="{{ false }}">
+<div style="background:#2A0A08;border-left:4px solid #E10600;padding:13px 16px;font-size:14px;color:#FF9A94;margin-top:12px;word-break:keep-all">피해야 할 접근: {{ coachAvoid }}</div>
+</sc-if>
+<button type="button" onClick="{{ coachSavePlan }}" style="margin-top:14px;background:{{ coachSaveBg }};color:{{ coachSaveFg }};border:none;padding:16px;font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.1em;cursor:pointer;min-height:54px">내 리더십 전략으로 정리</button>
+</sc-if>
+
+<sc-if value="{{ coachIsSaved }}" hint-placeholder-val="{{ false }}">
+<div>
+<div style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#FF2A21">LEADERSHIP PLAN v1.0</div>
+<h2 style="margin:8px 0 0;font-size:22px;font-weight:700;word-break:keep-all">{{ planTargetName }} · 리더십 플랜</h2>
+</div>
+<div style="background:#111318;padding:14px;margin-top:10px"><div style="font-family:var(--font-display);font-weight:700;font-size:12px;color:#DCE0E7;margin-bottom:6px">현재 상태</div><div style="font-size:15px">{{ planScoreLabel }}</div></div>
+<div style="background:#111318;padding:14px;margin-top:8px"><div style="font-family:var(--font-display);font-weight:700;font-size:12px;color:#DCE0E7;margin-bottom:6px">지금 필요한 리더십</div><div style="font-size:15px;word-break:keep-all">{{ planNeed }}</div></div>
+<div style="background:#111318;padding:14px;margin-top:8px"><div style="font-family:var(--font-display);font-weight:700;font-size:12px;color:#DCE0E7;margin-bottom:6px">내가 먼저 바꿔볼 행동</div><div style="font-size:15px;word-break:keep-all">{{ planChange }}</div></div>
+<div style="background:#0E1A16;border-left:4px solid #00D2BE;padding:14px 16px;font-size:15px;color:#9BE9DC;margin-top:10px;word-break:keep-all">저장되었습니다. 실제 대화에서는 오늘 만든 가설을 확인하며 조정해보세요.</div>
+<button type="button" onClick="{{ coachRestart }}" style="margin-top:14px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.26);padding:14px;font-size:15px;cursor:pointer;min-height:52px">다른 구성원으로 다시 시작</button>
+</sc-if>
+
+</div>
+</sc-if>
+
+<sc-if value="{{ nextShow }}" hint-placeholder-val="{{ false }}">
+<button type="button" onClick="{{ nextGo }}" style="margin-top:auto;background:{{ nextBg }};color:{{ nextFg }};border:none;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:{{ nextCursor }};min-height:64px;text-align:left">
+<span style="display:flex;flex-direction:column;gap:3px;min-width:0">
+<span style="font-size:19px;font-weight:700">다음으로</span>
+<span style="font-size:13px;opacity:.85;word-break:keep-all">{{ nextLabel }}</span>
+</span>
+<span aria-hidden="true" style="font-family:var(--font-numeric);font-weight:900;font-size:26px;flex-shrink:0">→</span>
+</button>
+</sc-if>
+
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:430,&quot;height&quot;:900}}">
+const AREAS = [
+  { name: "방향 연결", color: "#E10600", items: [
+    "센터의 방향과 핵심 목표를 내 말로 설명할 수 있다.",
+    "업무를 지시할 때 왜 중요한지 함께 설명한다.",
+    "실장에게 현장 상황과 이슈를 사실대로 공유한다.",
+    "변경된 기준을 SM이 이해했는지 확인한다.",
+    "숫자와 현장 행동의 연결점을 찾아 설명한다."] },
+  { name: "일상 운영", color: "#FF8000", items: [
+    "아침 조회에서 당일 우선순위를 명확히 안내한다.",
+    "SM의 역량과 업무량을 고려해 업무를 배분한다.",
+    "지시할 때 완료 기준과 확인 시점을 합의한다.",
+    "진행 중인 업무와 지연 가능성을 수시로 파악한다.",
+    "문제가 생기면 원인을 확인한 뒤 지원 방법을 정한다."] },
+  { name: "관계와 문화", color: "#FFD400", items: [
+    "출근한 SM에게 먼저 눈을 맞추고 인사한다.",
+    "평소와 다른 표정·말투·행동을 알아차린다.",
+    "문제를 빠르게 알린 행동을 인정한다.",
+    "잘한 행동을 구체적으로 바로 말해준다.",
+    "질문과 의견을 말해도 괜찮은 분위기를 만든다."] },
+  { name: "성과와 성장", color: "#00D2BE", items: [
+    "성과 차이가 날 때 개인별 원인을 구분해 본다.",
+    "피드백은 사실과 기준을 중심으로 짧게 전달한다.",
+    "SM이 스스로 해결할 수 있도록 질문하고 기다린다.",
+    "필요한 기술을 보여주고 함께한 뒤 맡겨본다.",
+    "합의한 행동을 다시 확인하고 변화 여부를 점검한다."] },
+];
+const ACTS = [
+  { key: "team",   no: "01", label: "팀 이름·구호",      accent: "#00D2BE" },
+  { key: "diag",   no: "02", label: "자가진단",          accent: "#E10600" },
+  { key: "result", no: "03", label: "진단 결과",         accent: "#00D2BE" },
+  { key: "bp",     no: "04", label: "우리 반 아침 조회", accent: "#3671C6" },
+  { key: "coach",  no: "05", label: "AI 리더십 코치",    accent: "#FFD400" },
+];
+const NEED_OPTIONS = [
+  "잘하고 있는 행동 인정", "동기가 낮아진 이유 들어보기", "목표·업무 의미 다시 연결",
+  "업무 기준 명확하게 설명", "기술·업무 방법 구체적으로 지원", "작은 성공 경험 만들기",
+  "자율성과 권한 확대", "더 도전적인 역할 부여", "점검 빈도 높이기",
+];
+const CHANGE_OPTIONS = [
+  "먼저 묻고 듣기", "기대수준을 더 구체적으로 설명하기", "잘한 행동을 바로 인정하기",
+  "업무를 더 작은 단계로 나눠주기", "중간 점검을 늘리기", "자율적으로 판단할 범위를 넓혀주기",
+];
+function quadrantOf(c, m) {
+  const boundary = [5, 6].includes(c) || [5, 6].includes(m);
+  let label, focus;
+  if (c >= 6 && m >= 6) { label = "핵심 인력"; focus = "이미 갖춘 역량과 동기를 더 큰 역할과 자율성으로 연결해볼 필요가 있습니다."; }
+  else if (c >= 6 && m <= 5) { label = "동기부여 인력"; focus = "이미 갖고 있는 역량을 활용하면서, 최근 동기가 낮아진 이유를 먼저 확인해볼 필요가 있습니다."; }
+  else if (c <= 5 && m >= 6) { label = "집중육성 인력"; focus = "의욕은 있는 만큼, 구체적인 업무 방법과 기준을 단계적으로 지원해볼 필요가 있습니다."; }
+  else { label = "주의관리 인력"; focus = "역량과 동기 모두 현재 어려움이 있는 상태이니, 가장 작은 성공 경험부터 함께 만들어볼 필요가 있습니다."; }
+  return { label, focus, boundary };
+}
+
+class Component extends DCLogic {
+  state = {
+    screen: "team",
+    tnDraft: "", tsDraft: "", trDraft: "", tmSaved: false,
+    indexOpen: false,
+    inCode: "", inName: "", inTeamName: "", teamNo: 0,
+    joinError: "", joining: false,
+    me: null,
+    page: 0,
+    answers: {},
+    bpWhen: "", bpHow: "", bpBest: "", bpSaved: false,
+    live: { teamInfo: [] },
+    coachStep: 0,
+    coach: { targetName: "", posObs: "", negObs: "", recent: "", competence: 5, motivation: 5, need: [], change: "", changeCustom: "", loading: false, error: "", result: null, chosen: [], planSaved: false },
+  };
+
+  componentDidMount() {
+    try {
+      const saved = JSON.parse(localStorage.getItem("lgws-me") || "null");
+      if (saved && saved.name && saved.code) {
+        this.setState({ me: saved, screen: "diag", inTeamName: saved.teamName || "", teamNo: saved.teamNo || 0, inCode: saved.code || "", inName: saved.name });
+      }
+    } catch (e) {}
+    this._poll();
+    this._timer = setInterval(() => this._poll(), 4000);
+  }
+  componentWillUnmount() { if (this._timer) clearInterval(this._timer); }
+
+  _poll() {
+    const me = this.state.me;
+    if (!me || !window.WSData) return;
+    WSData.getTeamInfoAll(me.code).then(teamInfo => this.setState({ live: { teamInfo: teamInfo || [] } })).catch(() => {});
+  }
+  _go(screen) { this.setState({ screen, indexOpen: false }); }
+
+  renderVals() {
+    const st = this.state, me = st.me;
+    const ready = st.inCode.length === 4 && st.inName.trim().length > 0 && st.teamNo > 0;
+    const answered = Object.keys(st.answers).length;
+    const page = st.page, area = AREAS[page] || AREAS[0];
+
+    const areaScores = AREAS.map((a, ai) => {
+      let sc = 0;
+      for (let i = 0; i < 5; i++) sc += st.answers[ai * 5 + i] || 0;
+      return { name: a.name, color: a.color, score: sc, pct: Math.round((sc / 25) * 100) + "%" };
+    });
+    const total = areaScores.reduce((n, a) => n + a.score, 0);
+
+    const TEAM_COLORS = ["#00D2BE", "#FF8000", "#3671C6", "#FFD400", "#FF3AA0", "#6C4BF6"];
+    const myNo = me && me.teamNo ? me.teamNo : 0;
+    const sharedTeam = (st.live.teamInfo || []).find(t => Number(t.team) === myNo) || {};
+    const tmReady = st.tnDraft.trim().length > 0 && st.trDraft.trim().length > 0;
+    const cs = st.coach;
+
+    const stateOf = {
+      team: sharedTeam.name ? sharedTeam.name : "미입력",
+      diag: answered + " / 20 응답",
+      result: total ? total + "점" : "진단 후 확인",
+      bp: st.bpSaved ? "전송 완료" : "미전송",
+      coach: cs.planSaved ? "저장 완료" : "진행 전",
+    };
+
+    const act = ACTS.find(a => a.key === st.screen);
+    const idx = ACTS.findIndex(a => a.key === st.screen);
+    const nx = idx >= 0 && idx < ACTS.length - 1 ? ACTS[idx + 1] : null;
+    const nextOk = st.screen === "diag" ? answered === 20 : true;
+
+    const bpReady = st.bpHow.trim().length > 0;
+
+    return {
+      showJoin: !me,
+      showApp: !!me,
+      me: me ? ((me.teamName ? "TEAM " + me.teamNo + " " + me.teamName + " · " : "") + me.name) : "",
+      indexOpen: st.indexOpen,
+      toggleIndex: () => this.setState(s => ({ indexOpen: !s.indexOpen })),
+      closeIndex: () => this.setState({ indexOpen: false }),
+      indexItems: ACTS.map(a => ({
+        key: a.key, no: a.no, label: a.label, accent: a.accent,
+        state: stateOf[a.key],
+        bg: st.screen === a.key ? "#181C23" : "transparent",
+        go: () => this._go(a.key),
+      })),
+      actNo: act ? act.no : "00",
+      actLabel: act ? act.label : "대기",
+
+      isTeam: st.screen === "team",
+      teamColor: TEAM_COLORS[(myNo || 1) - 1] || "#00D2BE",
+      teamNoLabel: myNo ? myNo + "조" : "조 미지정",
+      tnDraft: st.tnDraft, tsDraft: st.tsDraft, trDraft: st.trDraft,
+      onTn: e => this.setState({ tnDraft: e.target.value }),
+      onTs: e => this.setState({ tsDraft: e.target.value }),
+      onTr: e => this.setState({ trDraft: e.target.value }),
+      tmSaved: st.tmSaved,
+      tmBtn: st.tmSaved ? "전송 완료 · 다시 전송" : (tmReady ? "전송" : "팀 이름과 대표 이름을 입력하세요"),
+      tmBg: tmReady ? "#00D2BE" : "#20242D",
+      tmFg: tmReady ? "#06070A" : "#8A92A0",
+      sendTeam: async () => {
+        if (!tmReady || !myNo || !me) return;
+        const entry = { name: st.tnDraft.trim(), slogan: st.tsDraft.trim(), rep: st.trDraft.trim() };
+        await WSData.submitTeamInfo(me.code, myNo, entry);
+        this.setState({ tmSaved: true });
+        this._poll();
+      },
+
+      isDiag: st.screen === "diag", isResult: st.screen === "result",
+      isBp: st.screen === "bp",
+
+      nextShow: !!nx,
+      nextLabel: nextOk ? (nx ? nx.no + " · " + nx.label : "") : "자가진단 20문항을 모두 응답하면 열립니다",
+      nextBg: nextOk ? "#E10600" : "#20242D",
+      nextFg: nextOk ? "#fff" : "#8A92A0",
+      nextCursor: nextOk ? "pointer" : "not-allowed",
+      nextGo: () => { if (nx && nextOk) this._go(nx.key); },
+
+      inCode: st.inCode, inName: st.inName, inTeamName: st.inTeamName,
+      joinError: st.joinError,
+      onInCode: e => this.setState({ inCode: e.target.value.replace(/\D/g, "").slice(0, 4), joinError: "" }),
+      onInName: e => this.setState({ inName: e.target.value, joinError: "" }),
+      onTeamName: e => this.setState({ inTeamName: e.target.value }),
+      joinBg: ready ? "#E10600" : "#20242D",
+      joinFg: ready ? "#FFFFFF" : "#8A92A0",
+      teamNos: [1, 2, 3, 4, 5, 6, 7, 8].map(n => ({
+        n, key: "t" + n,
+        pick: () => this.setState({ teamNo: n }),
+        bg: st.teamNo === n ? "#E10600" : "#2C313C",
+        fg: st.teamNo === n ? "#FFFFFF" : "#fff",
+        bd: st.teamNo === n ? "#E10600" : "rgba(255,255,255,.34)",
+      })),
+      joining: st.joining,
+      doJoin: async () => {
+        if (!ready) {
+          this.setState({ joinError: "입장코드 4자리, 이름, 조 번호를 모두 입력해주세요." });
+          return;
+        }
+        if (!window.WS_ROUNDS || !window.WS_ROUNDS[st.inCode]) {
+          this.setState({ joinError: "등록된 입장코드가 아닙니다. 강사에게 다시 확인해주세요." });
+          return;
+        }
+        this.setState({ joining: true });
+        const p = await WSData.joinParticipant(st.inCode, st.inName.trim(), st.teamNo);
+        const nm = { code: st.inCode, name: st.inName.trim(), teamNo: st.teamNo, teamName: st.inTeamName.trim(), participantId: p ? p.participant_id : null };
+        localStorage.setItem("lgws-me", JSON.stringify(nm));
+        this.setState({ me: nm, screen: "diag", joinError: "", joining: false });
+        this._poll();
+      },
+      logout: () => { localStorage.removeItem("lgws-me"); this.setState({ me: null, screen: "diag", indexOpen: false }); },
+
+      myTeamLabel: me && me.teamName ? "TEAM " + (me.teamNo || "-") + " · " + me.teamName : "조 미지정",
+
+      diagArea: "영역 " + (page + 1) + " · " + area.name,
+      diagColor: area.color,
+      diagDone: String(answered),
+      diagPct: Math.round((answered / 20) * 100) + "%",
+      diagItems: area.items.map((text, i) => {
+        const id = page * 5 + i;
+        return {
+          key: "d" + id, no: String(page * 5 + i + 1), text,
+          mark: st.answers[id] ? area.color : "rgba(255,255,255,.16)",
+          scale: [1, 2, 3, 4, 5].map(v => ({
+            v, key: "s" + id + "-" + v,
+            pick: () => this.setState(s => ({ answers: Object.assign({}, s.answers, { [id]: v }) }), () => this._pushDiag(id, v)),
+            bg: st.answers[id] === v ? area.color : "#2C313C",
+            fg: st.answers[id] === v ? "#06070A" : "#fff",
+            bd: st.answers[id] === v ? area.color : "rgba(255,255,255,.26)",
+          })),
+        };
+      }),
+      diagPrev: () => this.setState(s => ({ page: Math.max(0, s.page - 1) })),
+      diagNext: () => this.setState(s => (s.page >= 3 ? { screen: "result" } : { page: s.page + 1 })),
+      diagNextLabel: page >= 3 ? "결과 보기" : "다음 영역",
+
+      totalScore: String(total),
+      totalNote: total ? "네 영역 중 가장 낮은 영역을 오늘의 실행 목표로 연결해보세요." : "자가진단을 먼저 완료해주세요.",
+      areaScores: areaScores.map((a, i) => Object.assign({ key: "a" + i }, a)),
+
+      bpWhen: st.bpWhen, bpHow: st.bpHow, bpBest: st.bpBest,
+      onBpWhen: e => this.setState({ bpWhen: e.target.value }),
+      onBpHow: e => this.setState({ bpHow: e.target.value }),
+      onBpBest: e => this.setState({ bpBest: e.target.value }),
+      bpBtn: st.bpSaved ? "전송 완료 · 다시 전송" : (bpReady ? "전송" : "진행 방식을 입력하세요"),
+      bpBg: bpReady ? "#3671C6" : "#20242D",
+      bpFg: bpReady ? "#FFFFFF" : "#8A92A0",
+      sendBp: async () => {
+        const how = st.bpHow.trim();
+        if (!how || !me) return;
+        await WSData.submitResponses(me.code, me.participantId, [
+          { question_id: "bp_when", text: st.bpWhen.trim() },
+          { question_id: "bp_how", text: how },
+          { question_id: "bp_best", text: st.bpBest.trim() },
+        ]);
+        this.setState({ bpSaved: true });
+      },
+
+      /* ── AI 리더십 코치 (05) ───────────────────────────────── */
+      isCoach: st.screen === "coach",
+      coachIsIntro: st.screen === "coach" && st.coachStep === 0 && !cs.planSaved,
+      coachIsObserve: st.screen === "coach" && st.coachStep === 1 && !cs.planSaved,
+      coachIsScore: st.screen === "coach" && st.coachStep === 2 && !cs.planSaved,
+      coachIsType: st.screen === "coach" && st.coachStep === 3 && !cs.planSaved,
+      coachIsHypo: st.screen === "coach" && st.coachStep === 4 && !cs.planSaved,
+      coachIsResult: st.screen === "coach" && st.coachStep === 5 && !cs.planSaved,
+      coachIsSaved: st.screen === "coach" && cs.planSaved,
+      coachQuadrantLabel: quadrantOf(cs.competence, cs.motivation).label,
+      coachQuadrantFocus: quadrantOf(cs.competence, cs.motivation).focus,
+      coachBoundary: quadrantOf(cs.competence, cs.motivation).boundary,
+      needOptions: NEED_OPTIONS.map(o => {
+        const on = cs.need.includes(o);
+        return { key: o, label: o, pick: () => this._coachToggleNeed(o), bg: on ? "#00D2BE" : "#2C313C", fg: on ? "#06070A" : "#fff" };
+      }),
+      changeOptions: CHANGE_OPTIONS.concat(["직접 입력"]).map(o => {
+        const val = o === "직접 입력" ? "__custom__" : o;
+        const on = cs.change === val;
+        return { key: val, label: o, pick: () => this._coachSet("change", val), bg: on ? "#00D2BE" : "#2C313C", fg: on ? "#06070A" : "#fff" };
+      }),
+      recentOptions: ["비슷한 모습이 반복되고 있음", "최근 조금 달라짐", "특정 상황에서만 나타남", "아직 잘 모르겠음"].map(o => {
+        const on = cs.recent === o;
+        return { key: o, label: o, pick: () => this._coachSet("recent", o), bg: on ? "#00D2BE" : "#2C313C", fg: on ? "#06070A" : "#fff" };
+      }),
+      coachTarget: cs.targetName,
+      onCoachTarget: e => this._coachSet("targetName", e.target.value),
+      coachStartReady: cs.targetName.trim().length > 0,
+      coachStartBg: cs.targetName.trim() ? "#E10600" : "#20242D",
+      coachStartFg: cs.targetName.trim() ? "#fff" : "#8A92A0",
+      coachStart: () => cs.targetName.trim() && this.setState({ coachStep: 1 }),
+
+      coachPos: cs.posObs, coachNeg: cs.negObs,
+      onCoachPos: e => this._coachSet("posObs", e.target.value),
+      onCoachNeg: e => this._coachSet("negObs", e.target.value),
+      coachObserveReady: cs.posObs.trim().length > 0 && cs.negObs.trim().length > 0,
+      coachObserveBg: (cs.posObs.trim() && cs.negObs.trim()) ? "#E10600" : "#20242D",
+      coachObserveFg: (cs.posObs.trim() && cs.negObs.trim()) ? "#fff" : "#8A92A0",
+      coachToObserveScore: () => (cs.posObs.trim() && cs.negObs.trim()) && this.setState({ coachStep: 2 }),
+
+      coachComp: cs.competence, coachMot: cs.motivation,
+      onCoachComp: e => this._coachSetQuiet("competence", +e.target.value),
+      onCoachMot: e => this._coachSetQuiet("motivation", +e.target.value),
+      coachToType: () => this.setState({ coachStep: 3 }),
+
+      coachToHypothesis: () => this.setState({ coachStep: 4 }),
+
+      coachChangeCustom: cs.changeCustom,
+      onCoachChangeCustom: e => this._coachSet("changeCustom", e.target.value),
+      coachHypoReady: cs.need.length > 0 && !!(cs.change && (cs.change !== "__custom__" || cs.changeCustom.trim())),
+      coachHypoBg: (cs.need.length > 0 && cs.change && (cs.change !== "__custom__" || cs.changeCustom.trim())) ? "#E10600" : "#20242D",
+      coachHypoFg: (cs.need.length > 0 && cs.change && (cs.change !== "__custom__" || cs.changeCustom.trim())) ? "#fff" : "#8A92A0",
+      coachRunLabel: cs.loading ? "AI가 생각하는 중..." : "AI 코치에게 의견 받아보기",
+      coachRunAi: () => this._coachRun(),
+      coachLoading: cs.loading,
+      coachError: cs.error,
+
+      coachGoodStart: cs.result ? (cs.result.good_start || "") : "",
+      coachCheckMore: cs.result ? (cs.result.check_more || "") : "",
+      coachOtherView: cs.result ? (cs.result.other_view || "") : "",
+      coachAvoid: cs.result ? (cs.result.avoid || "") : "",
+      coachHasApproaches: !!(cs.result && cs.result.approaches && cs.result.approaches.length),
+      coachApproaches: cs.result && cs.result.approaches ? cs.result.approaches.map((a, i) => {
+        const on = cs.chosen.includes(i);
+        return {
+          key: "ap" + i, title: a.title || "", how: a.how || "", why: a.why || "",
+          toggle: () => this._coachToggleChosen(i),
+          btnLabel: on ? "선택됨" : "선택",
+          border: on ? "#00D2BE" : "rgba(255,255,255,.1)",
+          btnBg: on ? "#00D2BE" : "transparent",
+          btnFg: on ? "#06070A" : "#fff",
+        };
+      }) : [],
+      coachCanSavePlan: cs.chosen.length > 0,
+      coachSaveBg: cs.chosen.length > 0 ? "#00D2BE" : "#20242D",
+      coachSaveFg: cs.chosen.length > 0 ? "#06070A" : "#8A92A0",
+      coachSavePlan: () => this._coachSavePlan(),
+      coachPlanSaved: cs.planSaved,
+      coachRestart: () => this.setState({
+        coachStep: 0,
+        coach: { targetName: "", posObs: "", negObs: "", recent: "", competence: 5, motivation: 5, need: [], change: "", changeCustom: "", loading: false, error: "", result: null, chosen: [], planSaved: false },
+      }),
+      planTargetName: cs.targetName,
+      planScoreLabel: cs.competence + " / " + cs.motivation + " · " + quadrantOf(cs.competence, cs.motivation).label,
+      planNeed: cs.need.join(", "),
+      planChange: cs.change === "__custom__" ? cs.changeCustom : cs.change,
+    };
+  }
+
+  _coachSet(k, v) { this.setState(s => ({ coach: Object.assign({}, s.coach, { [k]: v }) })); }
+  _coachSetQuiet(k, v) { this.state.coach[k] = v; this.forceUpdate(); }
+  _coachToggleNeed(v) {
+    this.setState(s => {
+      const arr = s.coach.need.slice();
+      const i = arr.indexOf(v);
+      if (i >= 0) arr.splice(i, 1); else if (arr.length < 2) arr.push(v);
+      return { coach: Object.assign({}, s.coach, { need: arr }) };
+    });
+  }
+  _coachToggleChosen(i) {
+    this.setState(s => {
+      const arr = s.coach.chosen.slice();
+      const p = arr.indexOf(i);
+      if (p >= 0) arr.splice(p, 1); else arr.push(i);
+      return { coach: Object.assign({}, s.coach, { chosen: arr }) };
+    });
+  }
+  _coachRun() {
+    const me = this.state.me, cs = this.state.coach;
+    this.setState({ coach: Object.assign({}, cs, { loading: true, error: "" }) });
+    fetch("/api/coach", {
+      method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        anonId: me ? me.name : "익명",
+        observed: { positive: cs.posObs, negative: cs.negObs, recent: cs.recent },
+        competence: cs.competence, motivation: cs.motivation,
+        leaderThoughts: cs.need,
+        myChange: cs.change === "__custom__" ? cs.changeCustom : cs.change,
+      }),
+    }).then(r => r.json().then(j => ({ ok: r.ok, j })))
+      .then(({ ok, j }) => {
+        if (!ok) throw new Error(j.error || "AI 호출에 실패했습니다.");
+        this.setState({ coach: Object.assign({}, this.state.coach, { loading: false, result: j }), coachStep: 5 });
+      })
+      .catch(e => {
+        this.setState({ coach: Object.assign({}, this.state.coach, { loading: false, error: e.message || "오류가 발생했습니다." }) });
+      });
+  }
+  _coachSavePlan() {
+    const me = this.state.me, cs = this.state.coach;
+    if (!me) return;
+    const q = quadrantOf(cs.competence, cs.motivation);
+    const plan = {
+      targetName: cs.targetName, competence: cs.competence, motivation: cs.motivation, quadrant: q.label,
+      posObs: cs.posObs, negObs: cs.negObs, need: cs.need,
+      myChange: cs.change === "__custom__" ? cs.changeCustom : cs.change,
+      approaches: (cs.result && cs.result.approaches || []).filter((_, i) => cs.chosen.includes(i)),
+      savedAt: new Date().toISOString(),
+    };
+    WSData.submitCoachPlan(me.code, me.participantId, plan).then(() => {
+      this.setState({ coach: Object.assign({}, this.state.coach, { planSaved: true }) });
+    });
+  }
+
+  _pushDiag(id, v) {
+    const me = this.state.me;
+    if (!me) return;
+    WSData.submitResponses(me.code, me.participantId, [{ question_id: "diag_" + id, text: v }]);
+  }
+}
+</script>
 </body>
 </html>

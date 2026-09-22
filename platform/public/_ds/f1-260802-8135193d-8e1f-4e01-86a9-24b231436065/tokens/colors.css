@@ -1,0 +1,62 @@
+:root{
+  /* ── Carbon (base surfaces) ─────────────────────────── */
+  --carbon-1000:#000000; --carbon-950:#06070A; --carbon-900:#0B0D12; --carbon-850:#111318;
+  --carbon-800:#171A21; --carbon-700:#20242D; --carbon-600:#2C313C; --carbon-500:#3C424F;
+
+  /* ── Neutral (text + lines on carbon) ───────────────── */
+  --neutral-400:#6B7280; --neutral-300:#9AA1AD; --neutral-200:#C7CCD4; --neutral-100:#E7E9ED; --white:#FFFFFF;
+
+  /* ── Race red (primary) ─────────────────────────────── */
+  --red-700:#8E0300; --red-600:#B80400; --red-500:#E10600; --red-400:#FF2A21; --red-300:#FF6A63;
+
+  /* ── Grid accents (livery palette) ──────────────────── */
+  --grid-teal:#00D2BE; --grid-orange:#FF8000; --grid-blue:#1E41FF; --grid-azure:#3671C6;
+  --grid-yellow:#FFD400; --grid-green:#00E701; --grid-magenta:#FF3AA0; --grid-violet:#6C4BF6;
+  --grid-silver:#B7BDC6;
+
+  /* ── Tyre compounds ─────────────────────────────────── */
+  --tyre-soft:#E10600; --tyre-medium:#FFD400; --tyre-hard:#F2F2F2;
+  --tyre-inter:#00E701; --tyre-wet:#0067C9;
+
+  /* ── Timing semantics ───────────────────────────────── */
+  --timing-purple:#B14BF6; --timing-green:#00E701; --timing-yellow:#FFD400; --timing-white:#FFFFFF;
+
+  /* ── Semantic aliases ───────────────────────────────── */
+  --bg-page:var(--carbon-950);
+  --bg-elevated:var(--carbon-900);
+  --surface-card:var(--carbon-850);
+  --surface-card-hover:var(--carbon-800);
+  --surface-inset:var(--carbon-800);
+  --surface-inverse:var(--white);
+
+  --text-primary:var(--white);
+  --text-body:var(--neutral-200);
+  --text-muted:var(--neutral-300);
+  --text-faint:var(--neutral-400);
+  --text-on-accent:var(--white);
+  --text-inverse:var(--carbon-950);
+
+  --accent:var(--red-500);
+  --accent-hover:var(--red-400);
+  --accent-press:var(--red-600);
+  --accent-quiet:rgba(225,6,0,.14);
+
+  --border-hairline:rgba(255,255,255,.08);
+  --border-line:rgba(255,255,255,.14);
+  --border-strong:rgba(255,255,255,.28);
+  --border-accent:var(--red-500);
+
+  --status-live:var(--red-500);
+  --status-flag-yellow:var(--grid-yellow);
+  --status-flag-green:var(--grid-green);
+  --status-flag-red:var(--red-500);
+  --status-flag-blue:var(--grid-azure);
+}
+/* Light scope — paddock / print documents. */
+.apex-light{
+  --bg-page:#F4F5F7; --bg-elevated:var(--white); --surface-card:var(--white);
+  --surface-card-hover:#F0F1F4; --surface-inset:#EDEFF2; --surface-inverse:var(--carbon-950);
+  --text-primary:var(--carbon-950); --text-body:var(--carbon-700); --text-muted:#5B6270;
+  --text-faint:#8A919D; --text-inverse:var(--white);
+  --border-hairline:rgba(6,7,10,.08); --border-line:rgba(6,7,10,.14); --border-strong:rgba(6,7,10,.3);
+}
