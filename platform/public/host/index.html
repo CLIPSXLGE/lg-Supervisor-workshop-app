@@ -1574,26 +1574,47 @@ class Component extends DCLogic {
   componentWillUnmount() {
     clearInterval(this._iv);
     clearInterval(this._liveIv);
-    if (this._ch) this._ch.close();
-    if (this._pull) window.removeEventListener("storage", this._pull);
   }
   componentDidUpdate() { this._syncQR(); }
-  _readShared() {
-    try { return JSON.parse(localStorage.getItem("lgws-workshop-state") || "{}"); } catch (e) { return {}; }
-  }
+  /* WSData(REST) 기준 실시간 폴링. 이전에는 localStorage("lgws-workshop-state")를
+     읽었지만, 폰(교육생)과 노트북(강사)이 다른 기기라 공유 백엔드가 필요하다. */
   _startLive() {
+    const DIAG_QS = Array.from({ length: 20 }, (_, i) => "diag_" + i);
     const pull = () => {
-      const s = this._readShared();
-      const roster = (s.roster || []).map(r => r.name);
-      const votes = s.votes || {};
-      const sig = JSON.stringify([roster, votes, (s.talks || []).length, (s.goals || []).length, (s.diag || []).length, JSON.stringify(s.bp || []), JSON.stringify(s.teams || {})]);
-      if (sig !== this._liveSig) { this._liveSig = sig; this._live = s; this.forceUpdate(); }
+      const code = (this.state.lg.code || "").trim();
+      if (!code || !window.WSData) { this._live = { roster: [], teams: {}, diag: [], bp: [] }; return this.forceUpdate(); }
+      Promise.all([
+        WSData.getParticipants(code),
+        WSData.getTeamInfoAll(code),
+        WSData.getResponses(code, DIAG_QS.concat(["bp_when", "bp_how", "bp_best"])),
+      ]).then(([participants, teamInfoArr, responses]) => {
+        const teamByNo = {};
+        (teamInfoArr || []).forEach(t => { teamByNo[t.team] = t; });
+        const teams = {};
+        (teamInfoArr || []).forEach(t => { teams[t.team] = { name: t.name, slogan: t.slogan, rep: t.rep }; });
+        const byP = {};
+        (responses || []).forEach(r => { (byP[r.participant_id] = byP[r.participant_id] || {})[r.question_id] = r.text; });
+        const roster = (participants || []).map(p => ({
+          name: p.name, teamNo: p.team, teamName: (teamByNo[p.team] || {}).name || "",
+        }));
+        const diag = (participants || []).map(p => {
+          const rs = byP[p.participant_id] || {};
+          const scores = [];
+          for (let i = 0; i < 20; i++) { const v = rs["diag_" + i]; if (v != null && v !== "") scores.push(Number(v)); }
+          return { scores };
+        });
+        const bp = (participants || []).map(p => {
+          const rs = byP[p.participant_id] || {};
+          if (!rs.bp_how) return null;
+          const tn = (teamByNo[p.team] || {}).name;
+          return { team: tn ? "TEAM " + p.team + " " + tn : "", teamNo: p.team, name: p.name, when: rs.bp_when || "", how: rs.bp_how, best: rs.bp_best || "" };
+        }).filter(Boolean);
+        this._live = { roster: roster, teams: teams, diag: diag, bp: bp };
+        this.forceUpdate();
+      }).catch(() => {});
     };
     pull();
-    this._liveIv = setInterval(pull, 1000);
-    try { this._ch = new BroadcastChannel("lgws"); this._ch.onmessage = pull; } catch (e) {}
-    window.addEventListener("storage", pull);
-    this._pull = pull;
+    this._liveIv = setInterval(pull, 4000);
   }
   _syncQR() {
     const el = this._qr, url = this._qrUrl;
@@ -1623,7 +1644,17 @@ class Component extends DCLogic {
       vals["role" + i + "tr"] = on ? "none" : "translateY(18px)";
     }
     const TEAM_COLORS = ["var(--grid-teal)", "var(--grid-orange)", "var(--grid-azure)", "var(--grid-yellow)", "var(--grid-magenta)", "var(--grid-violet)"];
-    const liveTeams = (this._live && this._live.teams) || {};
+    /* 강사 로그인 전(리허설·강의 준비 단계)에는 실습 예시를 보여준다.
+       로그인 후에는 실제 모바일 제출 데이터로 자동 전환된다. */
+    const DEMO_TEAMS = {
+      1: { name: "피트크루", slogan: "먼저 보고 먼저 움직인다", rep: "김OO" },
+      2: { name: "세이프티카", slogan: "속도보다 방향", rep: "이OO" },
+      3: { name: "그리드워커", slogan: "한 팀, 한 호흡", rep: "박OO" },
+      4: { name: "체커드플래그", slogan: "끝까지 함께 완주", rep: "최OO" },
+      5: { name: "폴포지션", slogan: "먼저 인사, 먼저 살핀다", rep: "정OO" },
+      6: { name: "슬립스트림", slogan: "서로의 속도를 채운다", rep: "한OO" },
+    };
+    const liveTeams = this.state.loggedIn ? ((this._live && this._live.teams) || {}) : DEMO_TEAMS;
     vals.teamCards = TEAM_COLORS.map((color, i) => {
       const no = i + 1, t = liveTeams[no] || {};
       const nm = (t.name || "").trim();
@@ -1770,8 +1801,12 @@ class Component extends DCLogic {
     vals.dgHigh = DG_TEXT[highK];
     vals.dgHighAvg = f1(itemAvg[highK]);
     const BPC = ["var(--red-500)", "var(--grid-orange)", "var(--grid-yellow)", "var(--grid-teal)", "var(--grid-azure)", "var(--grid-magenta)"];
-    const bpRaw = ((this._live && this._live.bp) || []).filter(b => b && b.how);
-    vals.bpCount = bpRaw.length ? bpRaw.length + "개 제출" : "제출 대기";
+    const DEMO_BP = [
+      { team: "TEAM 1 · 피트크루", name: "김OO", when: "매일 아침 / 10분", how: "어제 지연 건을 먼저 확인하고, 오늘 예약 순서를 함께 본다", best: "인정 한마디를 마지막에 넣는다" },
+      { team: "TEAM 2 · 세이프티카", name: "이OO", when: "격일 / 5분", how: "우선순위 3가지만 짧게 공유한다", best: "" },
+    ];
+    const bpRaw = this.state.loggedIn ? ((this._live && this._live.bp) || []).filter(b => b && b.how) : DEMO_BP;
+    vals.bpCount = this.state.loggedIn ? (bpRaw.length ? bpRaw.length + "개 제출" : "제출 대기") : "실습 예시";
     vals.bpEmpty = bpRaw.length === 0;
     vals.bpAny = bpRaw.length > 0;
     vals.bpList = bpRaw.slice(0, 8).map((b, i) => ({
@@ -1797,15 +1832,22 @@ class Component extends DCLogic {
       down: () => this._score(t, -1),
     }));
     const lg = this.state.lg;
-    this._qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=0&color=000000&bgcolor=FFFFFF&data=" + encodeURIComponent("https://lg-workshop-app.vercel.app/?center=" + (lg.code || ""));
-    const ready = lg.code.length === 4 && lg.pw.length > 0 && lg.name.trim().length > 0;
-    const joinUrl = "lg-workshop-app.vercel.app";
+    const joinFullUrl = (window.WSData ? WSData.joinUrl(lg.code) : "") || "";
+    this._qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=420x420&margin=0&color=000000&bgcolor=FFFFFF&data=" + encodeURIComponent(joinFullUrl);
+    /* 로그인 조건: 등록된 차수코드 + 비밀번호(=차수코드와 동일) + 강사명 (ws-config.js WS_ROUNDS 참고) */
+    const codeOk = !!(window.WS_ROUNDS && window.WS_ROUNDS[lg.code]);
+    const ready = codeOk && lg.pw === lg.code && lg.name.trim().length > 0;
+    const joinUrl = joinFullUrl.replace(/^https?:\/\//, "").replace(/\/$/, "");
+    const DEMO_ROSTER = [
+      { nm: "김OO", team: "TEAM 1 · 피트크루" }, { nm: "이OO", team: "TEAM 2 · 세이프티카" },
+      { nm: "박OO", team: "TEAM 3 · 그리드워커" }, { nm: "최OO", team: "TEAM 1 · 피트크루" },
+    ];
     const liveRoster = ((this._live && this._live.roster) || []).map(r => ({
       nm: r.name, team: r.teamName ? "TEAM " + (r.teamNo || "-") + " · " + r.teamName : "TEAM -",
     }));
-    const allRoster = liveRoster.concat(
-      this.state.roster.map((nm, i) => ({ nm, team: "TEAM " + ((i % lg.teams) + 1) }))
-    );
+    const allRoster = this.state.loggedIn
+      ? liveRoster.concat(this.state.roster.map((nm, i) => ({ nm, team: "TEAM " + ((i % lg.teams) + 1) })))
+      : DEMO_ROSTER;
     Object.assign(vals, {
       lgCode: lg.code, lgPw: lg.pw, lgName: lg.name, lgTeams: lg.teams,
       onCode: e => this._lg("code", e.target.value.replace(/\D/g, "").slice(0, 4)),
@@ -1828,7 +1870,7 @@ class Component extends DCLogic {
       qrRef: el => { this._qr = el; this._syncQR(); },
       copyLabel: this.state.copied ? "복사됨" : "URL 복사",
       doCopy: () => {
-        navigator.clipboard && navigator.clipboard.writeText("https://" + joinUrl + "/?center=" + lg.code);
+        navigator.clipboard && navigator.clipboard.writeText(joinFullUrl);
         this.setState({ copied: true });
         setTimeout(() => this.setState({ copied: false }), 1500);
       },
