@@ -64,7 +64,7 @@ a:hover{color:var(--red-300)}
 <span class="apex-eyebrow" style="font-size:24px;color:var(--red-500)">INSTRUCTOR PIT WALL</span>
 <h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:72px;line-height:1">강사 로그인</h1>
 <span style="display:block;width:220px;height:7px;background:var(--accent)"></span>
-<p style="margin:0;font-size:32px;line-height:1.5;color:var(--text-body)">차수별 고유 코드 및 강사명은 입력해주세요.</p>
+<p style="margin:0;font-size:32px;line-height:1.5;color:var(--text-body)">차수별 고유 코드 및 강사명을 입력해주세요.</p>
 </div>
 <label style="display:flex;flex-direction:column;justify-content:center;gap:12px"><span class="apex-eyebrow" style="font-size:20px;color:var(--text-muted)">센터코드</span>
 <input type="text" inputmode="numeric" placeholder="숫자 4자리를 입력하세요" value="{{ lgCode }}" onChange="{{ onCode }}" style="background:var(--surface-card);border:1px solid var(--border-strong);border-radius:4px;padding:18px 20px;font-family:var(--font-core);font-size:26px;color:var(--white);outline:none;height:64px" style-focus="border-color:var(--red-500)"></label>
@@ -102,47 +102,47 @@ a:hover{color:var(--red-300)}
 </div>
 </section>
 
-<section data-label="교육생 입장" data-speaker-notes="교육생은 QR을 스캔하거나 주소로 접속한 뒤 센터코드를 입력해 입장한다. 입장 명단은 실시간으로 채워진다." style="background-color:var(--carbon-950);background-image:var(--texture-grid);color:var(--text-primary);font-family:var(--font-core);padding:48px 72px;display:flex;flex-direction:column;justify-content:center;gap:28px" data-om-slide-id="ecb6294b">
-<div style="display:grid;grid-template-columns:1fr 360px;gap:56px;align-items:start">
-<div style="display:flex;flex-direction:column;justify-content:center;gap:18px">
-<span class="apex-eyebrow" style="font-size:27px;color:var(--red-500)">STANDBY · JOIN</span>
-<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:76px;line-height:.95">교육생 입장 안내</h2>
-<p style="margin:0;font-size:40px;line-height:1.45;color:var(--white)">QR을 스캔하거나 아래 주소로 접속하면 <br>모바일 화면으로 바로 연결됩니다.</p>
-<div style="background:var(--surface-card);border-left:6px solid var(--accent);padding:32px 36px;display:flex;flex-direction:column;justify-content:flex-start;gap:22px">
-<span class="apex-eyebrow" style="font-size:44px;color:var(--text-primary);background:var(--surface-inset);padding:14px 22px;align-self:flex-start;line-height:1.2">링크접속 (QR코드 접속 불가 시)</span>
-<div style="display:flex;align-items:center;gap:22px">
-<span style="font-family:var(--font-display);font-weight:700;font-size:48px;color:var(--grid-yellow);border-bottom:2px solid var(--grid-yellow)">{{ joinUrl }}</span>
-<button type="button" onClick="{{ doCopy }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:14px 26px;font-family:var(--font-display);font-weight:700;font-size:27px;letter-spacing:.1em;cursor:pointer" style-hover="background:var(--red-400)">{{ copyLabel }}</button>
+<section data-label="교육생 입장" data-speaker-notes="교육생은 QR을 스캔하거나 주소로 접속한 뒤 센터코드를 입력해 입장한다. 입장 명단은 실시간으로 채워진다." style="background-color:var(--carbon-950);background-image:var(--texture-grid);color:var(--text-primary);font-family:var(--font-core);padding:60px 64px 32px;display:flex;flex-direction:column;gap:18px" data-om-slide-id="ecb6294b">
+<div style="display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:start;flex:none">
+<div style="display:flex;flex-direction:column;justify-content:center;gap:10px">
+<span class="apex-eyebrow" style="font-size:20px;color:var(--red-500)">STANDBY · JOIN</span>
+<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:46px;line-height:1">교육생 입장 안내</h2>
+<p style="margin:0;font-size:24px;line-height:1.4;color:var(--white)">QR을 스캔하거나 아래 주소로 접속하면 모바일 화면으로 바로 연결됩니다.</p>
+<div style="background:var(--surface-card);border-left:5px solid var(--accent);padding:18px 22px;display:flex;flex-direction:column;justify-content:flex-start;gap:12px">
+<span class="apex-eyebrow" style="font-size:22px;color:var(--text-primary);background:var(--surface-inset);padding:8px 14px;align-self:flex-start;line-height:1.2">링크접속 (QR코드 접속 불가 시)</span>
+<div style="display:flex;align-items:center;gap:14px">
+<span style="font-family:var(--font-display);font-weight:700;font-size:26px;color:var(--grid-yellow);border-bottom:2px solid var(--grid-yellow)">{{ joinUrl }}</span>
+<button type="button" onClick="{{ doCopy }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:9px 16px;font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:.1em;cursor:pointer" style-hover="background:var(--red-400)">{{ copyLabel }}</button>
 </div>
-<div style="display:flex;align-items:center;gap:22px">
-<span class="apex-eyebrow" style="font-size:24px;color:var(--text-muted);white-space:nowrap">센터코드</span>
-<span style="flex:1;border:1px solid var(--grid-yellow);border-radius:4px;padding:20px 26px;font-family:var(--font-numeric);font-weight:800;font-size:47px;letter-spacing:.2em;color:var(--white)">{{ joinCode }}</span>
-</div>
-</div>
-</div>
-<div style="display:flex;flex-direction:column;align-items:center;gap:14px">
-<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" ref="{{ qrRef }}" alt="입장 QR" style="width:340px;height:340px;background:#FFFFFF;padding:12px;border-radius:4px">
-<span class="apex-eyebrow" style="font-size:24px;color:var(--grid-yellow)">QR코드 스캔</span>
+<div style="display:flex;align-items:center;gap:14px">
+<span class="apex-eyebrow" style="font-size:15px;color:var(--text-muted);white-space:nowrap">센터코드</span>
+<span style="flex:1;border:1px solid var(--grid-yellow);border-radius:4px;padding:10px 16px;font-family:var(--font-numeric);font-weight:800;font-size:26px;letter-spacing:.2em;color:var(--white)">{{ joinCode }}</span>
 </div>
 </div>
-<div style="background:var(--surface-inset);border-top:1px solid var(--border-hairline);padding:30px 36px;display:flex;flex-direction:column;justify-content:center;gap:22px;flex:1">
-<div style="display:flex;align-items:center;gap:28px">
-<span class="apex-eyebrow" style="font-size:24px;color:var(--text-muted);white-space:nowrap">입장 명단 · LIVE</span>
-<span class="apex-eyebrow" style="font-size:24px;color:var(--text-muted);white-space:nowrap">입장 인원</span>
-<span class="apex-num apex-skew" style="display:inline-block;font-size:56px;line-height:1;color:var(--grid-teal)">{{ rosterCount }}</span>
-<input type="text" placeholder="이름을 입력하고 Enter" value="{{ joiner }}" onChange="{{ onJoiner }}" onKeyDown="{{ onJoinerKey }}" style="flex:1;background:var(--surface-card);border:1px solid var(--border-strong);border-radius:4px;padding:16px 20px;font-family:var(--font-core);font-size:27px;color:var(--white);outline:none" style-focus="border-color:var(--red-500)">
-<button type="button" onClick="{{ addJoiner }}" style="background:var(--surface-card);color:var(--white);border:1px solid var(--border-strong);border-radius:4px;padding:16px 30px;font-family:var(--font-display);font-weight:700;font-size:27px;letter-spacing:.1em;cursor:pointer" style-hover="background:var(--surface-card-hover)">입장</button>
+</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:12px">
+<img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" ref="{{ qrRef }}" alt="입장 QR" style="width:400px;height:400px;background:#FFFFFF;padding:16px;border-radius:4px">
+<span class="apex-eyebrow" style="font-size:19px;color:var(--grid-yellow)">QR코드 스캔</span>
+</div>
+</div>
+<div style="background:var(--surface-inset);border-top:1px solid var(--border-hairline);padding:22px 28px;display:flex;flex-direction:column;gap:16px;flex:1;min-height:0">
+<div style="display:flex;align-items:center;gap:20px;flex:none">
+<span class="apex-eyebrow" style="font-size:19px;color:var(--text-muted);white-space:nowrap">입장 명단 · LIVE</span>
+<span class="apex-eyebrow" style="font-size:19px;color:var(--text-muted);white-space:nowrap">입장 인원</span>
+<span class="apex-num apex-skew" style="display:inline-block;font-size:40px;line-height:1;color:var(--grid-teal)">{{ rosterCount }}</span>
+<input type="text" placeholder="이름을 입력하고 Enter" value="{{ joiner }}" onChange="{{ onJoiner }}" onKeyDown="{{ onJoinerKey }}" style="flex:1;background:var(--surface-card);border:1px solid var(--border-strong);border-radius:4px;padding:11px 14px;font-family:var(--font-core);font-size:19px;color:var(--white);outline:none" style-focus="border-color:var(--red-500)">
+<button type="button" onClick="{{ addJoiner }}" style="background:var(--surface-card);color:var(--white);border:1px solid var(--border-strong);border-radius:4px;padding:11px 22px;font-family:var(--font-display);font-weight:700;font-size:19px;letter-spacing:.1em;cursor:pointer" style-hover="background:var(--surface-card-hover)">입장</button>
 </div>
 <sc-if value="{{ noRoster }}" hint-placeholder-val="{{ true }}">
-<p style="margin:0;font-size:35px;color:var(--text-muted)">아직 입장한 교육생이 없습니다.</p>
+<p style="margin:0;font-size:24px;color:var(--text-muted);flex:none">아직 입장한 교육생이 없습니다.</p>
 </sc-if>
-<div style="display:grid;grid-template-columns:{{ teamGridCols }};gap:12px">
+<div style="display:grid;grid-template-columns:{{ teamGridCols }};gap:12px;flex:1;overflow-y:auto;align-content:start">
 <sc-for list="{{ rosterGroups }}" as="g" hint-placeholder-count="6">
-<div style="background:var(--surface-card);border-top:4px solid {{ g.color }};padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-height:64px">
-<span class="apex-num apex-skew" style="display:inline-block;font-size:22px;line-height:1;color:{{ g.color }}">{{ g.no }}조</span>
-<div style="display:flex;flex-direction:column;gap:4px">
+<div style="background:var(--surface-card);border-top:4px solid {{ g.color }};padding:16px 18px;display:flex;flex-direction:column;gap:10px;min-height:88px">
+<span class="apex-num apex-skew" style="display:inline-block;font-size:26px;line-height:1;color:{{ g.color }}">{{ g.no }}조</span>
+<div style="display:flex;flex-direction:column;gap:5px">
 <sc-for list="{{ g.members }}" as="m" hint-placeholder-count="2">
-<span style="font-size:24px;color:var(--white)">{{ m.nm }}</span>
+<span style="font-size:26px;color:var(--white)">{{ m.nm }}</span>
 </sc-for>
 </div>
 </div>
@@ -150,10 +150,9 @@ a:hover{color:var(--red-300)}
 </div>
 </div>
 </section>
-<section data-label="팀 이름·구호" data-speaker-notes="조마다 대표 1명이 모바일에서 팀 이름과 구호를 입력한다. 입력하면 이 화면에 실시간으로 채워진다." style="background-color:var(--carbon-950);background-image:var(--texture-grid);color:var(--text-primary);font-family:var(--font-core);padding:48px 72px;display:flex;flex-direction:column;gap:28px" data-om-slide-id="58f8fcb9">
+<section data-label="팀 이름·구호" data-speaker-notes="조마다 대표 1명이 모바일에서 팀 이름과 구호를 입력한다. 입력하면 이 화면에 실시간으로 채워진다." style="background-color:var(--carbon-950);background-image:var(--texture-grid);color:var(--text-primary);font-family:var(--font-core);padding:48px 72px;display:flex;flex-direction:column;gap:28px;position:relative" data-om-slide-id="58f8fcb9" data-lgws-badge>
 <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px">
 <span class="apex-eyebrow" style="font-size:27px;color:var(--red-500)">ONE TEAM · LIVE</span>
-<span class="apex-eyebrow" style="font-size:24px;color:var(--text-muted)">조별 대표 1명이 모바일에서 입력</span>
 </div>
 <h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:76px;line-height:.95">우리 팀의 이름과 구호를 정해주세요</h2>
 <div style="display:grid;grid-template-columns:{{ teamGridCols }};gap:20px;flex:1">
@@ -401,7 +400,7 @@ a:hover{color:var(--red-300)}
 <p style="margin:0;font-size:40px;color:var(--text-body);text-align:center">작업자는 아직 참여하지 않습니다.</p>
 </div>
 <div style="display:flex;gap:16px;justify-content:center">
-<button type="button" onClick="{{ t1Toggle }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:22px 56px;font-family:var(--font-display);font-weight:700;font-size:35px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:var(--shadow-accent)" style-hover="background:var(--red-400)">{{ t1Btn }}</button>
+<button type="button" data-build-start="1" onClick="{{ t1Toggle }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:22px 56px;font-family:var(--font-display);font-weight:700;font-size:35px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:var(--shadow-accent)" style-hover="background:var(--red-400)">{{ t1Btn }}</button>
 <button type="button" onClick="{{ t1Reset }}" style="background:transparent;color:var(--text-primary);border:1px solid var(--border-strong);border-radius:4px;padding:22px 44px;font-family:var(--font-display);font-weight:700;font-size:35px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer" style-hover="background:var(--surface-card-hover)">리셋</button>
 </div>
 </section>
@@ -414,7 +413,7 @@ a:hover{color:var(--red-300)}
 <p style="margin:0;font-size:40px;color:var(--text-body);text-align:center">작업자는 안대를 쓰고 작업을 진행하며, 관리자에게 질문할 수 없습니다.</p>
 </div>
 <div style="display:flex;gap:16px;justify-content:center">
-<button type="button" onClick="{{ t2Toggle }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:22px 56px;font-family:var(--font-display);font-weight:700;font-size:35px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:var(--shadow-accent)" style-hover="background:var(--red-400)">{{ t2Btn }}</button>
+<button type="button" data-build-start="1" onClick="{{ t2Toggle }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:22px 56px;font-family:var(--font-display);font-weight:700;font-size:35px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:var(--shadow-accent)" style-hover="background:var(--red-400)">{{ t2Btn }}</button>
 <button type="button" onClick="{{ t2Reset }}" style="background:transparent;color:var(--text-primary);border:1px solid var(--border-strong);border-radius:4px;padding:22px 44px;font-family:var(--font-display);font-weight:700;font-size:35px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer" style-hover="background:var(--surface-card-hover)">리셋</button>
 </div>
 </section>
@@ -427,7 +426,7 @@ a:hover{color:var(--red-300)}
 <p style="margin:0;font-size:40px;color:var(--text-body);text-align:center">이제 안대를 벗고 관리자에게 질문할 수 있습니다.<br></p>
 </div>
 <div style="display:flex;gap:16px;justify-content:center">
-<button type="button" onClick="{{ t3Toggle }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:22px 56px;font-family:var(--font-display);font-weight:700;font-size:35px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:var(--shadow-accent)" style-hover="background:var(--red-400)">{{ t3Btn }}</button>
+<button type="button" data-build-start="1" onClick="{{ t3Toggle }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:22px 56px;font-family:var(--font-display);font-weight:700;font-size:35px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;box-shadow:var(--shadow-accent)" style-hover="background:var(--red-400)">{{ t3Btn }}</button>
 <button type="button" onClick="{{ t3Reset }}" style="background:transparent;color:var(--text-primary);border:1px solid var(--border-strong);border-radius:4px;padding:22px 44px;font-family:var(--font-display);font-weight:700;font-size:35px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer" style-hover="background:var(--surface-card-hover)">리셋</button>
 </div>
 </section>
@@ -833,7 +832,7 @@ a:hover{color:var(--red-300)}
 
 <section class="apex-light" data-label="조회 2역할" data-speaker-notes="아침 조회는 성과관리(유능함)와 동기부여(따뜻함) 두 역할을 함께 한다." style="background:var(--bg-page);color:var(--text-primary);font-family:var(--font-core);padding:48px 72px;display:flex;flex-direction:column;justify-content:center;gap:30px" data-om-slide-id="aed335d0">
 <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">TWO ROLES</span></div>
-<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:56px;line-height:1.1">아침 조회의 두 가지 역할</h2>
+<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:56px;line-height:1.1">아침 미팅의 두 가지 역할</h2>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;flex:1">
 <div style="background:var(--surface-card);border-left:6px solid var(--grid-teal);padding:40px;display:flex;flex-direction:column;justify-content:flex-start;gap:22px">
 <span class="apex-eyebrow" style="font-size:44px;color:var(--text-primary);background:var(--surface-inset);padding:14px 22px;align-self:flex-start;line-height:1.2">성과관리 (유능함을 발휘)</span><p style="margin:0;font-size:40px;line-height:1.6;color:var(--text-primary)">• 오늘의 상황과 목표 공유<br>• SM별 업무와 우선순위 배분<br>• 진행·지연·지원 필요 사항 확인</p><p style="margin:auto 0 0;font-size:35px;line-height:1.5;color:var(--text-primary);border-left:5px solid var(--grid-teal);background:var(--surface-inset);padding:20px 24px">오늘 하루의 목표와 가장 중요하게 생각해야 할 <br>업무 기준을 확인합니다.</p></div>
@@ -846,15 +845,14 @@ a:hover{color:var(--red-300)}
 
 <section data-label="CHALLENGE 3" data-speaker-notes="챌린지 2 시작. 반별 아침 조회 장면을 조별로 공유한다." style="background-color:var(--grid-teal);background-image:var(--texture-speedlines),linear-gradient(158deg,#7BE3D0 0%,var(--grid-teal) 48%,#0B8F7E 100%);color:#06070A;font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:32px" data-om-slide-id="0754cc32">
 <span class="apex-eyebrow" style="font-size:24px;color:#06070A">CHALLENGE 2</span>
-<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:118px;line-height:.98;color:#000000">챌린지 2. <br>우리 반 아침 조회 장면 공유</h2>
+<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:118px;line-height:.98;color:#000000">챌린지 2. <br>우리 반 아침 미팅 장면 공유</h2>
 <p style="margin:0;font-family:var(--font-numeric);font-weight:800;font-size:56px;color:rgba(6,7,10,.72);transform:skewX(-9deg);transform-origin:left">OUR MORNING BRIEFING</p>
 </section>
 
 <section data-label="Best Practice 공유" data-speaker-notes="자원자 2명이 반별아침조회 운영 사례를 공유한다. 한 사람당 3분, 무엇을 바꿨고 무엇이 달라졌는지 중심으로." style="background-color:var(--bg-page);background-image:var(--texture-grid);color:var(--text-primary);font-family:var(--font-core);padding:48px 72px;display:flex;flex-direction:column;justify-content:flex-start;gap:36px;position:relative" data-om-slide-id="4e459c8e" data-lgws-badge>
-<span class="apex-eyebrow" style="position:absolute;top:0;right:0;background:var(--grid-yellow);color:#06070A;font-size:30px;padding:18px 30px;line-height:1.2">모바일 액티비티</span>
 <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">BEST PRACTICE SHARING</span></div>
-<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;line-height:1.1;color:var(--white)">우리 반 아침 조회, <br>이렇게 하고 있다</h2>
-<p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">모바일 앱 &gt; 지금 하고 있는 아침 조회 방식을 짧게 적어주세요.</p>
+<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;line-height:1.1;color:var(--white)">우리 반 아침 미팅, <br>이렇게 하고 있다</h2>
+<p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">모바일 앱 &gt; 지금 하고 있는 아침 미팅 방식을 짧게 적어주세요.</p>
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px">
 <div style="background:var(--surface-card);border-top:6px solid #F0C000;padding:40px;display:flex;flex-direction:column;justify-content:flex-start;gap:20px">
 <span class="apex-num apex-skew" style="display:inline-block;font-size:64px;line-height:.9;color:var(--grid-yellow)">01</span>
@@ -875,10 +873,8 @@ a:hover{color:var(--red-300)}
 </section>
 
 <section data-label="아침조회 현황판" data-speaker-notes="모바일로 제출된 반별 아침 조회 방식을 함께 본다. 두세 개를 소리 내어 읽고, 공통점과 차이를 짚는다." style="background-color:var(--bg-page);background-image:var(--texture-grid);color:var(--text-primary);font-family:var(--font-core);padding:44px 64px;display:flex;flex-direction:column;justify-content:center;gap:20px;position:relative" data-om-slide-id="bbf0ca49" data-lgws-badge>
-<span class="apex-eyebrow" style="position:absolute;top:0;right:0;background:var(--grid-yellow);color:#06070A;font-size:30px;padding:18px 30px;line-height:1.2">모바일 액티비티</span>
 <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:14px">
 <span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">OUR MORNING BOARD</span>
-<span class="apex-eyebrow" style="font-size:27px;color:var(--grid-orange)">{{ bpCount }}</span>
 </div>
 <h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:56px;line-height:1.1">지금 우리 센터의 아침 조회 장면 공유</h2>
 <sc-if value="{{ bpEmpty }}" hint-placeholder-val="{{ true }}">
@@ -1382,9 +1378,9 @@ a:hover{color:var(--red-300)}
 <h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:56px;line-height:1.1">피드백이란?<br>압박이 아니라 실행 기준을 다시 맞추는 대화</h2>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;flex:1">
 <div style="background:var(--surface-card);border-left:6px solid var(--carbon-500);padding:44px;display:flex;flex-direction:column;justify-content:flex-start;gap:24px">
-<span class="apex-eyebrow" style="font-size:44px;color:var(--text-primary);background:var(--surface-inset);padding:14px 22px;align-self:flex-start;line-height:1.2">숫자 압박</span><p style="margin:0;font-size:40px;line-height:1.6;color:var(--text-primary)">• 결과만 반복해서 강조<br>• 사람의 태도나 의지를 단정<br>• 당장 알아서 개선하라고 요구<br>• 대화 후에도 행동 기준이 모호</p><span data-build="1" style="margin-top: auto; align-self: center; font-family: var(--font-display); font-weight: 700; font-size: 200px; line-height: .8; color: var(--red-500); opacity: .9">X</span></div>
+<span class="apex-eyebrow" style="font-size:44px;color:var(--text-primary);background:var(--surface-inset);padding:14px 22px;align-self:flex-start;line-height:1.2">숫자 압박</span><p style="margin:0;font-size:40px;line-height:1.6;color:var(--text-primary)">• 결과만 반복해서 강조<br>• 사람의 태도나 의지를 단정<br>• 당장 알아서 개선하라고 요구<br>• 대화 후에도 행동 기준이 모호</p><span data-build="1" data-build-fx="fade" style="margin-top: auto; align-self: center; font-family: var(--font-display); font-weight: 700; font-size: 200px; line-height: .8; color: var(--red-500)">X</span></div>
 <div style="background:var(--surface-card);border-left:6px solid var(--grid-teal);padding:44px;display:flex;flex-direction:column;justify-content:flex-start;gap:24px">
-<span class="apex-eyebrow" style="font-size:44px;color:var(--text-primary);background:var(--surface-inset);padding:14px 22px;align-self:flex-start;line-height:1.2">실행 피드백</span><p style="margin:0;font-size:40px;line-height:1.6;color:var(--text-primary)">• 관찰한 사실과 기준을 제시<br>• 현장 원인을 질문하고 확인<br>• 바꿀 행동과 지원을 합의<br>• 확인 시점을 구체적으로 정함</p><span data-build="2" style="margin-top:auto;align-self:center;font-family:var(--font-display);font-weight:700;font-size:200px;line-height:.8;color:var(--grid-teal);opacity:.9">O</span></div>
+<span class="apex-eyebrow" style="font-size:44px;color:var(--text-primary);background:var(--surface-inset);padding:14px 22px;align-self:flex-start;line-height:1.2">실행 피드백</span><p style="margin:0;font-size:40px;line-height:1.6;color:var(--text-primary)">• 관찰한 사실과 기준을 제시<br>• 현장 원인을 질문하고 확인<br>• 바꿀 행동과 지원을 합의<br>• 확인 시점을 구체적으로 정함</p><span data-build="2" data-build-fx="fade" style="margin-top:auto;align-self:center;font-family:var(--font-display);font-weight:700;font-size:200px;line-height:.8;color:var(--grid-teal)">O</span></div>
 </div>
 </section>
 
@@ -1533,11 +1529,11 @@ a:hover{color:var(--red-300)}
 
 <section data-label="NEXT RACE" data-speaker-notes="과정 마무리. 플랜 v2.0으로 계속 업데이트한다." style="background-color:var(--bg-page);background-image:var(--texture-carbon);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:36px" data-om-slide-id="833f525d">
 <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">NEXT RACE · 리더십 플랜 v.2.0</span></div>
-<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:56px;line-height:1.1">앞으로 진행될 '전사원 워크숍'을 통해 <br>구성원들을 관찰하고 듣고, <br><span style="color:var(--red-500)">리더십 플랜 v.2.0</span>으로 업데이트 합니다</h2>
+<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:56px;line-height:1.1">앞으로 진행될 '전사원 워크숍'을 통해 구성원들을 관찰하고 듣고, <br><span style="color:var(--red-500)">리더십 플랜 v.2.0</span>으로 업데이트 합니다</h2>
 <div style="border-left:4px solid var(--accent);padding-left:24px"><p style="margin:0;font-size:32px;color:var(--text-body)">리더십 플랜은 사람을 단정하는 문서가 아니라, 더 잘 보고 듣기 위해 계속 수정하는 리더십 약속</p></div>
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;flex:1">
-<div style="background:var(--surface-card);border-top:6px solid #0072C6;padding:40px;display:flex;flex-direction:column;justify-content:flex-start;gap:20px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;color:var(--white)"><span class="apex-num apex-skew" style="display:inline-block;font-size:62px;color:var(--white);margin-right:16px">01</span>관찰하기</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">반원이 선호하는 일하는 <br>방식과 협업은 어떤 모습이지?</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--grid-azure)">내 예상과 달랐던 행동은 <br>무엇인가?<br><br></p></div>
-<div style="background:var(--surface-card);border-top:6px solid #0072C6;padding:40px;display:flex;flex-direction:column;justify-content:flex-start;gap:20px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;color:var(--white)"><span class="apex-num apex-skew" style="display:inline-block;font-size:62px;color:var(--white);margin-right:16px">02</span>귀 기울이기</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">반원이 말하는 어려움·욕구·기대는&nbsp;무엇이지?</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--grid-azure)">내가 미처 듣지 못한 이야기는?<br><br></p></div>
+<div style="background:var(--surface-card);border-top:6px solid #0072C6;padding:40px;display:flex;flex-direction:column;justify-content:flex-start;gap:20px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;color:var(--white)"><span class="apex-num apex-skew" style="display:inline-block;font-size:62px;color:var(--white);margin-right:16px">01</span>관찰하기</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">반원이 선호하는 일하는 <br>방식과 협업은 어떤 모습이지?</p><p style="margin:0;font-size:40px;line-height:1.5;color:#4FA8FF">내 예상과 달랐던 행동은 <br>무엇인가?<br><br></p></div>
+<div style="background:var(--surface-card);border-top:6px solid #0072C6;padding:40px;display:flex;flex-direction:column;justify-content:flex-start;gap:20px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;color:var(--white)"><span class="apex-num apex-skew" style="display:inline-block;font-size:62px;color:var(--white);margin-right:16px">02</span>귀 기울이기</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">반원이 말하는 어려움·욕구·기대는&nbsp;무엇이지?</p><p style="margin:0;font-size:40px;line-height:1.5;color:#4FA8FF">내가 미처 듣지 못한 이야기는?<br><br></p></div>
 <div style="background:var(--surface-card);border-top:6px solid #0072C6;padding:40px;display:flex;flex-direction:column;justify-content:flex-start;gap:20px"><p style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 62px; color: var(--red-400)"><span class="apex-num apex-skew" style="display: inline-block; font-size: 62px; color: var(--red-400); margin-right: 16px">03</span>보완하기</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">앞으로 어떤 접근을 더하고 <br>바꾸지?</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--red-400)">질문·인정·지원·점검 방식에<br>어떤 수정이 필요할까?</p></div>
 </div>
 </section>
@@ -1647,6 +1643,7 @@ class Component extends DCLogic {
         '[data-build-fx="zoom"]:not([data-shown]){transform:none}' +
         '[data-build-fx="zoom"] > .lgws-zoom{transition:transform .6s cubic-bezier(.16,1,.3,1)}' +
         '[data-build-fx="zoom"]:not([data-shown]) > .lgws-zoom{transform:scale(.86)}' +
+        '[data-build-fx="fade"]:not([data-shown]){transform:none}' +
         "[data-build]:not([data-shown]){pointer-events:none}" +
         "@media (prefers-reduced-motion: reduce){[data-build]{transition:none!important}}";
       document.head.appendChild(css);
@@ -1695,8 +1692,8 @@ class Component extends DCLogic {
         const b = s.querySelector("[data-build-start]");
         timerPlan(s).filter(a => a.step === next).forEach(a => {
           const label = (b && b.textContent) || "";
-          if (a.act === "start" && b && /START|RESUME/i.test(label)) b.click();
-          else if (a.act === "pause" && b && /PAUSE/i.test(label)) b.click();
+          if (a.act === "start" && b && /START|RESUME|시작|계속|다시/i.test(label)) b.click();
+          else if (a.act === "pause" && b && /PAUSE|일시정지/i.test(label)) b.click();
           else if (a.act === "reset") { const r = s.querySelector("[data-build-reset]"); if (r) r.click(); }
         });
         return;
@@ -1820,8 +1817,8 @@ class Component extends DCLogic {
         badge.className = "lgws-mobile-badge";
         badge.style.cssText = "position:absolute;top:0;right:0;display:flex;align-items:flex-start;z-index:3";
         badge.innerHTML =
-          '<div style="background:#FFD400;color:#06070A;font-weight:800;font-size:18px;padding:10px 22px;white-space:nowrap">모바일 액티비티</div>' +
-          '<div style="background:#fff;padding:5px;line-height:0"><img class="lgws-badge-qr" alt="교육생 입장 QR" style="width:96px;height:96px;display:block"></div>';
+          '<div style="background:#FFD400;color:#06070A;font-weight:800;font-size:27px;padding:16px 30px;white-space:nowrap">모바일 액티비티</div>' +
+          '<div style="background:#fff;padding:9px;line-height:0"><img class="lgws-badge-qr" alt="교육생 입장 QR" style="width:160px;height:160px;display:block"></div>';
         sec.insertBefore(badge, sec.firstChild);
       }
       const img = badge.querySelector(".lgws-badge-qr");
