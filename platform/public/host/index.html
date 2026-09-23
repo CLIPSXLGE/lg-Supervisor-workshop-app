@@ -66,7 +66,7 @@ a:hover{color:var(--red-300)}
 <span style="display:block;width:220px;height:7px;background:var(--accent)"></span>
 <p style="margin:0;font-size:32px;line-height:1.5;color:var(--text-body)">차수별 고유 코드 및 강사명을 입력해주세요.</p>
 </div>
-<label style="display:flex;flex-direction:column;justify-content:center;gap:12px"><span class="apex-eyebrow" style="font-size:20px;color:var(--text-muted)">센터코드</span>
+<label style="display:flex;flex-direction:column;justify-content:center;gap:12px"><span class="apex-eyebrow" style="font-size:20px;color:var(--text-muted)">차수코드</span>
 <input type="text" inputmode="numeric" placeholder="숫자 4자리를 입력하세요" value="{{ lgCode }}" onChange="{{ onCode }}" style="background:var(--surface-card);border:1px solid var(--border-strong);border-radius:4px;padding:18px 20px;font-family:var(--font-core);font-size:26px;color:var(--white);outline:none;height:64px" style-focus="border-color:var(--red-500)"></label>
 <label style="display:flex;flex-direction:column;justify-content:center;gap:12px">
 <span class="apex-eyebrow" style="font-size:20px;color:var(--text-muted)">비밀번호</span><input type="password" placeholder="사전 부여된 비밀번호를 입력하세요" value="{{ lgPw }}" onChange="{{ onPw }}" style="background:var(--surface-card);border:1px solid var(--border-strong);border-radius:4px;padding:18px 20px;font-family:var(--font-core);font-size:26px;color:var(--white);outline:none;height:64px" style-focus="border-color:var(--red-500)"></label><label style="display:flex;flex-direction:column;justify-content:center;gap:12px"><span class="apex-eyebrow" style="font-size:20px;color:var(--text-muted)">강사명</span>
@@ -115,7 +115,7 @@ a:hover{color:var(--red-300)}
 <button type="button" onClick="{{ doCopy }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:9px 16px;font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:.1em;cursor:pointer" style-hover="background:var(--red-400)">{{ copyLabel }}</button>
 </div>
 <div style="display:flex;align-items:center;gap:14px">
-<span class="apex-eyebrow" style="font-size:15px;color:var(--text-muted);white-space:nowrap">센터코드</span>
+<span class="apex-eyebrow" style="font-size:15px;color:var(--text-muted);white-space:nowrap">차수코드</span>
 <span style="flex:1;border:1px solid var(--grid-yellow);border-radius:4px;padding:10px 16px;font-family:var(--font-numeric);font-weight:800;font-size:26px;letter-spacing:.2em;color:var(--white)">{{ joinCode }}</span>
 </div>
 </div>
@@ -161,10 +161,6 @@ a:hover{color:var(--red-300)}
 <span class="apex-num apex-skew" style="display:inline-block;font-size:38px;line-height:1;color:{{ tc.color }}">{{ tc.no }}조</span>
 <p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:54px;line-height:1.05;color:{{ tc.nameColor }}">{{ tc.name }}</p>
 <p style="margin:0;font-size:35px;line-height:1.4;color:var(--text-body);flex:1">{{ tc.slogan }}</p>
-<div style="border-top:1px solid var(--border-hairline);padding-top:16px;display:flex;align-items:baseline;gap:14px">
-<span class="apex-eyebrow" style="font-size:24px;color:var(--text-muted)">대표</span>
-<span style="font-size:30px;color:{{ tc.repColor }}">{{ tc.rep }}</span>
-</div>
 </div>
 </sc-for>
 </div>
@@ -182,8 +178,8 @@ a:hover{color:var(--red-300)}
 <p style="margin:0;font-size:40px;line-height:1.55;color:var(--text-primary)">이번 워크숍의 핵심은 나의 생각에 동료의 경험을 더해 <br>생각의 지평을 넓히고, 서로의 인사이트를 나누며, <br><strong style="color:var(--red-600)">리더로서 한 단계 성장</strong>하는 것에 있습니다.</p>
 </div>
 </div>
-<div style="background:var(--surface-inset);border:1px solid var(--border-line);border-radius:4px;display:flex;align-items:center;justify-content:center;align-self:center;height:820px;margin:0 60px 0 0;width:calc(100% - 60px)">
-<span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">워크북 이미지</span>
+<div style="background:var(--surface-inset);border:1px solid var(--border-line);border-radius:4px;overflow:hidden;align-self:center;height:820px;margin:0 60px 0 0;width:calc(100% - 60px)">
+<img src="/host/assets/workbook-cover.png" alt="반장 리더십 RACE 워크북 표지" style="width:100%;height:100%;object-fit:cover;display:block">
 </div>
 </section>
 
@@ -302,8 +298,12 @@ a:hover{color:var(--red-300)}
 <p style="margin:0;font-size:47px;line-height:1.5;color:var(--white)">팀원 앞에서 완벽한 모습을 보여야 할 것 같은 부담감이 커.</p>
 <p style="margin:0;font-size:47px;line-height:1.5;color:var(--white)">피드백을 하는 것도, 이끄는 것도 어려워. 그래서 나는 ‘리더’라는 말이 불편해.</p>
 </div>
-<div data-build="1" data-build-out="2" data-build-fx="rise" style="background:var(--surface-inset);border-left:6px solid var(--grid-yellow);padding:28px 34px"><span class="apex-eyebrow" style="font-size:24px;color:var(--grid-yellow)">힌트</span><p style="margin:10px 0 0;font-family:var(--font-display);font-weight:700;font-size:44px;color:var(--white)">리더 ㅍㅂㅇ (공포)</p></div>
-<div data-build="3" data-build-fx="rise" style="background:var(--grad-accent);padding:28px 34px"><span class="apex-eyebrow" style="font-size:24px;color:rgba(255,255,255,.85)">정답</span><p style="margin:10px 0 0;font-family:var(--font-display);font-weight:700;font-size:52px;color:var(--white)">리더 포비아</p></div>
+<div data-build="1" data-build-out="2" data-build-fx="fade" style="position:absolute;inset:0;z-index:40;background:rgba(6,7,10,.78);display:flex;align-items:center;justify-content:center;padding:60px">
+<div style="max-width:900px;background:var(--surface-inset);border-left:8px solid var(--grid-yellow);padding:44px 56px;border-radius:6px;box-shadow:var(--shadow-3)"><span class="apex-eyebrow" style="font-size:28px;color:var(--grid-yellow)">힌트</span><p style="margin:14px 0 0;font-family:var(--font-display);font-weight:700;font-size:64px;color:var(--white)">리더 ㅍㅂㅇ (공포)</p></div>
+</div>
+<div data-build="3" data-build-fx="fade" style="position:absolute;inset:0;z-index:41;background:rgba(6,7,10,.82);display:flex;align-items:center;justify-content:center;padding:60px">
+<div style="max-width:900px;background:var(--grad-accent);padding:44px 56px;border-radius:6px;box-shadow:var(--shadow-3)"><span class="apex-eyebrow" style="font-size:28px;color:rgba(255,255,255,.85)">정답</span><p style="margin:14px 0 0;font-family:var(--font-display);font-weight:700;font-size:72px;color:var(--white)">리더 포비아</p></div>
+</div>
 </section>
 
 <section class="apex-light" data-label="구글 실험" data-speaker-notes="구글의 리더십 실험. 관리자를 없앤 결과 1년도 못 되어 실험 중단." style="background:var(--bg-page);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:36px" data-om-slide-id="86779f60">
@@ -335,7 +335,7 @@ a:hover{color:var(--red-300)}
 </section>
 
 <section data-label="CHALLENGE 2" data-speaker-notes="마시멜로우 챌린지 시작. 팀 활동." style="background-color:var(--grid-teal);background-image:var(--texture-speedlines),linear-gradient(158deg,#7BE3D0 0%,var(--grid-teal) 48%,#0B8F7E 100%);color:#06070A;font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:32px" data-om-slide-id="41762336">
-<span class="apex-eyebrow" style="font-size:24px;color:#06070A">CHALLENGE 2</span>
+<span class="apex-eyebrow" style="font-size:24px;color:#06070A">CHALLENGE 1</span>
 <h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:118px;line-height:.98;color:#000000">챌린지 1. 마시멜로우 챌린지</h2>
 <p style="margin:0;font-family:var(--font-numeric);font-weight:800;font-size:56px;color:rgba(6,7,10,.72);transform:skewX(-9deg);transform-origin:left">MARSHMALLOW CHALLENGE</p>
 </section>
@@ -1256,7 +1256,7 @@ a:hover{color:var(--red-300)}
 <h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;line-height:1.1">역량과 동기에 따른 유연한 리더십</h2>
 <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;flex:1">
 <div style="background:var(--surface-card);border-left:6px solid #00A651;padding:30px 34px;display:flex;flex-direction:column;justify-content:center;gap:12px;order:2"><div style="display:flex;align-items:baseline;gap:16px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:#00A651">핵심인력</p><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">역량 높음 · 동기 높음</span></div><p style="margin:0;font-size:40px;color:var(--text-primary)">자율성과 도전의 폭 넓히기</p><p style="margin:0;font-size:35px;line-height:1.55;color:var(--text-body)">• 결과만이 아니라 기여 행동을 인정<br>• 더 어려운 과제와 기술 전수 역할 부여<br>• 세부 방법보다 목표와 권한을 명확히 공유</p></div>
-<div style="background:var(--surface-card);border-left:6px solid #E8752A;padding:30px 34px;display:flex;flex-direction:column;justify-content:center;gap:12px;order:1"><div style="display:flex;align-items:baseline;gap:16px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:#E8752A">동기부여</p><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">역량 높음 · 동기 낮음</span></div><p style="margin:0;font-size:40px;color:var(--text-primary)">먼저 동기 저하의 원인을 질문</p><p style="margin:0;font-size:35px;line-height:1.55;color:var(--text-body)">• 고객·팀·본인에게 미치는 의미 설명<br>• 방법 선택과 개선 아이디어에 참여 요청<br>• 동기가 낮아진 이유를 확인하기 위한 대화</p></div><div style="background:var(--surface-card);border-left:6px solid #0072C6;padding:30px 34px;display:flex;flex-direction:column;justify-content:center;gap:12px;order:4"><div style="display:flex;align-items:baseline;gap:16px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:#0072C6">집중육성인력</p><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">역량 낮음 · 동기 높음</span></div><p style="margin:0;font-size:40px;color:var(--text-primary)">방법을 구체화하고 성공 경험 만들기</p><p style="margin:0;font-size:35px;line-height:1.55;color:var(--text-body)">• 작은 단위로 설명하고 직접 시범<br>• 함께 해본 뒤 단계적으로 맡기기<br>• 실수보다 개선된 행동에 집중해서 인정과 격려를 지속</p></div>
+<div style="background:var(--surface-card);border-left:6px solid #E8752A;padding:30px 34px;display:flex;flex-direction:column;justify-content:center;gap:12px;order:1"><div style="display:flex;align-items:baseline;gap:16px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:#E8752A">동기부여</p><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">역량 높음 · 동기 낮음</span></div><p style="margin:0;font-size:40px;color:var(--text-primary)">먼저 동기 저하의 원인을 질문</p><p style="margin:0;font-size:35px;line-height:1.55;color:var(--text-body)">• 고객·팀·본인에게 미치는 의미 설명<br>• 방법 선택과 개선 아이디어에 참여 요청<br>• 동기가 낮아진 이유를 확인하기 위한 대화</p></div><div style="background:var(--surface-card);border-left:6px solid #0072C6;padding:30px 34px;display:flex;flex-direction:column;justify-content:center;gap:12px;order:4"><div style="display:flex;align-items:baseline;gap:16px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:#0072C6">집중육성</p><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">역량 낮음 · 동기 높음</span></div><p style="margin:0;font-size:40px;color:var(--text-primary)">방법을 구체화하고 성공 경험 만들기</p><p style="margin:0;font-size:35px;line-height:1.55;color:var(--text-body)">• 작은 단위로 설명하고 직접 시범<br>• 함께 해본 뒤 단계적으로 맡기기<br>• 실수보다 개선된 행동에 집중해서 인정과 격려를 지속</p></div>
 
 <div style="background:var(--surface-card);border-left:6px solid var(--red-500);padding:30px 34px;display:flex;flex-direction:column;justify-content:center;gap:12px;order:3"><div style="display:flex;align-items:baseline;gap:16px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:var(--red-600)">주의관리</p><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">역량 낮음 · 동기 낮음</span></div><p style="margin:0;font-size:40px;color:var(--text-primary)">기준은 분명하게, 점검은 짧고 자주</p><p style="margin:0;font-size:35px;line-height:1.55;color:var(--text-body)">• 수준에 맞는 업무 부여<br>• 짧은 주기로 확인하고 작은 변화에 집중<br>• 기대 기준과 완료 모습을 한 번 더 분명히 합의</p></div>
 </div>
@@ -1412,7 +1412,7 @@ a:hover{color:var(--red-300)}
 <p style="margin:0;font-size:40px;color:var(--text-body)">바람직한 행동을 유지, 증가할 수 있도록 행동의 강화를 위한 피드백</p>
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;flex:1">
 <div style="background:var(--surface-card);border-top:6px solid var(--red-500);padding:44px;display:flex;flex-direction:column;justify-content:center;gap:22px"><span class="apex-num apex-skew" style="display: inline-block; font-size: 104px; color: var(--red-400); line-height: .9">A</span><p style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 48px; color: var(--red-400)">Act · 행동</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">상대방의 구체적 행동<br><br><br></p></div>
-<div style="background:var(--surface-card);border-top:6px solid var(--red-500);padding:44px;display:flex;flex-direction:column;justify-content:center;gap:22px"><span class="apex-num apex-skew" style="display: inline-block; font-size: 104px; color: var(--red-400); line-height: .9">I</span><p style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 48px; color: var(--red-400)">Impact · 영향</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">상대의 행동 결과, 마음(노력, 동기, 태도)이 미치는 <br>긍정적 영향</p></div>
+<div style="background:var(--surface-card);border-top:6px solid var(--red-500);padding:44px;display:flex;flex-direction:column;justify-content:center;gap:22px"><span class="apex-num apex-skew" style="display: inline-block; font-size: 104px; color: var(--red-400); line-height: .9">I</span><p style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 48px; color: var(--red-400)">Impact · 영향</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">상대의 행동 결과, <br>마음(노력, 동기, 태도)이 미치는<br>긍정적 영향</p></div>
 <div style="background:var(--surface-card);border-top:6px solid var(--red-500);padding:44px;display:flex;flex-direction:column;justify-content:center;gap:22px"><span class="apex-num apex-skew" style="display: inline-block; font-size: 104px; color: var(--red-400); line-height: .9">T</span><p style="margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 48px; color: var(--red-400)">Thanks · 감사</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">상대의 기여에 대한 <br>감사표현<br><br></p></div>
 </div>
 </section>
@@ -1453,7 +1453,7 @@ a:hover{color:var(--red-300)}
 <h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;line-height:1.1">발전적 피드백을 위한 3가지 전제 조건</h2>
 <div style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto 1fr;gap:2px;flex:1">
 <div style="background:var(--surface-card);border-top:6px solid #0072C6;padding:44px;display:grid;grid-row:1 / -1;grid-template-rows:subgrid;row-gap:22px;align-content:start"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:56px;color:var(--text-primary)">기대</p><span class="apex-eyebrow" style="font-size:24px;color:var(--text-muted)">EXPECTATION</span><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">잘할 수 있을 것이라는<br>믿음을 표현하는 것이 중요</p></div>
-<div style="background:var(--surface-card);border-top:6px solid #0072C6;padding:44px;display:grid;grid-row:1 / -1;grid-template-rows:subgrid;row-gap:22px;align-content:start"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:56px;color:var(--text-primary)">관계</p><span class="apex-eyebrow" style="font-size:24px;color:var(--text-muted)">RELATIONSHIP</span><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">신뢰하는 사람의 피드백은 <br>고맙게 생각함<br>신뢰하지 않는 사람의 피드백은 <br>받아들이기 어려움</p></div>
+<div style="background:var(--surface-card);border-top:6px solid #0072C6;padding:44px;display:grid;grid-row:1 / -1;grid-template-rows:subgrid;row-gap:22px;align-content:start"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:56px;color:var(--text-primary)">관계</p><span class="apex-eyebrow" style="font-size:24px;color:var(--text-muted)">RELATIONSHIP</span><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">신뢰하는 사람의 피드백은 <br>고맙게 생각함<br>신뢰하지 않는 사람의 <br>피드백은 받아들이기 어려움</p></div>
 <div style="background:var(--surface-card);border-top:6px solid #0072C6;padding:44px;display:grid;grid-row:1 / -1;grid-template-rows:subgrid;row-gap:22px;align-content:start"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:56px;color:var(--text-primary)">시점</p><span class="apex-eyebrow" style="font-size:24px;color:var(--text-muted)">TIMING</span><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">상대가 피드백을 받아들일 수 있을 상황인지 판단해 피드백</p></div>
 </div>
 </section>
@@ -2165,7 +2165,11 @@ class Component extends DCLogic {
       loginBg: ready ? "var(--red-500)" : "var(--surface-inset)",
       loginFg: ready ? "#FFFFFF" : "var(--text-muted)",
       loginLabel: this.state.loggedIn ? "로그인 완료 · " + lg.name : "로그인",
-      doLogin: () => { if (ready) this.setState({ loggedIn: true }); },
+      doLogin: () => {
+        if (!ready) return;
+        this.setState({ loggedIn: true });
+        if (this._stage) this._stage.goTo(1);
+      },
       reset: (() => {
         const code = (lg.code || "").trim();
         const phase = this.state.rsPhase || "idle";
