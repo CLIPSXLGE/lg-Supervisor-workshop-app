@@ -37,6 +37,7 @@ export default async function handler(req, res) {
     return res.status(502).json({ error: "AI 호출 실패", status: r.status, detail: detail.slice(0, 500) });
   }
   const j = await r.json();
+  if (j.usage) res.setHeader("X-Coach-Usage", JSON.stringify(j.usage));
   const text = (j.content || []).map(c => c.text || "").join("");
   const cleaned = text.replace(/^```json\s*|```\s*$/g, "").trim();
   try { return res.status(200).json(JSON.parse(cleaned)); }
