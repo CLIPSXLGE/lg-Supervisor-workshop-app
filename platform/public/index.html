@@ -1383,7 +1383,7 @@ class Component extends DCLogic {
  "avoid": "피해야 할 접근 1개, 이유 포함 2문장 이내"
 }
 approaches는 정확히 5개. 반장이 선택한 방향과 겹치는 것 1~2개, 넓히는 것 3~4개로 구성하세요. member는 반드시 구성원 시점에서("구성원은 ~"으로 시작하지 않아도 됩니다) 이 접근이 어떻게 받아들여지고 왜 통하는지 한 문장으로 씁니다.`;
-    const out = await this._coachAi(user, 1600, () => this._coachFbAi(d));
+    const out = await this._coachAi(user, 2800, () => this._coachFbAi(d));
     const appr = (out.approaches || []).slice(0, 5).map((a, i) => ({
       tag: ["A", "B", "C", "D", "E"][i], title: a.title || "", body: a.body || "", why: a.why || "", member: a.member || "",
       state: "open", draft: a.body || "",
@@ -1420,7 +1420,7 @@ approaches는 정확히 5개. 반장이 선택한 방향과 겹치는 것 1~2개
  "instead": "대신 쓸 표현 한 문장"
 }
 script는 위 대화 목적에 맞는 모델로 씁니다. script2는 반드시 script와 다른 모델로, 반장이 입력한 '관찰한 아쉬운 행동'을 소재로 씁니다(아쉬운 행동 입력이 없으면 script2는 빈 배열). 아쉬운 행동을 다룰 때는 AID, 잘한 행동을 다룰 때는 AIT입니다.`;
-    const out = await this._coachAi(user, 1200, () => this._coachFbTalk(d));
+    const out = await this._coachAi(user, 1800, () => this._coachFbTalk(d));
     this.setState({ coach: Object.assign({}, this.state.coach, { talk: out, loading: null, step: "talk", openEdit: false, extraTalks: [] }) });
   }
 
@@ -1441,7 +1441,7 @@ script는 위 대화 목적에 맞는 모델로 씁니다. script2는 반드시 
  "model": "AIT" 또는 "AID",
  "script": [{"label":"Action · 행동","text":"..."},{"label":"Impact · 영향","text":"..."},{"label":"Thanks · 감사 또는 Desired · 바람직한 변화","text":"..."}]
 }`;
-    const out = await this._coachAi(user, 900, () => {
+    const out = await this._coachAi(user, 1200, () => {
       const fb = this._coachFbTalk(Object.assign({}, d, { purpose }));
       return { model: fb.model, script: fb.script };
     });
