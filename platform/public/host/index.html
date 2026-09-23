@@ -28,6 +28,33 @@ a{color:var(--red-400);text-decoration:none}
 a:hover{color:var(--red-300)}
 </style>
 </helmet>
+
+<button sc-camel-on-click="{{ fullscreen.toggle }}" title="전체화면" class="export-hidden" style="position:fixed;top:{{ fullscreen.top }};left:{{ fullscreen.left }};z-index:60;background:rgba(6,7,10,.55);color:#fff;border:none;cursor:pointer;padding:8px 14px;height:34px;font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.14em;white-space:nowrap" style-hover="background:#E10600">{{ fullscreen.label }}</button>
+
+<sc-if value="{{ deckIndex.visible }}" hint-placeholder-val="{{ false }}">
+<button sc-camel-on-click="{{ deckIndex.toggle }}" title="목차 열기" class="export-hidden" style="position:fixed;top:{{ deckIndex.top }};left:{{ deckIndex.left }};z-index:60;background:rgba(6,7,10,.55);border:none;cursor:pointer;padding:9px 10px;display:flex;flex-direction:column;gap:4px;width:38px;height:34px;align-items:stretch;justify-content:center">
+<span style="height:2px;background:#E10600;display:block"></span>
+<span style="height:2px;background:#fff;display:block"></span>
+<span style="height:2px;background:#fff;display:block"></span>
+</button>
+</sc-if>
+
+<sc-if value="{{ deckIndex.open }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ deckIndex.close }}" class="export-hidden" style="position:fixed;inset:0;z-index:58;background:rgba(6,7,10,.7)"></div>
+<div class="export-hidden" style="position:fixed;top:0;left:0;bottom:0;width:320px;z-index:59;background:#0C0E12;border-right:1px solid rgba(255,255,255,.14);display:flex;flex-direction:column">
+<div style="height:4px;background:#E10600"></div>
+<div style="padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.12);font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.14em;color:#DCE0E7">전체 목차</div>
+<div style="flex:1;overflow-y:auto;padding:8px 0">
+<sc-for list="{{ deckIndex.items }}" as="it" hint-placeholder-count="10">
+<button type="button" onClick="{{ it.go }}" style="width:100%;background:{{ it.bg }};border:none;border-left:3px solid {{ it.accent }};color:#fff;cursor:pointer;padding:10px 16px;display:flex;gap:10px;align-items:baseline;text-align:left">
+<span style="font-family:var(--font-numeric);font-weight:900;font-size:13px;color:{{ it.noColor }}">{{ it.no }}</span>
+<span style="font-size:14px">{{ it.label }}</span>
+</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
 <x-import component-from-global-scope="deck-stage" from="/deck-stage.js" width="1920" height="1080" hint-size="100%,100%" data-uneditable="">
 
 <section data-label="강사 로그인" data-speaker-notes="강의 시작 전 강사가 센터코드, 비밀번호, 강사명을 입력하고 오늘의 팀 수를 선택한 뒤 로그인한다." style="background-color:var(--carbon-950);background-image:var(--texture-grid);color:var(--text-primary);font-family:var(--font-core);padding:48px 72px;display:flex;flex-direction:column;justify-content:center;align-items:center" data-om-slide-id="9bc6600a">
@@ -449,7 +476,7 @@ a:hover{color:var(--red-300)}
 <div style="background:#FFFBE6;border-left:6px solid var(--red-500);padding:44px;display:flex;flex-direction:column;justify-content:flex-start;gap:26px">
 <span class="apex-eyebrow" style="font-size:44px;color:var(--text-primary);background:rgba(240,192,0,.22);padding:14px 22px;align-self:flex-start;line-height:1.2">실행 촉진 중심의 반장</span><p style="margin:0;font-size:42px;line-height:1.6;color:var(--text-primary)">• SM이 해결할 수 있도록 질문<br>• 기준과 완료 모습을 명확히 공유<br>• 필요한 지원 후 맡겨보기<br>• 팀의 지속적인 실행력에 집중</p></div>
 </div>
-</section><section data-label="자가진단 개요" data-speaker-notes="반장 Role 자가진단. 4개 영역 20문항, 5점 척도." style="background-color:var(--bg-page);background-image:var(--texture-grid);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:flex-start;gap:40px" data-om-slide-id="7f4f97e6">
+</section><section data-label="자가진단 개요" data-speaker-notes="반장 Role 자가진단. 4개 영역 20문항, 5점 척도." style="background-color:var(--bg-page);background-image:var(--texture-grid);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:flex-start;gap:40px" data-om-slide-id="7f4f97e6" data-lgws-badge>
 <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">SELF CHECK · 4개 영역 · 20문항</span></div>
 <h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;line-height:1.1">반장 역할 자가진단 | <br>지금의 나를 점검합니다</h2>
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;align-content:center">
@@ -815,7 +842,7 @@ a:hover{color:var(--red-300)}
 <p style="margin:0;font-family:var(--font-numeric);font-weight:800;font-size:56px;color:rgba(6,7,10,.72);transform:skewX(-9deg);transform-origin:left">OUR MORNING BRIEFING</p>
 </section>
 
-<section data-label="Best Practice 공유" data-speaker-notes="자원자 2명이 반별아침조회 운영 사례를 공유한다. 한 사람당 3분, 무엇을 바꿨고 무엇이 달라졌는지 중심으로." style="background-color:var(--bg-page);background-image:var(--texture-grid);color:var(--text-primary);font-family:var(--font-core);padding:48px 72px;display:flex;flex-direction:column;justify-content:flex-start;gap:36px;position:relative" data-om-slide-id="4e459c8e">
+<section data-label="Best Practice 공유" data-speaker-notes="자원자 2명이 반별아침조회 운영 사례를 공유한다. 한 사람당 3분, 무엇을 바꿨고 무엇이 달라졌는지 중심으로." style="background-color:var(--bg-page);background-image:var(--texture-grid);color:var(--text-primary);font-family:var(--font-core);padding:48px 72px;display:flex;flex-direction:column;justify-content:flex-start;gap:36px;position:relative" data-om-slide-id="4e459c8e" data-lgws-badge>
 <span class="apex-eyebrow" style="position:absolute;top:0;right:0;background:var(--grid-yellow);color:#06070A;font-size:30px;padding:18px 30px;line-height:1.2">모바일 액티비티</span>
 <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">BEST PRACTICE SHARING</span></div>
 <h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;line-height:1.1;color:var(--white)">우리 반 아침 조회, <br>이렇게 하고 있다</h2>
@@ -839,7 +866,7 @@ a:hover{color:var(--red-300)}
 </div>
 </section>
 
-<section data-label="아침조회 현황판" data-speaker-notes="모바일로 제출된 반별 아침 조회 방식을 함께 본다. 두세 개를 소리 내어 읽고, 공통점과 차이를 짚는다." style="background-color:var(--bg-page);background-image:var(--texture-grid);color:var(--text-primary);font-family:var(--font-core);padding:44px 64px;display:flex;flex-direction:column;justify-content:center;gap:20px;position:relative" data-om-slide-id="bbf0ca49">
+<section data-label="아침조회 현황판" data-speaker-notes="모바일로 제출된 반별 아침 조회 방식을 함께 본다. 두세 개를 소리 내어 읽고, 공통점과 차이를 짚는다." style="background-color:var(--bg-page);background-image:var(--texture-grid);color:var(--text-primary);font-family:var(--font-core);padding:44px 64px;display:flex;flex-direction:column;justify-content:center;gap:20px;position:relative" data-om-slide-id="bbf0ca49" data-lgws-badge>
 <span class="apex-eyebrow" style="position:absolute;top:0;right:0;background:var(--grid-yellow);color:#06070A;font-size:30px;padding:18px 30px;line-height:1.2">모바일 액티비티</span>
 <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:14px">
 <span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">OUR MORNING BOARD</span>
@@ -1262,7 +1289,7 @@ a:hover{color:var(--red-300)}
 <div style="background:var(--surface-card);border-top:6px solid var(--red-500);padding:34px;display:flex;flex-direction:column;justify-content:center;gap:20px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:var(--red-600)">주의관리</p><div style="display:flex;align-items:baseline;gap:16px"><span class="apex-eyebrow" style="font-size:24px;color:var(--text-muted)">이니셜</span><span style="flex:1;border-bottom:2px solid var(--border-line);height:36px"></span></div></div>
 <div style="background:var(--surface-card);border-top:6px solid #0072C6;padding:34px;display:flex;flex-direction:column;justify-content:center;gap:20px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:#0072C6">집중육성</p><div style="display:flex;align-items:baseline;gap:16px"><span class="apex-eyebrow" style="font-size:24px;color:var(--text-muted)">이니셜</span><span style="flex:1;border-bottom:2px solid var(--border-line);height:36px"></span></div></div>
 </div>
-</section><section data-label="AI 실습" data-speaker-notes="AI 실습 진행. 실습 도구와 절차는 현장 안내." style="background-color:var(--bg-page);background-image:var(--texture-speedlines);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:32px" data-om-slide-id="607d99ea">
+</section><section data-label="AI 실습" data-speaker-notes="AI 실습 진행. 실습 도구와 절차는 현장 안내." style="background-color:var(--bg-page);background-image:var(--texture-speedlines);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:32px" data-om-slide-id="607d99ea" data-lgws-badge>
 <span class="apex-eyebrow" style="font-size:24px;color:var(--grid-teal)">AI PRACTICE</span>
 <h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:130px;line-height:.98"><span style="color:var(--grid-teal)">AI 리더십 코치</span>와 함께하는&nbsp;<br>SM별 리더십 전략 수립</h2>
 </section>
@@ -1509,6 +1536,7 @@ class Component extends DCLogic {
     joiner: "",
     roster: [],
     copied: false,
+    deckItems: [], deckCur: 0, deckIndexOpen: false, isFull: false, slideBox: null,
   };
   _lg(k, v) { this.setState(s => ({ lg: { ...s.lg, [k]: v } })); }
   _vote(i, c) {
@@ -1570,12 +1598,218 @@ class Component extends DCLogic {
         return changed ? { t } : null;
       });
     }, 1000);
+    this.initDeckIndex(0);
   }
   componentWillUnmount() {
     clearInterval(this._iv);
     clearInterval(this._liveIv);
+    if (this._onResize) window.removeEventListener("resize", this._onResize);
+    if (this._onFull) document.removeEventListener("fullscreenchange", this._onFull);
+    if (this._presenterKeys) window.removeEventListener("keydown", this._presenterKeys, true);
+    if (this._boxIv) clearInterval(this._boxIv);
   }
-  componentDidUpdate() { this._syncQR(); }
+  componentDidUpdate() { this._syncQR(); this.mountBadges(); }
+
+  /* ── 전체화면 · 챕터 목차 · 포인터/타이머(빌드스텝) 엔진 ─────────
+     SM 전사원 워크숍 버전과 동일한 방식(참고용, 그 파일은 직접 수정하지 않음).
+     "다음으로" 입력(클릭·키보드 PageDown·포인터)을 슬라이드 전환 대신
+     먼저 그 슬라이드 안의 data-build 단계(순차 애니메이션·타이머)에 쓴다. */
+  installBuildSteps(stage) {
+    if (stage._lgwsBuild) return;
+    stage._lgwsBuild = true;
+    if (!document.getElementById("lgws-build-css")) {
+      const css = document.createElement("style");
+      css.id = "lgws-build-css";
+      css.textContent =
+        "[data-build]{transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}" +
+        "[data-build-instant] [data-build]{transition:none!important}" +
+        "[data-build]:not([data-shown]){opacity:0;transform:translateX(-24px)}" +
+        '[data-build-fx="rise"]:not([data-shown]){transform:translateY(12px)}' +
+        '[data-build-fx="drop"]:not([data-shown]){transform:translateY(-18px) scale(.94)}' +
+        '[data-build-fx="zoom"]:not([data-shown]){transform:none}' +
+        '[data-build-fx="zoom"] > .lgws-zoom{transition:transform .6s cubic-bezier(.16,1,.3,1)}' +
+        '[data-build-fx="zoom"]:not([data-shown]) > .lgws-zoom{transform:scale(.86)}' +
+        "[data-build]:not([data-shown]){pointer-events:none}" +
+        "@media (prefers-reduced-motion: reduce){[data-build]{transition:none!important}}";
+      document.head.appendChild(css);
+    }
+    const slideAt = i => document.querySelectorAll("deck-stage > section")[i];
+    const order = el => { const n = parseInt(el.getAttribute("data-build"), 10); return isNaN(n) ? 1 : n; };
+    const outAt = el => parseInt(el.getAttribute("data-build-out"), 10) || 0;
+    const startAt = el => parseInt(el.getAttribute("data-build-start"), 10) || 1;
+    const timerPlan = s => {
+      const b = s && s.querySelector("[data-build-start]");
+      if (!b) return [];
+      const spec = b.getAttribute("data-build-timer");
+      if (spec) return spec.split(",").map(x => { const kv = x.split(":"); return { step: parseInt(kv[0], 10) || 0, act: (kv[1] || "").trim() }; });
+      const s0 = startAt(b);
+      return [{ step: s0, act: "start" }, { step: s0 + 1, act: "pause" }];
+    };
+    const stepsOf = s => {
+      if (!s) return 0;
+      let n = 0;
+      s.querySelectorAll("[data-build]").forEach(el => { n = Math.max(n, order(el), outAt(el)); });
+      timerPlan(s).forEach(a => { n = Math.max(n, a.step); });
+      return n;
+    };
+    const show = (s, step, instant) => {
+      if (instant) s.setAttribute("data-build-instant", "");
+      s.setAttribute("data-build-step", String(step));
+      s.querySelectorAll("[data-build]").forEach(el => {
+        if (order(el) <= step && !(outAt(el) && step >= outAt(el))) el.setAttribute("data-shown", "");
+        else el.removeAttribute("data-shown");
+      });
+      if (instant) { void s.offsetWidth; s.removeAttribute("data-build-instant"); }
+    };
+    const arm = (idx, from) => {
+      const s = slideAt(idx);
+      const n = stepsOf(s);
+      if (n) show(s, from < idx ? 0 : n, true);
+    };
+    const origAdvance = stage._advance.bind(stage);
+    stage._advance = (dir, reason) => {
+      const s = slideAt(stage.index);
+      const n = stepsOf(s);
+      const cur = s ? (parseInt(s.getAttribute("data-build-step"), 10) || 0) : 0;
+      if (dir > 0 && n && cur < n) {
+        const next = cur + 1;
+        show(s, next);
+        const b = s.querySelector("[data-build-start]");
+        timerPlan(s).filter(a => a.step === next).forEach(a => {
+          const label = (b && b.textContent) || "";
+          if (a.act === "start" && b && /START|RESUME/i.test(label)) b.click();
+          else if (a.act === "pause" && b && /PAUSE/i.test(label)) b.click();
+          else if (a.act === "reset") { const r = s.querySelector("[data-build-reset]"); if (r) r.click(); }
+        });
+        return;
+      }
+      if (dir > 0 && s) {
+        const clicks = [...s.querySelectorAll("[data-build-click]")]
+          .filter(b => b.offsetParent !== null)
+          .sort((a, b) => (parseInt(a.getAttribute("data-build-click"), 10) || 1) - (parseInt(b.getAttribute("data-build-click"), 10) || 1));
+        if (clicks.length) { clicks[0].click(); return; }
+      }
+      return origAdvance(dir, reason);
+    };
+    let last = stage.index || 0;
+    arm(last, -1);
+    stage.addEventListener("slidechange", e => {
+      const idx = (e.detail && e.detail.index) || 0;
+      arm(idx, last);
+      last = idx;
+    });
+  }
+
+  /* 포인터(프레젠터 리모컨)의 PageDown/PageUp을 슬라이드 이동으로 받는다.
+     입력칸에 커서가 있어도 PageDown/PageUp만은 커서를 빼고 넘긴다. */
+  installPresenterKeys(stage) {
+    if (this._presenterKeys) return;
+    this._presenterKeys = e => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.key === "F5") {
+        e.preventDefault(); e.stopImmediatePropagation();
+        const el = document.documentElement;
+        if (!document.fullscreenElement && el.requestFullscreen) el.requestFullscreen().catch(() => {});
+        return;
+      }
+      if (e.key !== "PageDown" && e.key !== "PageUp") return;
+      const t = e.composedPath ? e.composedPath()[0] : e.target;
+      if (!(t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)))) return;
+      e.preventDefault(); e.stopImmediatePropagation();
+      if (t.blur) t.blur();
+      stage._advance(e.key === "PageDown" ? 1 : -1, "keyboard");
+    };
+    window.addEventListener("keydown", this._presenterKeys, true);
+  }
+
+  initDeckIndex(tries) {
+    const stage = document.querySelector("deck-stage");
+    if (!stage || !stage.length) {
+      if ((tries || 0) < 40) setTimeout(() => this.initDeckIndex((tries || 0) + 1), 150);
+      return;
+    }
+    this._stage = stage;
+    this.installBuildSteps(stage);
+    this.installPresenterKeys(stage);
+    const items = Array.from(document.querySelectorAll("deck-stage > section")).map((s, i) => ({
+      i, label: (s.dataset.label || "").replace(/^[\d-]+\s*/, "") || ("슬라이드 " + (i + 1)),
+    }));
+    this.setState({ deckItems: items, deckCur: stage.index || 0 });
+    this._onSlide = e => {
+      const idx = (e.detail && e.detail.index) || 0;
+      /* 2번 슬라이드(교육생 입장 안내)에 들어서면 자동 전체화면 */
+      if (idx === 1 && !document.fullscreenElement && document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      }
+      if (idx === 0 && document.fullscreenElement && document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+      }
+      this.setState({ deckCur: idx, deckIndexOpen: false });
+      this.measureSlideBox();
+      this.mountBadges();
+    };
+    stage.addEventListener("slidechange", this._onSlide);
+    this.measureSlideBox();
+    this.mountBadges();
+    this._onResize = () => this.measureSlideBox();
+    window.addEventListener("resize", this._onResize);
+    this._onFull = () => {
+      const on = !!document.fullscreenElement;
+      this.setState({ isFull: on });
+      this.setRailHidden(on);
+      setTimeout(() => this.measureSlideBox(), 120);
+    };
+    document.addEventListener("fullscreenchange", this._onFull);
+    this._boxIv = setInterval(() => this.measureSlideBox(), 500);
+  }
+
+  /* 전체화면에서는 좌측 슬라이드 썸네일 레일을 감춘다(deck-stage의 no-rail 속성). */
+  setRailHidden(hide) {
+    const stage = document.querySelector("deck-stage");
+    const root = stage && stage.shadowRoot;
+    if (!stage || !root) return;
+    if (hide) stage.setAttribute("no-rail", ""); else stage.removeAttribute("no-rail");
+    const ID = "lgws-hide-overlay";
+    const cur = root.querySelector("#" + ID);
+    if (hide && !cur) {
+      const st = document.createElement("style");
+      st.id = ID;
+      st.textContent = ".overlay{display:none !important}";
+      root.appendChild(st);
+    } else if (!hide && cur) { cur.remove(); }
+    [0, 80, 260].forEach(ms => setTimeout(() => { window.dispatchEvent(new Event("resize")); this.measureSlideBox(); }, ms));
+  }
+
+  measureSlideBox() {
+    const sec = document.querySelector("deck-stage > section");
+    if (!sec) return;
+    const r = sec.getBoundingClientRect();
+    const box = { left: Math.round(r.left), top: Math.round(r.top), right: Math.round(r.right) };
+    const cur = this.state.slideBox;
+    if (!cur || cur.left !== box.left || cur.top !== box.top || cur.right !== box.right) this.setState({ slideBox: box });
+  }
+
+  /* 모바일 액티비티가 쓰이는 4개 슬라이드(자가진단 개요/Best Practice 공유/
+     아침조회 현황판/AI 실습)에 QR 배지를 심는다. 템플릿 문자열 대신
+     data-lgws-badge 마커 + DOM 삽입 방식(4곳 동일 마크업 재사용, 코드량 절감). */
+  mountBadges() {
+    const url = this._qrUrl || "";
+    document.querySelectorAll("deck-stage > section[data-lgws-badge]").forEach(sec => {
+      if (getComputedStyle(sec).position === "static") sec.style.position = "relative";
+      let badge = sec.querySelector(":scope > .lgws-mobile-badge");
+      if (!badge) {
+        badge = document.createElement("div");
+        badge.className = "lgws-mobile-badge";
+        badge.style.cssText = "position:absolute;top:0;right:0;display:flex;align-items:flex-start;z-index:3";
+        badge.innerHTML =
+          '<div style="background:#FFD400;color:#06070A;font-weight:800;font-size:18px;padding:10px 22px;white-space:nowrap">모바일 액티비티</div>' +
+          '<div style="background:#fff;padding:5px;line-height:0"><img class="lgws-badge-qr" alt="교육생 입장 QR" style="width:96px;height:96px;display:block"></div>';
+        sec.insertBefore(badge, sec.firstChild);
+      }
+      const img = badge.querySelector(".lgws-badge-qr");
+      if (img && img.src !== url) img.src = url;
+    });
+  }
   /* WSData(REST) 기준 실시간 폴링. 이전에는 localStorage("lgws-workshop-state")를
      읽었지만, 폰(교육생)과 노트북(강사)이 다른 기기라 공유 백엔드가 필요하다. */
   _startLive() {
@@ -1848,6 +2082,40 @@ class Component extends DCLogic {
     const allRoster = this.state.loggedIn
       ? liveRoster.concat(this.state.roster.map((nm, i) => ({ nm, team: "TEAM " + ((i % lg.teams) + 1) })))
       : DEMO_ROSTER;
+    vals.mobileQrBadgeUrl = this._qrUrl;
+    vals.fullscreen = (() => {
+      const box = this.state.slideBox;
+      const on = !!this.state.isFull;
+      return {
+        left: (on ? 46 : (((box && box.left) || 192) + 46)) + "px",
+        top: (on ? 0 : ((box && box.top) || 0)) + "px",
+        label: on ? "나가기" : "전체화면",
+        toggle: () => {
+          const el = document.documentElement;
+          if (document.fullscreenElement) { if (document.exitFullscreen) document.exitFullscreen(); }
+          else if (el.requestFullscreen) el.requestFullscreen().catch(() => {});
+        },
+      };
+    })();
+    vals.deckIndex = (() => {
+      const items = this.state.deckItems || [];
+      const cur = this.state.deckCur || 0;
+      return {
+        visible: cur > 0 && items.length > 0,
+        left: (this.state.isFull ? 0 : ((this.state.slideBox && this.state.slideBox.left) || 192)) + "px",
+        top: (this.state.isFull ? 0 : ((this.state.slideBox && this.state.slideBox.top) || 0)) + "px",
+        open: !!this.state.deckIndexOpen,
+        toggle: () => this.setState(s => ({ deckIndexOpen: !s.deckIndexOpen })),
+        close: () => this.setState({ deckIndexOpen: false }),
+        items: items.map(it => ({
+          no: String(it.i + 1).padStart(2, "0"), label: it.label,
+          bg: it.i === cur ? "#171A21" : "transparent",
+          accent: it.i === cur ? "#E10600" : "transparent",
+          noColor: it.i === cur ? "#E10600" : "#B4BBC7",
+          go: () => { if (this._stage) this._stage.goTo(it.i); this.setState({ deckIndexOpen: false }); },
+        })),
+      };
+    })();
     Object.assign(vals, {
       lgCode: lg.code, lgPw: lg.pw, lgName: lg.name, lgTeams: lg.teams,
       onCode: e => this._lg("code", e.target.value.replace(/\D/g, "").slice(0, 4)),
