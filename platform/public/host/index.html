@@ -215,34 +215,34 @@ a:hover{color:var(--red-300)}
 </div>
 <div style="display:flex;align-items:stretch;gap:14px">
 
-<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px">
+<div data-build="1" style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px">
 
 <div style="background:var(--surface-card);border-top:6px solid var(--red-500);padding:32px 28px;display:flex;flex-direction:column;justify-content:center;gap:20px;flex:1">
 <div style="display:flex;align-items:baseline;gap:12px"><span class="apex-num apex-skew" style="display:inline-block;font-size:62px;line-height:1;color:var(--red-600)">M1</span><span class="apex-eyebrow" style="font-size:24px;color:var(--text-muted)">출근 전</span></div>
 <p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:47px;line-height:1.25;color:var(--text-primary)">리더십 <br>Engine On</p>
 </div>
 </div>
-<div style="flex:none;align-self:flex-end;margin-bottom:64px;width:0;height:0;border-left:18px solid var(--carbon-500);border-top:14px solid transparent;border-bottom:14px solid transparent"></div>
+<div data-build="2" style="flex:none;align-self:flex-end;margin-bottom:64px;width:0;height:0;border-left:18px solid var(--carbon-500);border-top:14px solid transparent;border-bottom:14px solid transparent"></div>
 
-<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px">
+<div data-build="2" style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px">
 
 <div style="background:var(--surface-card);border-top:6px solid var(--grid-orange);padding:32px 28px;display:flex;flex-direction:column;justify-content:center;gap:20px;flex:1">
 <div style="display:flex;align-items:baseline;gap:12px"><span class="apex-num apex-skew" style="display:inline-block;font-size:62px;line-height:1;color:var(--grid-orange)">M2</span><span class="apex-eyebrow" style="font-size:24px;color:var(--text-muted)">아침 시간</span></div>
 <p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:47px;line-height:1.25;color:var(--text-primary)">성과를 좌우하는 <br>아침시간</p>
 </div>
 </div>
-<div style="flex:none;align-self:flex-end;margin-bottom:64px;width:0;height:0;border-left:18px solid var(--carbon-500);border-top:14px solid transparent;border-bottom:14px solid transparent"></div>
+<div data-build="3" style="flex:none;align-self:flex-end;margin-bottom:64px;width:0;height:0;border-left:18px solid var(--carbon-500);border-top:14px solid transparent;border-bottom:14px solid transparent"></div>
 
-<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px">
+<div data-build="3" style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px">
 
 <div style="background:var(--surface-card);border-top:6px solid var(--grid-teal);padding:32px 28px;display:flex;flex-direction:column;justify-content:center;gap:20px;flex:1">
 <div style="display:flex;align-items:baseline;gap:12px"><span class="apex-num apex-skew" style="display:inline-block;font-size:62px;line-height:1;color:var(--grid-teal)">M3</span><span class="apex-eyebrow" style="font-size:24px;color:var(--text-muted)">일과 시간</span></div>
 <p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:47px;line-height:1.25;color:var(--text-primary)">구성원 소통과<br>성과 관리</p>
 </div>
 </div>
-<div style="flex:none;align-self:flex-end;margin-bottom:64px;width:0;height:0;border-left:18px solid var(--carbon-500);border-top:14px solid transparent;border-bottom:14px solid transparent"></div>
+<div data-build="4" style="flex:none;align-self:flex-end;margin-bottom:64px;width:0;height:0;border-left:18px solid var(--carbon-500);border-top:14px solid transparent;border-bottom:14px solid transparent"></div>
 
-<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px">
+<div data-build="4" style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px">
 
 <div style="background:var(--surface-card);border-top:6px solid #0072C6;padding:32px 28px;display:flex;flex-direction:column;justify-content:center;gap:20px;flex:1">
 <div style="display:flex;align-items:baseline;gap:12px"><span class="apex-num apex-skew" style="display:inline-block;font-size:62px;line-height:1;color:#2C5AA0">M4</span><span class="apex-eyebrow" style="font-size:24px;color:var(--text-muted)">퇴근 전</span></div>
@@ -287,10 +287,10 @@ a:hover{color:var(--red-300)}
 <p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:56px;line-height:1.3;color:var(--text-primary)">조직 안에서 <br>기대되는 역할을 인식해야 하고, <br>그 역할을 명확히 이해하지 못하면 <br>발생하는 3가지 현상</p>
 <span class="apex-eyebrow" style="font-size:24px;color:var(--text-muted)">역할이론 (ROLE THEORY)</span>
 </div>
-<div onClick="{{ roleNext }}" style="display:flex;flex-direction:column;justify-content:center;gap:2px;cursor:pointer">
-<div style="background:var(--surface-card);border-left:6px solid var(--grid-yellow);padding:32px 34px;opacity:{{ role1op }};transform:{{ role1tr }};transition:opacity .24s cubic-bezier(.16,1,.3,1),transform .24s cubic-bezier(.16,1,.3,1)"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:var(--text-primary)">역할 갈등</p></div>
-<div style="background:var(--surface-card);border-left:6px solid var(--grid-orange);padding:32px 34px;opacity:{{ role2op }};transform:{{ role2tr }};transition:opacity .24s cubic-bezier(.16,1,.3,1),transform .24s cubic-bezier(.16,1,.3,1)"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:var(--text-primary)">몰입 감소</p></div>
-<div style="background:var(--surface-card);border-left:6px solid var(--red-500);padding:32px 34px;opacity:{{ role3op }};transform:{{ role3tr }};transition:opacity .24s cubic-bezier(.16,1,.3,1),transform .24s cubic-bezier(.16,1,.3,1)"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:var(--text-primary)">성과 저하</p></div>
+<div style="display:flex;flex-direction:column;justify-content:center;gap:2px">
+<div style="background:var(--surface-card);border-left:6px solid var(--grid-yellow);padding:32px 34px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:var(--text-primary)">역할 갈등</p></div>
+<div style="background:var(--surface-card);border-left:6px solid var(--grid-orange);padding:32px 34px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:var(--text-primary)">몰입 감소</p></div>
+<div style="background:var(--surface-card);border-left:6px solid var(--red-500);padding:32px 34px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:var(--text-primary)">성과 저하</p></div>
 </div>
 </div>
 </section>
