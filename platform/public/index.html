@@ -63,10 +63,6 @@ input,textarea,button{font-family:var(--font-core)}
 </sc-for>
 </div>
 </div>
-<label style="display:flex;flex-direction:column;gap:7px">
-<span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">우리 조 팀명</span>
-<input type="text" placeholder="예) 피트크루" value="{{ inTeamName }}" onChange="{{ onTeamName }}" style="background:#2C313C;border:1px solid rgba(255,255,255,.34);color:#fff;font-weight:700;font-size:20px;padding:14px 16px;outline:none;height:56px;box-sizing:border-box">
-</label>
 </div>
 
 <sc-if value="{{ joinError }}" hint-placeholder-val="{{ false }}">
@@ -138,24 +134,31 @@ input,textarea,button{font-family:var(--font-core)}
 <span style="font-family:var(--font-numeric);font-weight:900;font-size:22px;color:{{ teamColor }}">{{ teamNoLabel }}</span>
 <span style="font-size:14px;color:#B4BBC7">{{ me }}</span>
 </div>
+<sc-if value="{{ teamLocked }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:6px">
+<span style="font-family:var(--font-display);font-weight:700;font-size:20px;color:#fff">{{ sharedTeamName }}</span>
+<span style="font-size:15px;color:#DCE0E7">“{{ sharedTeamSlogan }}”</span>
+<span style="font-size:13px;color:#B4BBC7;margin-top:4px">대표 · {{ sharedTeamRep }}</span>
+</div>
+</sc-if>
+<sc-if value="{{ teamEditable }}" hint-placeholder-val="{{ true }}">
 <label style="display:flex;flex-direction:column;gap:6px">
 <span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">팀 이름</span>
 <input type="text" placeholder="예) 피트크루" value="{{ tnDraft }}" onChange="{{ onTn }}" style="background:#2C313C;border:1px solid rgba(255,255,255,.34);color:#fff;font-weight:700;font-size:19px;padding:13px;outline:none;min-height:52px;box-sizing:border-box" />
 </label>
 <label style="display:flex;flex-direction:column;gap:6px">
 <span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">구호</span>
-<textarea placeholder="예) 먼저 보고 먼저 움직인다" rows="2" value="{{ tsDraft }}" onChange="{{ onTs }}" style="background:#2C313C;border:1px solid rgba(255,255,255,.34);color:#fff;font-size:17px;line-height:1.5;padding:13px;outline:none;resize:none;box-sizing:border-box"></textarea>
-</label>
-<label style="display:flex;flex-direction:column;gap:6px">
-<span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">대표 이름</span>
-<input type="text" placeholder="입력하는 대표 이름" value="{{ trDraft }}" onChange="{{ onTr }}" style="background:#2C313C;border:1px solid rgba(255,255,255,.34);color:#fff;font-size:17px;padding:13px;outline:none;min-height:52px;box-sizing:border-box" />
+<textarea placeholder="F1, F1, 화이팅!" rows="2" value="{{ tsDraft }}" onChange="{{ onTs }}" style="background:#2C313C;border:1px solid rgba(255,255,255,.34);color:#fff;font-size:17px;line-height:1.5;padding:13px;outline:none;resize:none;box-sizing:border-box"></textarea>
 </label>
 <button type="button" onClick="{{ sendTeam }}" style="background:{{ tmBg }};color:{{ tmFg }};border:none;padding:15px;font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:.16em;cursor:pointer;min-height:52px">{{ tmBtn }}</button>
+</sc-if>
 </div>
 <sc-if value="{{ tmSaved }}" hint-placeholder-val="{{ false }}">
 <div style="background:#0E1A16;border-left:4px solid #00D2BE;padding:14px 16px;font-size:15px;color:#9BE9DC;word-break:keep-all;animation:riseIn .3s cubic-bezier(.16,1,.3,1) both">전송되었습니다. 다시 수정해 전송하면 강사 화면도 함께 바뀝니다.</div>
 </sc-if>
-</div>
+<sc-if value="{{ teamLocked }}" hint-placeholder-val="{{ false }}">
+<div style="background:#111318;border-left:4px solid #B4BBC7;padding:14px 16px;font-size:14px;color:#B4BBC7;word-break:keep-all">우리 조는 이미 제출을 완료했습니다. 조별로 한 명만 제출할 수 있어요.</div>
+</sc-if>
 </sc-if>
 
 <sc-if value="{{ isDiag }}" hint-placeholder-val="{{ false }}">
@@ -476,7 +479,7 @@ class Component extends DCLogic {
     screen: "team",
     tnDraft: "", tsDraft: "", trDraft: "", tmSaved: false,
     indexOpen: false,
-    inCode: "", inName: "", inTeamName: "", teamNo: 0,
+    inCode: "", inName: "", teamNo: 0,
     joinError: "", joining: false,
     me: null,
     page: 0,
@@ -491,7 +494,7 @@ class Component extends DCLogic {
     try {
       const saved = JSON.parse(localStorage.getItem("lgws-me") || "null");
       if (saved && saved.name && saved.code) {
-        this.setState({ me: saved, screen: "diag", inTeamName: saved.teamName || "", teamNo: saved.teamNo || 0, inCode: saved.code || "", inName: saved.name });
+        this.setState({ me: saved, screen: "diag", teamNo: saved.teamNo || 0, inCode: saved.code || "", inName: saved.name });
       }
     } catch (e) {}
     this._poll();
@@ -522,7 +525,7 @@ class Component extends DCLogic {
     const TEAM_COLORS = ["#00D2BE", "#FF8000", "#3671C6", "#FFD400", "#FF3AA0", "#6C4BF6"];
     const myNo = me && me.teamNo ? me.teamNo : 0;
     const sharedTeam = (st.live.teamInfo || []).find(t => Number(t.team) === myNo) || {};
-    const tmReady = st.tnDraft.trim().length > 0 && st.trDraft.trim().length > 0;
+    const tmReady = st.tnDraft.trim().length > 0;
     const cs = st.coach;
 
     const stateOf = {
@@ -536,14 +539,14 @@ class Component extends DCLogic {
     const act = ACTS.find(a => a.key === st.screen);
     const idx = ACTS.findIndex(a => a.key === st.screen);
     const nx = idx >= 0 && idx < ACTS.length - 1 ? ACTS[idx + 1] : null;
-    const nextOk = st.screen === "diag" ? answered === 20 : true;
+    const nextOk = st.screen === "diag" ? answered === 20 : (st.screen === "team" ? !!(sharedTeam.name || st.tmSaved) : true);
 
     const bpReady = st.bpHow.trim().length > 0;
 
     return {
       showJoin: !me,
       showApp: !!me,
-      me: me ? ((me.teamName ? "TEAM " + me.teamNo + " " + me.teamName + " · " : "") + me.name) : "",
+      me: me ? ((sharedTeam.name ? "TEAM " + me.teamNo + " " + sharedTeam.name + " · " : (me.teamNo ? "TEAM " + me.teamNo + " · " : "")) + me.name) : "",
       indexOpen: st.indexOpen,
       toggleIndex: () => this.setState(s => ({ indexOpen: !s.indexOpen })),
       closeIndex: () => this.setState({ indexOpen: false }),
@@ -559,17 +562,19 @@ class Component extends DCLogic {
       isTeam: st.screen === "team",
       teamColor: TEAM_COLORS[(myNo || 1) - 1] || "#00D2BE",
       teamNoLabel: myNo ? myNo + "조" : "조 미지정",
-      tnDraft: st.tnDraft, tsDraft: st.tsDraft, trDraft: st.trDraft,
+      teamLocked: !!sharedTeam.name && !st.tmSaved,
+      teamEditable: !sharedTeam.name || st.tmSaved,
+      sharedTeamName: sharedTeam.name || "", sharedTeamSlogan: sharedTeam.slogan || "", sharedTeamRep: sharedTeam.rep || "",
+      tnDraft: st.tnDraft, tsDraft: st.tsDraft,
       onTn: e => this.setState({ tnDraft: e.target.value }),
       onTs: e => this.setState({ tsDraft: e.target.value }),
-      onTr: e => this.setState({ trDraft: e.target.value }),
       tmSaved: st.tmSaved,
-      tmBtn: st.tmSaved ? "전송 완료 · 다시 전송" : (tmReady ? "전송" : "팀 이름과 대표 이름을 입력하세요"),
+      tmBtn: st.tmSaved ? "전송 완료 · 다시 전송" : (tmReady ? "전송" : "팀 이름을 입력하세요"),
       tmBg: tmReady ? "#00D2BE" : "#20242D",
       tmFg: tmReady ? "#06070A" : "#8A92A0",
       sendTeam: async () => {
         if (!tmReady || !myNo || !me) return;
-        const entry = { name: st.tnDraft.trim(), slogan: st.tsDraft.trim(), rep: st.trDraft.trim() };
+        const entry = { name: st.tnDraft.trim(), slogan: st.tsDraft.trim(), rep: me.name };
         await WSData.submitTeamInfo(me.code, myNo, entry);
         this.setState({ tmSaved: true });
         this._poll();
@@ -579,17 +584,16 @@ class Component extends DCLogic {
       isBp: st.screen === "bp",
 
       nextShow: !!nx,
-      nextLabel: nextOk ? (nx ? nx.no + " · " + nx.label : "") : "자가진단 20문항을 모두 응답하면 열립니다",
+      nextLabel: nextOk ? (nx ? nx.no + " · " + nx.label : "") : (st.screen === "team" ? "팀 이름을 제출하면 열립니다" : "자가진단 20문항을 모두 응답하면 열립니다"),
       nextBg: nextOk ? "#E10600" : "#20242D",
       nextFg: nextOk ? "#fff" : "#8A92A0",
       nextCursor: nextOk ? "pointer" : "not-allowed",
       nextGo: () => { if (nx && nextOk) this._go(nx.key); },
 
-      inCode: st.inCode, inName: st.inName, inTeamName: st.inTeamName,
+      inCode: st.inCode, inName: st.inName,
       joinError: st.joinError,
       onInCode: e => this.setState({ inCode: e.target.value.replace(/\D/g, "").slice(0, 4), joinError: "" }),
       onInName: e => this.setState({ inName: e.target.value, joinError: "" }),
-      onTeamName: e => this.setState({ inTeamName: e.target.value }),
       joinBg: ready ? "#E10600" : "#20242D",
       joinFg: ready ? "#FFFFFF" : "#8A92A0",
       teamNos: [1, 2, 3, 4, 5, 6, 7, 8].map(n => ({
@@ -611,14 +615,14 @@ class Component extends DCLogic {
         }
         this.setState({ joining: true });
         const p = await WSData.joinParticipant(st.inCode, st.inName.trim(), st.teamNo);
-        const nm = { code: st.inCode, name: st.inName.trim(), teamNo: st.teamNo, teamName: st.inTeamName.trim(), participantId: p ? p.participant_id : null };
+        const nm = { code: st.inCode, name: st.inName.trim(), teamNo: st.teamNo, participantId: p ? p.participant_id : null };
         localStorage.setItem("lgws-me", JSON.stringify(nm));
-        this.setState({ me: nm, screen: "diag", joinError: "", joining: false });
+        this.setState({ me: nm, screen: "team", joinError: "", joining: false });
         this._poll();
       },
       logout: () => { localStorage.removeItem("lgws-me"); this.setState({ me: null, screen: "diag", indexOpen: false }); },
 
-      myTeamLabel: me && me.teamName ? "TEAM " + (me.teamNo || "-") + " · " + me.teamName : "조 미지정",
+      myTeamLabel: me && sharedTeam.name ? "TEAM " + (me.teamNo || "-") + " · " + sharedTeam.name : "조 미지정",
 
       diagArea: "영역 " + (page + 1) + " · " + area.name,
       diagColor: area.color,
