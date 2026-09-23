@@ -1063,7 +1063,7 @@ class Component extends DCLogic {
     try {
       const saved = JSON.parse(localStorage.getItem("lgws-me") || "null");
       if (saved && saved.name && saved.code) {
-        this.setState({ me: saved, screen: "diag", teamNo: saved.teamNo || 0, inCode: saved.code || "", inName: saved.name });
+        this.setState({ me: saved, screen: "team", teamNo: saved.teamNo || 0, inCode: saved.code || "", inName: saved.name });
       }
     } catch (e) {}
     this._poll();
@@ -1196,7 +1196,7 @@ class Component extends DCLogic {
         this.setState({ me: nm, screen: "team", joinError: "", joining: false });
         this._poll();
       },
-      logout: () => { localStorage.removeItem("lgws-me"); this.setState({ me: null, screen: "diag", indexOpen: false }); },
+      logout: () => { localStorage.removeItem("lgws-me"); this.setState({ me: null, screen: "team", indexOpen: false }); },
 
       myTeamLabel: me && sharedTeam.name ? "TEAM " + (me.teamNo || "-") + " · " + sharedTeam.name : "조 미지정",
 
