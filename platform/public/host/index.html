@@ -2095,7 +2095,14 @@ class Component extends DCLogic {
     const ready = codeOk && lg.pw === lg.code && lg.name.trim().length > 0;
     const joinUrl = joinFullUrl.replace(/^https?:\/\//, "").replace(/\/$/, "");
     const DEMO_ROSTER = [
-      { nm: "김OO", no: 1 }, { nm: "이OO", no: 2 }, { nm: "박OO", no: 3 }, { nm: "최OO", no: 1 },
+      { nm: "김OO", no: 1 }, { nm: "최OO", no: 1 },
+      { nm: "이OO", no: 2 },
+      { nm: "박OO", no: 3 },
+      { nm: "정OO", no: 4 },
+      { nm: "강OO", no: 5 },
+      { nm: "조OO", no: 6 },
+      { nm: "윤OO", no: 7 },
+      { nm: "임OO", no: 8 },
     ];
     const liveRoster = ((this._live && this._live.roster) || []).map(r => ({ nm: r.name, no: r.teamNo || 1 }));
     const allRoster = this.state.loggedIn
