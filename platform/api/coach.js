@@ -1,22 +1,25 @@
 // Vercel 서버리스 함수: AI 리더십 코치 프록시 (API 키는 서버 환경변수에만 존재)
-// PRD 원칙: 유형 판정은 규칙 기반(클라이언트), AI는 코칭 보완만. Deep 대상 1명의 정보만 전송.
-const SYSTEM = `당신은 LG전자 서비스센터 반장을 돕는 AI 리더십 코치입니다.
-원칙: 반장의 관찰·판단이 먼저이며 AI는 이를 보완만 한다. 구성원의 유형을 판정하거나 바꾸지 않는다.
-출력은 JSON 객체 하나만, 다른 텍스트나 코드블록 없이. 키: good_start, check_more, other_view, approaches(정확히 2개, 각 {title, how, why}), avoid.
-각 항목은 120~180자 이내로 짧고 간결하게 작성한다(길게 쓰지 말 것). 존댓말, 관찰 행동 중심.
-반드시 완결된 JSON으로 끝맺는다 — 마지막 항목까지 다 쓰지 못할 것 같으면 문장을 줄여서라도 JSON을 완성한다.
-금지 표현: "원래 이런 사람", "의지가 부족", "책임감이 없", "소극적인 성격", "번아웃", "불안이 높은", "리더십에 문제".
-권장 표현: "최근 입력된 행동에서는", "현재 관찰한 모습만 보면", "이런 가능성도 확인해볼 수 있습니다".`;
+// 05 「AI 리더십 코치」 전체 포팅 이후: 클라이언트는 미리 조립한 user 프롬프트만 보내고,
+// 시스템 프롬프트(CTX)는 서버에서만 보유한다 — 원본 AI 리더십 코치.dc.html 의 CTX 상수를 그대로 사용.
+// 유형 판정은 규칙 기반(클라이언트), AI는 코칭 보완만 한다.
+const CTX = `당신은 LG전자 서비스센터 '반장 리더십' 워크숍의 AI 리더십 코치입니다. 반장(현장 리더)이 구성원 한 명에 대해 리더십 플랜을 세우는 것을 돕습니다.
 
-const ALLOWED = ["anonId", "observed", "competence", "motivation", "leaderThoughts", "myChange", "purpose"];
+[역할 한계 — 반드시 지킬 것]
+1. 유형은 이미 점수 규칙으로 확정되어 전달됩니다. 유형을 바꾸거나 새로 판정하지 않습니다.
+2. 반장의 판단을 대체하지 않고 확장합니다. 반장이 이미 선택한 방향을 먼저 인정하고, 확인할 점과 다른 관점을 각각 1개만 덧붙입니다.
+3. 사람을 규정하는 표현 금지: "원래 이런 사람", "의지가 부족", "책임감이 없다", "소극적인 성격", "리더십에 문제", "번아웃", "불안이 높은". 대신 "최근 입력된 행동에서는", "현재 관찰한 모습만 보면", "이런 가능성도 확인해볼 수 있습니다", "추가로 ○○ 상황에서의 행동을 살펴보세요"를 씁니다.
+4. 의료·심리 진단 표현 금지. 인격 단정 금지.
+5. 현장 언어로 씁니다: 수리지연, 고객대기, 재방문, 예약, 접수, 부품수급, 유상/무상, 멀티화, 구성원, 반장.
+6. 각 항목은 짧게. 한 항목 250~400자를 넘기지 않습니다.
+7. 시점·시간대를 구체적으로 지정하지 마세요. "오전에", "수리 중에", "수리 끝나고", "점심 전에", "퇴근 전에", "오늘 안에" 같은 표현은 현장 상황과 맞지 않을 수 있으므로 쓰지 않습니다. 대신 "다음 업무를 배정할 때", "상황을 확인한 뒤", "기회가 될 때" 처럼 상황 기준으로 씁니다.
+8. 출력은 JSON 하나만. 설명·코드펜스 금지.`;
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "POST only" });
   const body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : (req.body || {});
-  const input = Object.fromEntries(ALLOWED.filter(k => k in body).map(k => [k, body[k]]));
-  // PRD 5-2: 점수와 반장의 가설이 입력되기 전에는 AI 생성 금지
-  if (!input.competence || !input.motivation || !input.leaderThoughts?.length)
-    return res.status(400).json({ error: "역량·동기 점수와 반장의 리더십 가설이 먼저 필요합니다." });
+  const user = typeof body.user === "string" ? body.user.slice(0, 8000) : "";
+  if (!user) return res.status(400).json({ error: "user 프롬프트가 필요합니다." });
+  const maxTokens = Number.isFinite(body.maxTokens) ? Math.max(200, Math.min(4000, body.maxTokens)) : 1600;
   if (!process.env.ANTHROPIC_API_KEY) return res.status(500).json({ error: "ANTHROPIC_API_KEY 미설정" });
 
   const r = await fetch("https://api.anthropic.com/v1/messages", {
@@ -24,9 +27,9 @@ export default async function handler(req, res) {
     headers: { "content-type": "application/json", "x-api-key": process.env.ANTHROPIC_API_KEY, "anthropic-version": "2023-06-01" },
     body: JSON.stringify({
       model: process.env.COACH_MODEL || "claude-sonnet-5",
-      max_tokens: 1600,
-      system: SYSTEM,
-      messages: [{ role: "user", content: JSON.stringify(input) }],
+      max_tokens: maxTokens,
+      system: CTX,
+      messages: [{ role: "user", content: user }],
     }),
   });
   if (!r.ok) {
