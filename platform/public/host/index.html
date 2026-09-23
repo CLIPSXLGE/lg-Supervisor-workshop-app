@@ -58,33 +58,45 @@ a:hover{color:var(--red-300)}
 <x-import component-from-global-scope="deck-stage" from="/deck-stage.js" width="1920" height="1080" hint-size="100%,100%" data-uneditable="">
 
 <section data-label="강사 로그인" data-speaker-notes="강의 시작 전 강사가 센터코드, 비밀번호, 강사명을 입력하고 오늘의 팀 수를 선택한 뒤 로그인한다." style="background-color:var(--carbon-950);background-image:var(--texture-grid);color:var(--text-primary);font-family:var(--font-core);padding:48px 72px;display:flex;flex-direction:column;justify-content:center;align-items:center" data-om-slide-id="9bc6600a">
-<div style="width:100%;max-width:760px;display:flex;flex-direction:column;gap:22px">
+<div style="width:100%;max-width:1020px;display:flex;flex-direction:column;gap:28px">
 
-<div style="display:flex;flex-direction:column;justify-content:center;gap:12px">
-<span class="apex-eyebrow" style="font-size:20px;color:var(--red-500)">INSTRUCTOR PIT WALL</span>
-<h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:56px;line-height:1">센터별 강사 로그인</h1>
-<span style="display:block;width:180px;height:6px;background:var(--accent)"></span>
-<p style="margin:0;font-size:26px;line-height:1.5;color:var(--text-body)">사전 부여된 센터 고유 코드 및 강사명을 입력 후 로그인 하면, <br>센터별 화면으로 이동합니다.</p>
+<div style="display:flex;flex-direction:column;justify-content:center;gap:14px">
+<span class="apex-eyebrow" style="font-size:24px;color:var(--red-500)">INSTRUCTOR PIT WALL</span>
+<h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:72px;line-height:1">강사 로그인</h1>
+<span style="display:block;width:220px;height:7px;background:var(--accent)"></span>
+<p style="margin:0;font-size:32px;line-height:1.5;color:var(--text-body)">차수별 고유 코드 및 강사명은 입력해주세요.</p>
 </div>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
-<label style="display:flex;flex-direction:column;justify-content:center;gap:12px"><span class="apex-eyebrow" style="font-size:18px;color:var(--text-muted)">센터코드</span>
-<input type="text" inputmode="numeric" placeholder="숫자 4자리를 입력하세요" value="{{ lgCode }}" onChange="{{ onCode }}" style="background: var(--surface-card); border: 1px solid var(--border-strong); border-radius: 4px; padding: 16px 18px; font-family: var(--font-core); font-size: 22px; color: var(--white); outline: none; width: 753px; height: 55px" style-focus="border-color:var(--red-500)"></label>
-
-
-</div>
+<label style="display:flex;flex-direction:column;justify-content:center;gap:12px"><span class="apex-eyebrow" style="font-size:20px;color:var(--text-muted)">센터코드</span>
+<input type="text" inputmode="numeric" placeholder="숫자 4자리를 입력하세요" value="{{ lgCode }}" onChange="{{ onCode }}" style="background:var(--surface-card);border:1px solid var(--border-strong);border-radius:4px;padding:18px 20px;font-family:var(--font-core);font-size:26px;color:var(--white);outline:none;height:64px" style-focus="border-color:var(--red-500)"></label>
 <label style="display:flex;flex-direction:column;justify-content:center;gap:12px">
-<span class="apex-eyebrow" style="font-size:18px;color:var(--text-muted)">비밀번호</span><input type="password" placeholder="사전 부여된 비밀번호를 입력하세요" value="{{ lgPw }}" onChange="{{ onPw }}" style="background:var(--surface-card);border:1px solid var(--border-strong);border-radius:4px;padding:16px 18px;font-family:var(--font-core);font-size:22px;color:var(--white);outline:none" style-focus="border-color:var(--red-500)"></label><label style="display:flex;flex-direction:column;justify-content:center;gap:12px"><span class="apex-eyebrow" style="font-size:18px;color:var(--text-muted)">강사명</span>
-<input type="text" placeholder="이름을 입력하세요" value="{{ lgName }}" onChange="{{ onName }}" style="background:var(--surface-card);border:1px solid var(--border-strong);border-radius:4px;padding:16px 18px;font-family:var(--font-core);font-size:22px;color:var(--white);outline:none" style-focus="border-color:var(--red-500)"></label><div style="display:flex;flex-direction:column;justify-content:center;gap:12px">
-<span class="apex-eyebrow" style="font-size:18px;color:var(--text-muted)">오늘 워크숍 총 팀 수</span>
-<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:12px">
+<span class="apex-eyebrow" style="font-size:20px;color:var(--text-muted)">비밀번호</span><input type="password" placeholder="사전 부여된 비밀번호를 입력하세요" value="{{ lgPw }}" onChange="{{ onPw }}" style="background:var(--surface-card);border:1px solid var(--border-strong);border-radius:4px;padding:18px 20px;font-family:var(--font-core);font-size:26px;color:var(--white);outline:none;height:64px" style-focus="border-color:var(--red-500)"></label><label style="display:flex;flex-direction:column;justify-content:center;gap:12px"><span class="apex-eyebrow" style="font-size:20px;color:var(--text-muted)">강사명</span>
+<input type="text" placeholder="이름을 입력하세요" value="{{ lgName }}" onChange="{{ onName }}" style="background:var(--surface-card);border:1px solid var(--border-strong);border-radius:4px;padding:18px 20px;font-family:var(--font-core);font-size:26px;color:var(--white);outline:none;height:64px" style-focus="border-color:var(--red-500)"></label><div style="display:flex;flex-direction:column;justify-content:center;gap:12px">
+<span class="apex-eyebrow" style="font-size:20px;color:var(--text-muted)">오늘 워크숍 총 팀 수</span>
+<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:14px">
 <sc-for list="{{ teamOpts }}" as="o" hint-placeholder-count="7">
-<button type="button" onClick="{{ o.pick }}" style="background:{{ o.bg }};color:{{ o.fg }};border:1px solid {{ o.bd }};border-radius:4px;padding:14px 0;font-family:var(--font-numeric);font-weight:800;font-size:24px;cursor:pointer">{{ o.n }}</button>
+<button type="button" onClick="{{ o.pick }}" style="background:{{ o.bg }};color:{{ o.fg }};border:1px solid {{ o.bd }};border-radius:4px;padding:18px 0;font-family:var(--font-numeric);font-weight:800;font-size:28px;cursor:pointer">{{ o.n }}</button>
 </sc-for>
 </div>
 </div>
 <div style="display:flex;flex-direction:column;justify-content:center;gap:16px;margin-top:8px">
-<button type="button" onClick="{{ doLogin }}" style="background:{{ loginBg }};color:{{ loginFg }};border:0;border-radius:4px;padding:20px 0;font-family:var(--font-display);font-weight:700;font-size:26px;letter-spacing:.1em;cursor:pointer">{{ loginLabel }}</button>
-<button type="button" onClick="{{ doReset }}" style="background:transparent;color:var(--text-muted);border:1px solid var(--border-hairline);border-radius:4px;padding:14px 0;font-family:var(--font-core);font-size:20px;cursor:pointer" style-hover="color:var(--white)">초기화</button>
+<button type="button" onClick="{{ doLogin }}" style="background:{{ loginBg }};color:{{ loginFg }};border:0;border-radius:4px;padding:24px 0;font-family:var(--font-display);font-weight:700;font-size:30px;letter-spacing:.1em;cursor:pointer">{{ loginLabel }}</button>
+<sc-if value="{{ reset.idle }}" hint-placeholder-val="{{ true }}">
+<button type="button" onClick="{{ reset.ask }}" style="background:transparent;color:var(--text-muted);border:1px solid var(--border-hairline);border-radius:4px;padding:16px 0;font-family:var(--font-core);font-size:22px;cursor:pointer" style-hover="color:var(--white)">초기화</button>
+<sc-if value="{{ reset.message }}" hint-placeholder-val="{{ false }}">
+<span style="font-size:17px;color:{{ reset.messageColor }}">{{ reset.message }}</span>
+</sc-if>
+<span style="font-size:16px;color:var(--text-faint)">입력한 차수코드의 오늘 데이터(입장 명단·응답·진단)를 모두 지웁니다.</span>
+</sc-if>
+<sc-if value="{{ reset.asking }}" hint-placeholder-val="{{ false }}">
+<div style="background:#2A0A08;border-left:4px solid var(--red-500);padding:16px 18px;display:flex;flex-direction:column;gap:12px">
+<span style="font-size:19px;font-weight:700;color:#FF9A94">{{ reset.question }}</span>
+<span style="font-size:16px;color:var(--text-body)">되돌릴 수 없습니다. 정말 지우시겠습니까?</span>
+<div style="display:flex;gap:8px">
+<button type="button" onClick="{{ reset.confirm }}" style="flex:1;background:var(--red-500);color:#fff;border:none;padding:13px;font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:.1em;cursor:pointer">네, 지웁니다</button>
+<button type="button" onClick="{{ reset.cancel }}" style="flex:1;background:transparent;color:var(--text-body);border:1px solid var(--border-strong);padding:13px;font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:.1em;cursor:pointer">취소</button>
+</div>
+</div>
+</sc-if>
 </div>
 
 </div>
@@ -95,7 +107,7 @@ a:hover{color:var(--red-300)}
 <div style="display:flex;flex-direction:column;justify-content:center;gap:18px">
 <span class="apex-eyebrow" style="font-size:27px;color:var(--red-500)">STANDBY · JOIN</span>
 <h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:76px;line-height:.95">교육생 입장 안내</h2>
-<p style="margin:0;font-size:40px;line-height:1.45;color:var(--white)">QR을 스캔하거나 아래 주소로 접속하면 <br>이 센터의 모바일 화면으로 바로 연결됩니다.</p>
+<p style="margin:0;font-size:40px;line-height:1.45;color:var(--white)">QR을 스캔하거나 아래 주소로 접속하면 <br>모바일 화면으로 바로 연결됩니다.</p>
 <div style="background:var(--surface-card);border-left:6px solid var(--accent);padding:32px 36px;display:flex;flex-direction:column;justify-content:flex-start;gap:22px">
 <span class="apex-eyebrow" style="font-size:44px;color:var(--text-primary);background:var(--surface-inset);padding:14px 22px;align-self:flex-start;line-height:1.2">링크접속 (QR코드 접속 불가 시)</span>
 <div style="display:flex;align-items:center;gap:22px">
@@ -124,9 +136,16 @@ a:hover{color:var(--red-300)}
 <sc-if value="{{ noRoster }}" hint-placeholder-val="{{ true }}">
 <p style="margin:0;font-size:35px;color:var(--text-muted)">아직 입장한 교육생이 없습니다.</p>
 </sc-if>
-<div style="display:flex;flex-wrap:wrap;gap:12px">
-<sc-for list="{{ roster }}" as="p" hint-placeholder-count="0">
-<span style="background:var(--surface-card);border-left:4px solid var(--grid-teal);padding:14px 22px;display:flex;align-items:baseline;gap:12px"><span style="font-size:35px;color:var(--white)">{{ p.nm }}</span><span class="apex-eyebrow" style="font-size:24px;color:var(--text-muted)">{{ p.team }}</span></span>
+<div style="display:grid;grid-template-columns:{{ teamGridCols }};gap:12px">
+<sc-for list="{{ rosterGroups }}" as="g" hint-placeholder-count="6">
+<div style="background:var(--surface-card);border-top:4px solid {{ g.color }};padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-height:64px">
+<span class="apex-num apex-skew" style="display:inline-block;font-size:22px;line-height:1;color:{{ g.color }}">{{ g.no }}조</span>
+<div style="display:flex;flex-direction:column;gap:4px">
+<sc-for list="{{ g.members }}" as="m" hint-placeholder-count="2">
+<span style="font-size:24px;color:var(--white)">{{ m.nm }}</span>
+</sc-for>
+</div>
+</div>
 </sc-for>
 </div>
 </div>
@@ -137,7 +156,7 @@ a:hover{color:var(--red-300)}
 <span class="apex-eyebrow" style="font-size:24px;color:var(--text-muted)">조별 대표 1명이 모바일에서 입력</span>
 </div>
 <h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:76px;line-height:.95">우리 팀의 이름과 구호를 정해주세요</h2>
-<div style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr;gap:20px;flex:1">
+<div style="display:grid;grid-template-columns:{{ teamGridCols }};gap:20px;flex:1">
 <sc-for list="{{ teamCards }}" as="tc" hint-placeholder-count="6">
 <div style="background:var(--surface-card);border-top:6px solid {{ tc.color }};padding:30px 32px;display:flex;flex-direction:column;gap:16px">
 <span class="apex-num apex-skew" style="display:inline-block;font-size:38px;line-height:1;color:{{ tc.color }}">{{ tc.no }}조</span>
@@ -1877,7 +1896,7 @@ class Component extends DCLogic {
       vals["role" + i + "op"] = on ? 1 : 0;
       vals["role" + i + "tr"] = on ? "none" : "translateY(18px)";
     }
-    const TEAM_COLORS = ["var(--grid-teal)", "var(--grid-orange)", "var(--grid-azure)", "var(--grid-yellow)", "var(--grid-magenta)", "var(--grid-violet)"];
+    const TEAM_COLORS = ["var(--grid-teal)", "var(--grid-orange)", "var(--grid-azure)", "var(--grid-yellow)", "var(--grid-magenta)", "var(--grid-violet)", "var(--grid-green)", "var(--grid-blue)"];
     /* 강사 로그인 전(리허설·강의 준비 단계)에는 실습 예시를 보여준다.
        로그인 후에는 실제 모바일 제출 데이터로 자동 전환된다. */
     const DEMO_TEAMS = {
@@ -1887,9 +1906,16 @@ class Component extends DCLogic {
       4: { name: "체커드플래그", slogan: "끝까지 함께 완주", rep: "최OO" },
       5: { name: "폴포지션", slogan: "먼저 인사, 먼저 살핀다", rep: "정OO" },
       6: { name: "슬립스트림", slogan: "서로의 속도를 채운다", rep: "한OO" },
+      7: { name: "언더컷", slogan: "한 발 먼저 움직인다", rep: "오OO" },
+      8: { name: "포메이션랩", slogan: "대열을 맞춰 함께", rep: "서OO" },
     };
+    /* 사전 로그인 과정에서 세팅한 조 수(2~8)만큼만 표시한다 */
+    const teamCount = Math.max(2, Math.min(8, Number(this.state.lg.teams) || 6));
+    const teamCols = teamCount <= 4 ? 2 : (teamCount <= 6 ? 3 : 4);
+    vals.teamGridCols = "repeat(" + teamCols + ",1fr)";
+    vals.teamCount = teamCount;
     const liveTeams = this.state.loggedIn ? ((this._live && this._live.teams) || {}) : DEMO_TEAMS;
-    vals.teamCards = TEAM_COLORS.map((color, i) => {
+    vals.teamCards = TEAM_COLORS.slice(0, teamCount).map((color, i) => {
       const no = i + 1, t = liveTeams[no] || {};
       const nm = (t.name || "").trim();
       const rep = (t.rep || "").trim();
@@ -2073,15 +2099,20 @@ class Component extends DCLogic {
     const ready = codeOk && lg.pw === lg.code && lg.name.trim().length > 0;
     const joinUrl = joinFullUrl.replace(/^https?:\/\//, "").replace(/\/$/, "");
     const DEMO_ROSTER = [
-      { nm: "김OO", team: "TEAM 1 · 피트크루" }, { nm: "이OO", team: "TEAM 2 · 세이프티카" },
-      { nm: "박OO", team: "TEAM 3 · 그리드워커" }, { nm: "최OO", team: "TEAM 1 · 피트크루" },
+      { nm: "김OO", no: 1 }, { nm: "이OO", no: 2 }, { nm: "박OO", no: 3 }, { nm: "최OO", no: 1 },
     ];
-    const liveRoster = ((this._live && this._live.roster) || []).map(r => ({
-      nm: r.name, team: r.teamName ? "TEAM " + (r.teamNo || "-") + " · " + r.teamName : "TEAM -",
-    }));
+    const liveRoster = ((this._live && this._live.roster) || []).map(r => ({ nm: r.name, no: r.teamNo || 1 }));
     const allRoster = this.state.loggedIn
-      ? liveRoster.concat(this.state.roster.map((nm, i) => ({ nm, team: "TEAM " + ((i % lg.teams) + 1) })))
+      ? liveRoster.concat(this.state.roster.map((nm, i) => ({ nm, no: (i % teamCount) + 1 })))
       : DEMO_ROSTER;
+    /* 조별로 묶어서 보여준다(사전에 로그인에서 세팅한 조 수만큼) */
+    vals.rosterGroups = TEAM_COLORS.slice(0, teamCount).map((color, i) => {
+      const no = i + 1;
+      return {
+        key: "rg" + no, no, color,
+        members: allRoster.filter(r => Number(r.no) === no).map((r, j) => ({ key: "rgm" + no + "_" + j, nm: r.nm })),
+      };
+    });
     vals.mobileQrBadgeUrl = this._qrUrl;
     vals.fullscreen = (() => {
       const box = this.state.slideBox;
@@ -2132,7 +2163,32 @@ class Component extends DCLogic {
       loginFg: ready ? "#FFFFFF" : "var(--text-muted)",
       loginLabel: this.state.loggedIn ? "로그인 완료 · " + lg.name : "로그인",
       doLogin: () => { if (ready) this.setState({ loggedIn: true }); },
-      doReset: () => this.setState({ lg: { code: "", pw: "", name: "", teams: 6 }, loggedIn: false }),
+      reset: (() => {
+        const code = (lg.code || "").trim();
+        const phase = this.state.rsPhase || "idle";
+        return {
+          idle: phase === "idle",
+          asking: phase === "asking",
+          message: this.state.rsMsg || "",
+          messageColor: this.state.rsErr ? "#FF9A94" : "var(--grid-teal)",
+          question: code ? (code + "차 오늘 데이터를 모두 지웁니다.") : "차수코드를 먼저 입력해주세요.",
+          ask: () => {
+            if (!code) return this.setState({ rsMsg: "차수코드를 먼저 입력해주세요.", rsErr: true });
+            this.setState({ rsPhase: "asking", rsMsg: "" });
+          },
+          cancel: () => this.setState({ rsPhase: "idle" }),
+          confirm: () => {
+            if (!code || !window.WSData) return;
+            this.setState({ rsPhase: "idle", rsMsg: "지우는 중...", rsErr: false });
+            WSData.resetSession(code).then(ok => {
+              this.setState({
+                lg: { code: "", pw: "", name: "", teams: 6 }, loggedIn: false,
+                rsMsg: ok ? "삭제되었습니다." : "삭제에 실패했습니다.", rsErr: !ok,
+              });
+            });
+          },
+        };
+      })(),
       joinUrl,
       joinCode: lg.code || "----",
       qrRef: el => { this._qr = el; this._syncQR(); },
@@ -2146,7 +2202,6 @@ class Component extends DCLogic {
       onJoiner: e => this.setState({ joiner: e.target.value }),
       addJoiner: () => this.setState(s => s.joiner.trim() ? { roster: [...s.roster, s.joiner.trim()], joiner: "" } : null),
       onJoinerKey: e => { if (e.key === "Enter") this.setState(s => s.joiner.trim() ? { roster: [...s.roster, s.joiner.trim()], joiner: "" } : null); },
-      roster: allRoster.map((r, i) => ({ nm: r.nm, key: "r" + i, team: r.team })),
       rosterCount: String(allRoster.length).padStart(2, "0"),
       hasRoster: allRoster.length > 0,
       noRoster: allRoster.length === 0,

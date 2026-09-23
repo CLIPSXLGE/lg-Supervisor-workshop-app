@@ -88,6 +88,14 @@
       return rest('ws_instructor_log', { method: 'POST', body: [row], prefer: 'return=minimal' })
         .then(function () { return true; }).catch(function (e) { if (window.WS_DEBUG) console.warn(e); return false; });
     },
+    /* 이 차수의 '오늘' 데이터만 지운다 (로그인 이력은 남긴다). RLS에 delete 정책이 있어야 한다. */
+    wipeSession: function (code, day) {
+      var tables = ['ws_participants', 'ws_team_info', 'ws_responses', 'ws_coach_plans'];
+      return Promise.all(tables.map(function (t) {
+        return rest(t + '?' + scopeQs(code, day), { method: 'DELETE', prefer: 'return=minimal' })
+          .then(function () { return true; }).catch(function (e) { if (window.WS_DEBUG) console.warn(e); return false; });
+      })).then(function (r) { return r.every(Boolean); });
+    },
   };
 
   /* ── LOCAL : localStorage + BroadcastChannel ─────────────── */
@@ -149,6 +157,10 @@
       rows.push(row); lsWrite(row.session_code, row.day, 'login_log', rows);
       return Promise.resolve(true);
     },
+    wipeSession: function (code, day) {
+      ['participants', 'teams', 'responses', 'coach'].forEach(function (k) { lsWrite(code, day, k, []); });
+      return Promise.resolve(true);
+    },
   };
 
   var S = LIVE ? liveStore : localStore;
@@ -171,6 +183,12 @@
     },
     logInstructorLogin: function (sessionCode, instructorName) {
       return S.logLogin({ session_code: toSessionCode(sessionCode), day: today(), instructor_name: String(instructorName || '').trim(), login_time: new Date().toISOString() });
+    },
+    /* 강사 초기화 버튼 — 이 차수코드의 '오늘' 데이터만 지운다. 되돌릴 수 없다. */
+    resetSession: function (sessionCode) {
+      var code = toSessionCode(sessionCode);
+      if (!code) return Promise.resolve(false);
+      return S.wipeSession(code, today());
     },
     getSession: function (sessionCode) {
       var code = toSessionCode(sessionCode);

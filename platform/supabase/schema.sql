@@ -73,6 +73,8 @@ do $$
 declare
   t text;
   rw text[] := array['ws_participants','ws_team_info','ws_responses','ws_coach_plans','ws_instructor_log'];
+  -- 강사 '초기화' 버튼이 지우는 테이블만 delete 허용. 로그인 이력(ws_instructor_log)은 남긴다.
+  del text[] := array['ws_participants','ws_team_info','ws_responses','ws_coach_plans'];
 begin
   foreach t in array rw loop
     execute format('drop policy if exists ws_read   on %I', t);
@@ -81,6 +83,10 @@ begin
     execute format('create policy ws_read   on %I for select using (true)', t);
     execute format('create policy ws_insert on %I for insert with check (true)', t);
     execute format('create policy ws_update on %I for update using (true) with check (true)', t);
+  end loop;
+  foreach t in array del loop
+    execute format('drop policy if exists ws_delete on %I', t);
+    execute format('create policy ws_delete on %I for delete using (true)', t);
   end loop;
 end $$;
 
