@@ -159,6 +159,7 @@ input,textarea,button{font-family:var(--font-core)}
 <sc-if value="{{ teamLocked }}" hint-placeholder-val="{{ false }}">
 <div style="background:#111318;border-left:4px solid #B4BBC7;padding:14px 16px;font-size:14px;color:#B4BBC7;word-break:keep-all">우리 조는 이미 제출을 완료했습니다. 조별로 한 명만 제출할 수 있어요.</div>
 </sc-if>
+</div>
 </sc-if>
 
 <sc-if value="{{ isDiag }}" hint-placeholder-val="{{ false }}">
@@ -173,13 +174,16 @@ input,textarea,button{font-family:var(--font-core)}
 <span>{{ diagArea }}</span>
 <span style="font-family:var(--font-numeric);font-weight:900;font-size:17px;color:#fff">{{ diagDone }} / 20</span>
 </div>
-<div style="height:6px;background:#20242D;overflow:hidden"><div style="height:100%;width:{{ diagPct }};background:{{ diagColor }};transition:width .24s cubic-bezier(.16,1,.3,1)"></div></div>
+<div style="position:relative;height:6px;background:#20242D;overflow:visible">
+<div style="height:100%;width:{{ diagPct }};background:#3A3F4A;transition:width .3s cubic-bezier(.16,1,.3,1)"></div>
+<div style="position:absolute;top:50%;left:{{ diagRacerLeft }};transform:translateY(-50%);transition:left .3s cubic-bezier(.16,1,.3,1);font-size:16px;line-height:1">🏎️</div>
+</div>
 <div style="display:flex;gap:6px;font-size:11px;color:#B4BBC7;text-align:center">
 <span style="flex:1">전혀 아니다</span><span style="flex:1">아니다</span><span style="flex:1">보통</span><span style="flex:1">그렇다</span><span style="flex:1">매우 그렇다</span>
 </div>
 
 <sc-for list="{{ diagItems }}" as="q" hint-placeholder-count="5">
-<div style="background:#111318;border-left:3px solid {{ q.mark }};padding:14px;display:flex;flex-direction:column;gap:12px">
+<div id="{{ q.domId }}" style="background:#111318;border-left:3px solid {{ q.mark }};padding:14px;display:flex;flex-direction:column;gap:12px;scroll-margin-top:120px">
 <div style="display:flex;gap:10px;align-items:flex-start">
 <span style="font-family:var(--font-numeric);font-weight:900;font-size:15px;color:#B4BBC7;min-width:24px">{{ q.no }}</span>
 <span style="font-size:16px;line-height:1.45;word-break:keep-all;flex:1">{{ q.text }}</span>
@@ -583,7 +587,7 @@ class Component extends DCLogic {
       isDiag: st.screen === "diag", isResult: st.screen === "result",
       isBp: st.screen === "bp",
 
-      nextShow: !!nx,
+      nextShow: !!nx && st.screen !== "diag",
       nextLabel: nextOk ? (nx ? nx.no + " · " + nx.label : "") : (st.screen === "team" ? "팀 이름을 제출하면 열립니다" : "자가진단 20문항을 모두 응답하면 열립니다"),
       nextBg: nextOk ? "#E10600" : "#20242D",
       nextFg: nextOk ? "#fff" : "#8A92A0",
@@ -631,11 +635,11 @@ class Component extends DCLogic {
       diagItems: area.items.map((text, i) => {
         const id = page * 5 + i;
         return {
-          key: "d" + id, no: String(page * 5 + i + 1), text,
+          key: "d" + id, domId: "q" + id, no: String(page * 5 + i + 1), text,
           mark: st.answers[id] ? area.color : "rgba(255,255,255,.16)",
           scale: [1, 2, 3, 4, 5].map(v => ({
             v, key: "s" + id + "-" + v,
-            pick: () => this.setState(s => ({ answers: Object.assign({}, s.answers, { [id]: v }) }), () => this._pushDiag(id, v)),
+            pick: () => this.setState(s => ({ answers: Object.assign({}, s.answers, { [id]: v }) }), () => { this._pushDiag(id, v); this._diagAutoScroll(id); }),
             bg: st.answers[id] === v ? area.color : "#2C313C",
             fg: st.answers[id] === v ? "#06070A" : "#fff",
             bd: st.answers[id] === v ? area.color : "rgba(255,255,255,.26)",
@@ -643,8 +647,13 @@ class Component extends DCLogic {
         };
       }),
       diagPrev: () => this.setState(s => ({ page: Math.max(0, s.page - 1) })),
-      diagNext: () => this.setState(s => (s.page >= 3 ? { screen: "result" } : { page: s.page + 1 })),
+      diagNext: () => {
+        const unanswered = [0, 1, 2, 3, 4].find(i => !st.answers[page * 5 + i]);
+        if (unanswered != null) { this._diagAutoScroll(page * 5 + unanswered - 1); return; }
+        this.setState(s => (s.page >= 3 ? { screen: "result" } : { page: s.page + 1 }));
+      },
       diagNextLabel: page >= 3 ? "결과 보기" : "다음 영역",
+      diagRacerLeft: "calc(" + Math.round((answered / 20) * 100) + "% - 8px)",
 
       totalScore: String(total),
       totalNote: total ? "네 영역 중 가장 낮은 영역을 오늘의 실행 목표로 연결해보세요." : "자가진단을 먼저 완료해주세요.",
@@ -817,6 +826,13 @@ class Component extends DCLogic {
     const me = this.state.me;
     if (!me) return;
     WSData.submitResponses(me.code, me.participantId, [{ question_id: "diag_" + id, text: v }]);
+  }
+  /* 답을 고르면 같은 화면에 쌓여 있는 다음 문항으로 부드럽게 스크롤한다 */
+  _diagAutoScroll(fromId) {
+    requestAnimationFrame(() => {
+      const el = document.getElementById("q" + (fromId + 1));
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
   }
 }
 </script>
