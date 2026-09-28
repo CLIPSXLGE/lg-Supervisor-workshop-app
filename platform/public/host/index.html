@@ -785,20 +785,21 @@ a:hover{color:var(--red-300)}
 </div>
 </section>
 
-<section data-label="기억력 TEST 인트로" data-speaker-notes="아이스브레이커. 화면에 나오는 단어를 기억해달라고 안내한다." style="background-color:var(--bg-page);background-image:var(--texture-carbon);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:36px" data-om-slide-id="rk-mem-01">
-<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--grid-yellow)">기억력 TEST</span></div>
-<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:76px;line-height:1.35;max-width:1560px">화면에 나오는 <span style="color:var(--grid-yellow)">'단어'</span>를 <br>기억해주세요!</h2>
+<section data-label="기억력 TEST 인트로" data-speaker-notes="아이스브레이커. 화면에 나오는 단어를 기억해달라고 안내한다." style="background-color:var(--bg-page);background-image:var(--texture-carbon);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px" data-om-slide-id="rk-mem-01">
+<div style="display:flex;align-items:center;justify-content:center;width:100%;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--grid-yellow)">기억력 TEST</span></div>
+<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:64px;line-height:1.35;white-space:nowrap;text-align:center">화면에 나오는 <span style="color:var(--grid-yellow)">'단어'</span>를 기억해주세요!</h2>
 </section>
 
-<section data-label="영상 재생 1" data-speaker-notes="영상 재생: 어쩌다 어른 - 단어로 하는 기억력 TEST (미디어1)." style="background-color:var(--carbon-950);background-image:var(--texture-speedlines);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:24px" data-om-slide-id="rk-mem-02">
-<span class="apex-eyebrow" style="font-size:24px;color:var(--grid-yellow)">VIDEO · 어쩌다 어른</span>
-<video src="/host/assets/video-memory-test-1.mp4" controls="controls" style="width:100%;max-width:1400px;aspect-ratio:16/9;background:#000;border-radius:8px"></video>
+<section data-label="영상 재생 1" data-speaker-notes="영상 재생: 어쩌다 어른 - 단어로 하는 기억력 TEST (미디어1). '다음으로' 1회 = 재생, 2회 = 일시정지." style="background-color:var(--carbon-950);background-image:var(--texture-speedlines);color:var(--text-primary);font-family:var(--font-core);padding:24px 48px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px" data-om-slide-id="rk-mem-02">
+<span class="apex-eyebrow" style="font-size:22px;color:var(--grid-yellow)">VIDEO · 어쩌다 어른</span>
+<video ref="{{ vid1Ref }}" onPlay="{{ onVid1Play }}" onPause="{{ onVid1Pause }}" src="/host/assets/video-memory-test-1.mp4" controls="controls" style="width:100%;max-width:1820px;aspect-ratio:16/9;background:#000;border-radius:8px"></video>
+<button type="button" data-build-start="1" onClick="{{ vid1Toggle }}" style="background:transparent;color:var(--text-muted);border:1px solid var(--border-hairline);border-radius:4px;padding:8px 18px;font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:.1em;cursor:pointer">{{ vid1Btn }}</button>
 </section>
 
-<section data-label="기억력 TEST 계산" data-speaker-notes="이어서 간단한 뺄셈 3문항을 계산하게 한다." style="background-color:var(--bg-page);background-image:var(--texture-carbon);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:44px" data-om-slide-id="rk-mem-03">
-<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--grid-yellow)">기억력 TEST</span></div>
-<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;line-height:1.1">이어서 계산해보세요</h2>
-<div style="display:flex;flex-direction:column;gap:28px;flex:1;justify-content:center">
+<section data-label="기억력 TEST 계산" data-speaker-notes="이어서 간단한 뺄셈 3문항을 계산하게 한다." style="background-color:var(--bg-page);background-image:var(--texture-carbon);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:44px" data-om-slide-id="rk-mem-03">
+<div style="display:flex;align-items:center;justify-content:center;width:100%;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--grid-yellow)">기억력 TEST</span></div>
+<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;line-height:1.1;text-align:center">이어서 계산해보세요</h2>
+<div style="display:flex;flex-direction:column;align-items:center;gap:28px;flex:1;justify-content:center">
 <span class="apex-num apex-skew" style="display:inline-block;font-size:88px;color:var(--white)">150 - 13 =</span>
 <span class="apex-num apex-skew" style="display:inline-block;font-size:88px;color:var(--white)">137 - 13 =</span>
 <span class="apex-num apex-skew" style="display:inline-block;font-size:88px;color:var(--white)">124 - 13 =</span>
@@ -806,9 +807,9 @@ a:hover{color:var(--red-300)}
 </section>
 
 <section data-label="기억력 TEST 회상" data-speaker-notes="방금 본 단어를 회상시킨 뒤, 왜 특정 단어(창문)를 떠올리는지 질문한다." style="background-color:var(--bg-page);background-image:var(--texture-carbon);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:40px" data-om-slide-id="rk-mem-04">
-<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--grid-yellow)">기억력 TEST : 무엇을 회상하셨습니까?</span></div>
+<div style="display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--grid-yellow)">기억력 TEST : 무엇을 회상하셨습니까?</span></div>
 <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:56px;flex:1;align-items:center">
-<div style="display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;flex-direction:column;gap:14px;padding-left:80px">
 <span style="font-size:48px;color:var(--white)">문</span>
 <span style="font-size:48px;color:var(--white)">유리창</span>
 <span style="font-size:48px;color:var(--white)">창틀</span>
@@ -822,16 +823,16 @@ a:hover{color:var(--red-300)}
 </div>
 </section>
 
-<section data-label="영상 재생 2" data-speaker-notes="영상 재생: 어쩌다 어른 - 자체 편집본 (미디어2)." style="background-color:var(--carbon-950);background-image:var(--texture-speedlines);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:24px" data-om-slide-id="rk-mem-05">
-<span class="apex-eyebrow" style="font-size:24px;color:var(--grid-yellow)">VIDEO · 어쩌다 어른</span>
-<video src="/host/assets/video-memory-test-2.mp4" controls="controls" style="width:100%;max-width:1400px;aspect-ratio:16/9;background:#000;border-radius:8px"></video>
+<section data-label="영상 재생 2" data-speaker-notes="영상 재생: 어쩌다 어른 - 자체 편집본 (미디어2). '다음으로' 1회 = 재생, 2회 = 일시정지." style="background-color:var(--carbon-950);background-image:var(--texture-speedlines);color:var(--text-primary);font-family:var(--font-core);padding:24px 48px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px" data-om-slide-id="rk-mem-05">
+<span class="apex-eyebrow" style="font-size:22px;color:var(--grid-yellow)">VIDEO · 어쩌다 어른</span>
+<video ref="{{ vid2Ref }}" onPlay="{{ onVid2Play }}" onPause="{{ onVid2Pause }}" src="/host/assets/video-memory-test-2.mp4" controls="controls" style="width:100%;max-width:1820px;aspect-ratio:16/9;background:#000;border-radius:8px"></video>
+<button type="button" data-build-start="1" onClick="{{ vid2Toggle }}" style="background:transparent;color:var(--text-muted);border:1px solid var(--border-hairline);border-radius:4px;padding:8px 18px;font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:.1em;cursor:pointer">{{ vid2Btn }}</button>
 </section>
 
 <section data-label="김경일 교수 인용" data-speaker-notes="영상 내용을 정리하며 김경일 교수의 메시지로 마무리." style="background:var(--bg-page);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:32px" data-om-slide-id="rk-mem-06">
-<div style="border-bottom:1px solid var(--border-hairline);padding-bottom:16px"></div>
-<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:56px;line-height:1.2;text-align:center">김경일 교수가 말하는 기억이란?</h2>
 <div style="display:grid;grid-template-columns:1fr 420px;gap:56px;flex:1;align-items:center">
 <div style="display:flex;flex-direction:column;gap:24px">
+<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:44px;line-height:1.3">김경일 교수가 말하는 기억이란?</h2>
 <span class="apex-num apex-skew" style="display:inline-block;font-size:96px;color:var(--grid-yellow);line-height:1">“</span>
 <p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:68px;line-height:1.3;color:var(--white)">자체 편집 후 <br>남은 결과이다.</p>
 <p style="margin:0;font-size:27px;color:var(--text-muted)">- 인지심리학자 아주대학교 김경일 교수 -</p>
@@ -884,7 +885,7 @@ a:hover{color:var(--red-300)}
 <img src="/host/assets/fiske-portrait.png" alt="수잔 피스크 교수" style="max-width:100%;max-height:100%;object-fit:contain">
 </div>
 <div style="display:flex;flex-direction:column;gap:22px">
-<p style="margin:0;font-size:44px;line-height:1.55;color:var(--white)"><span style="color:var(--grid-yellow)">따듯함</span>은 유능함보다 <span style="color:var(--grid-yellow)">언제나 우선</span>해야 합니다.<br>따듯함이 느껴지고 그 뒤에 유능함이 붙었을 때 그 사람에 대한 <span style="color:var(--grid-yellow)">신뢰</span>가 느껴집니다.</p>
+<p style="margin:0;font-size:44px;line-height:1.55;color:var(--white)"><span style="color:var(--grid-yellow)">따듯함</span>은 유능함보다 <span style="color:var(--grid-yellow)">언제나 우선</span>해야 합니다.<br>따듯함이 느껴지고 그 뒤에 유능함이 붙었을 때 <br>그 사람에 대한 <span style="color:var(--grid-yellow)">신뢰</span>가 느껴집니다.</p>
 <p style="margin:0;font-size:27px;color:var(--text-muted)">- 프린스턴대 교수 및 심리학 권위자 수잔 피스크(Susan Tufts Fiske) -</p>
 </div>
 </div>
@@ -1027,33 +1028,35 @@ a:hover{color:var(--red-300)}
 </div>
 </section>
 
-<section class="apex-light" data-label="작업기억" data-speaker-notes="PREP의 P(요점)를 짧게 유지해야 하는 이유: 작업기억의 한계." style="background:var(--bg-page);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:44px" data-om-slide-id="rk-prep-09">
+<section class="apex-light" data-label="작업기억" data-speaker-notes="PREP의 P(요점)를 짧게 유지해야 하는 이유: 작업기억의 한계." style="background:var(--bg-page);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:36px" data-om-slide-id="rk-prep-09">
 <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">명확한 업무지시 · P</span></div>
+<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;line-height:1.1">작업기억</h2>
 <div style="display:flex;justify-content:center"><div style="width:100%;max-width:900px;background:var(--grid-azure);padding:14px;display:flex;gap:14px;align-items:center"><div style="flex:1;background:#fff;padding:20px;text-align:center"><span class="apex-num apex-skew" style="display:inline-block;font-size:56px;color:#06070A">작업기억</span></div><span class="apex-eyebrow" style="font-size:24px;color:#fff">SEARCH</span></div></div>
 <div style="display:flex;flex-direction:column;gap:16px;text-align:center">
-<p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-primary)">작업 기억은 정보를 즉시 저장할 수 있는 제한된 능력을 가진 인지 시스템</p>
-<p style="margin:0;font-size:40px;line-height:1.5;color:var(--grid-azure)">일반적으로 4~7개의 기억을 저장할 수 있다</p>
+<p style="margin:0;font-size:48px;line-height:1.5;color:var(--text-primary)">작업 기억은 정보를 즉시 저장할 수 있는 제한된 능력을 가진 인지 시스템</p>
+<p style="margin:0;font-size:48px;line-height:1.5;color:var(--grid-azure)">일반적으로 4~7개의 기억을 저장할 수 있다</p>
 </div>
 </section>
 
-<section class="apex-light" data-label="R 이유 사례" data-speaker-notes="PREP의 R(이유)을 도서관 복사기 실험 사례로 설명." style="background:var(--bg-page);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:32px" data-om-slide-id="rk-prep-10">
+<section class="apex-light" data-label="R 이유 사례" data-speaker-notes="PREP의 R(이유)을 도서관 복사기 실험 사례로 설명." style="background:var(--bg-page);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:28px" data-om-slide-id="rk-prep-10">
 <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">명확한 업무지시 · R</span></div>
-<p style="margin:0;font-size:36px;line-height:1.6;color:var(--text-body);text-align:center">도서관에서 복사하기 위해 줄을 서서 기다리는 사람들을 대상으로<br>늦게 온 사람이 앞사람의 양보를 얻어내는 상황</p>
-<p style="margin:0;font-size:24px;color:var(--text-muted);text-align:center">미국의 하버드 대학 심리학자 교수 Ellen Langer (에렌 랭거)</p>
-<p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:56px;color:var(--text-primary);text-align:center">“순서를 양보할 수 있도록 <span style="color:var(--grid-teal)">설득</span> 하라.”</p>
+<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;line-height:1.1">R 이유 사례</h2>
+<p style="margin:0;font-size:42px;line-height:1.6;color:var(--text-body);text-align:center">도서관에서 복사하기 위해 줄을 서서 기다리는 사람들을 대상으로<br>늦게 온 사람이 앞사람의 양보를 얻어내는 상황</p>
+<p style="margin:0;font-size:26px;color:var(--text-muted);text-align:center">미국의 하버드 대학 심리학자 교수 Ellen Langer (에렌 랭거)</p>
+<p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;color:var(--text-primary);text-align:center">“순서를 양보할 수 있도록 <span style="color:var(--grid-teal)">설득</span> 하라.”</p>
 </section>
 
-<section class="apex-light" data-label="R 이유 실험 결과" data-speaker-notes="이유를 붙였을 때 양보 성공률이 크게 오른다는 실험 결과 3가지 화법 비교." style="background:var(--bg-page);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:26px" data-om-slide-id="rk-prep-11">
+<section class="apex-light" data-label="R 이유 실험 결과" data-speaker-notes="이유를 붙였을 때 양보 성공률이 크게 오른다는 실험 결과 3가지 화법 비교." style="background:var(--bg-page);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:22px" data-om-slide-id="rk-prep-11">
 <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">명확한 업무지시 · R</span></div>
+<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;line-height:1.1">R 이유 실험 결과</h2>
 <div style="display:flex;flex-direction:column;justify-content:center;gap:2px;flex:1">
-<div style="background:var(--surface-card);border-left:6px solid var(--grid-teal);display:flex;gap:28px;padding:26px 34px;align-items:center"><span class="apex-num apex-skew" style="display:inline-block;font-size:40px;color:var(--grid-teal);width:60px">01</span><p style="margin:0;flex:1;font-size:32px;line-height:1.5;color:var(--text-primary)">“죄송합니다. 제가 먼저 하면 안될까요? 왜냐하면 바쁜 일이 있거든요.”</p><span class="apex-num apex-skew" style="display:inline-block;font-size:48px;color:var(--grid-teal)">94%</span></div>
-<div style="background:var(--surface-card);border-left:6px solid var(--text-muted);display:flex;gap:28px;padding:26px 34px;align-items:center"><span class="apex-num apex-skew" style="display:inline-block;font-size:40px;color:var(--text-muted);width:60px">02</span><p style="margin:0;flex:1;font-size:32px;line-height:1.5;color:var(--text-primary)">“죄송합니다. 제가 먼저 하면 안될까요?”</p><span class="apex-num apex-skew" style="display:inline-block;font-size:48px;color:var(--text-muted)">60%</span></div>
-<div style="background:var(--surface-card);border-left:6px solid var(--grid-teal);display:flex;gap:28px;padding:26px 34px;align-items:center"><span class="apex-num apex-skew" style="display:inline-block;font-size:40px;color:var(--grid-teal);width:60px">03</span><p style="margin:0;flex:1;font-size:32px;line-height:1.5;color:var(--text-primary)">“죄송합니다. 제가 먼저 하면 안될까요? 왜냐하면 지금 복사를 해야 하거든요”</p><span class="apex-num apex-skew" style="display:inline-block;font-size:48px;color:var(--grid-teal)">93%</span></div>
+<div style="background:var(--surface-card);border-left:6px solid var(--grid-teal);display:flex;gap:28px;padding:26px 34px;align-items:center"><span class="apex-num apex-skew" style="display:inline-block;font-size:40px;color:var(--grid-teal);width:60px">01</span><p style="margin:0;flex:1;font-size:38px;line-height:1.5;color:var(--text-primary)">“죄송합니다. 제가 먼저 하면 안될까요? 왜냐하면 바쁜 일이 있거든요.”</p><span class="apex-num apex-skew" style="display:inline-block;font-size:48px;color:var(--grid-teal)">94%</span></div>
+<div style="background:var(--surface-card);border-left:6px solid var(--text-muted);display:flex;gap:28px;padding:26px 34px;align-items:center"><span class="apex-num apex-skew" style="display:inline-block;font-size:40px;color:var(--text-muted);width:60px">02</span><p style="margin:0;flex:1;font-size:38px;line-height:1.5;color:var(--text-primary)">“죄송합니다. 제가 먼저 하면 안될까요?”</p><span class="apex-num apex-skew" style="display:inline-block;font-size:48px;color:var(--text-muted)">60%</span></div>
+<div style="background:var(--surface-card);border-left:6px solid var(--grid-teal);display:flex;gap:28px;padding:26px 34px;align-items:center"><span class="apex-num apex-skew" style="display:inline-block;font-size:40px;color:var(--grid-teal);width:60px">03</span><p style="margin:0;flex:1;font-size:38px;line-height:1.5;color:var(--text-primary)">“죄송합니다. 제가 먼저 하면 안될까요? 왜냐하면 지금 복사를 해야 하거든요”</p><span class="apex-num apex-skew" style="display:inline-block;font-size:48px;color:var(--grid-teal)">93%</span></div>
 </div>
 </section>
 
 <section data-label="R 이유 랭거 인용" data-speaker-notes="에렌 랭거 교수의 결론으로 R(이유) 파트를 마무리." style="background:var(--bg-page);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:28px" data-om-slide-id="rk-prep-12">
-<div style="display:flex;align-items:center;gap:20px;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-num apex-skew" style="display:inline-block;background:var(--surface-inset);color:var(--grid-teal);font-size:32px;padding:8px 18px;border-radius:999px">02</span><span style="font-family:var(--font-display);font-weight:700;font-size:40px;color:var(--white)">R: 이유</span></div>
 <div style="display:grid;grid-template-columns:420px 1fr;gap:56px;flex:1;align-items:center">
 <div style="width:100%;height:520px;border-radius:8px;overflow:hidden;background:var(--surface-inset)">
 <img src="/host/assets/langer-portrait.png" alt="에렌 랭거 교수" style="width:100%;height:100%;object-fit:cover">
@@ -1091,16 +1094,17 @@ a:hover{color:var(--red-300)}
 </section>
 
 <section data-label="친절함 마지막 실력" data-speaker-notes="1일차 마지막 메시지: 친절함은 AI 시대에도 대체되지 않는 마지막 실력." style="background:var(--bg-page);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:28px" data-om-slide-id="rk-mem-13">
-<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">인간에게 남은 마지막 실력, 친절함!</span></div>
+<div style="border-bottom:1px solid var(--border-hairline);padding-bottom:16px"></div>
+<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;line-height:1.1;color:var(--white)">인간에게 남은 마지막 실력, 친절함!</h2>
 <div style="display:grid;grid-template-columns:380px 1fr;gap:56px;flex:1;align-items:center">
 <div style="width:100%;height:520px;border-radius:8px;overflow:hidden;background:var(--surface-inset)">
 <img src="/host/assets/trendnote-2025-cover.png" alt="2025 트렌드노트" style="width:100%;height:100%;object-fit:cover">
 </div>
 <div style="display:flex;flex-direction:column;gap:22px">
 <span class="apex-num apex-skew" style="display:inline-block;font-size:80px;color:var(--red-500);line-height:1">“</span>
-<p style="margin:0;font-size:40px;line-height:1.6;color:var(--white)">인간에게 남은 마지막 실력, 바로 <span style="color:var(--red-500)">친절함</span>이다.</p>
-<p style="margin:0;font-size:32px;line-height:1.6;color:var(--text-body)">똑똑한 인간은 잡리스(Jobless)가 될 수 있지만<br><span style="color:var(--red-400)">친절한 커뮤니케이션이 가능한 인간</span>은 미래까지 <span style="color:var(--red-400)">직업의 안정성을 보장</span>받을 수 있다.</p>
-<p style="margin:0;font-size:27px;color:var(--text-muted)">AI의 가치가 인간보다 높지 않은 거의 유일한 영역이다.</p>
+<p style="margin:0;font-size:46px;line-height:1.6;color:var(--white)">인간에게 남은 마지막 실력, 바로 <span style="color:var(--red-500)">친절함</span>이다.</p>
+<p style="margin:0;font-size:38px;line-height:1.6;color:var(--text-body)">똑똑한 인간은 잡리스(Jobless)가 될 수 있지만<br><span style="color:var(--red-400)">친절한 커뮤니케이션이 가능한 인간</span>은 미래까지 <span style="color:var(--red-400)">직업의 안정성을 보장</span>받을 수 있다.</p>
+<p style="margin:0;font-size:30px;color:var(--text-muted)">AI의 가치가 인간보다 높지 않은 거의 유일한 영역이다.</p>
 </div>
 </div>
 </section>
@@ -1656,6 +1660,7 @@ class Component extends DCLogic {
     roster: [],
     copied: false,
     deckItems: [], deckCur: 0, deckIndexOpen: false, isFull: false, slideBox: null,
+    vid1Playing: false, vid2Playing: false,
   };
   _lg(k, v) { this.setState(s => ({ lg: { ...s.lg, [k]: v } })); }
   _vote(i, c) {
@@ -1797,7 +1802,7 @@ class Component extends DCLogic {
         const b = s.querySelector("[data-build-start]");
         timerPlan(s).filter(a => a.step === next).forEach(a => {
           const label = (b && b.textContent) || "";
-          if (a.act === "start" && b && /START|RESUME|시작|계속|다시/i.test(label)) b.click();
+          if (a.act === "start" && b && /START|RESUME|시작|계속|다시|재생/i.test(label)) b.click();
           else if (a.act === "pause" && b && /PAUSE|일시정지/i.test(label)) b.click();
           else if (a.act === "reset") { const r = s.querySelector("[data-build-reset]"); if (r) r.click(); }
         });
@@ -1845,7 +1850,7 @@ class Component extends DCLogic {
   initDeckIndex(tries) {
     const stage = document.querySelector("deck-stage");
     if (!stage || !stage.length) {
-      if ((tries || 0) < 40) setTimeout(() => this.initDeckIndex((tries || 0) + 1), 150);
+      if ((tries || 0) < 2000) setTimeout(() => this.initDeckIndex((tries || 0) + 1), 150);
       return;
     }
     this._stage = stage;
@@ -2305,6 +2310,16 @@ class Component extends DCLogic {
       joinUrl,
       joinCode: lg.code || "----",
       qrRef: el => { this._qr = el; this._syncQR(); },
+      vid1Ref: el => { this._vid1 = el; },
+      onVid1Play: () => this.setState({ vid1Playing: true }),
+      onVid1Pause: () => this.setState({ vid1Playing: false }),
+      vid1Toggle: () => { if (!this._vid1) return; if (this._vid1.paused) this._vid1.play(); else this._vid1.pause(); },
+      vid1Btn: this.state.vid1Playing ? "일시정지" : "재생",
+      vid2Ref: el => { this._vid2 = el; },
+      onVid2Play: () => this.setState({ vid2Playing: true }),
+      onVid2Pause: () => this.setState({ vid2Playing: false }),
+      vid2Toggle: () => { if (!this._vid2) return; if (this._vid2.paused) this._vid2.play(); else this._vid2.pause(); },
+      vid2Btn: this.state.vid2Playing ? "일시정지" : "재생",
       copyLabel: this.state.copied ? "복사됨" : "URL 복사",
       doCopy: () => {
         navigator.clipboard && navigator.clipboard.writeText(joinFullUrl);
