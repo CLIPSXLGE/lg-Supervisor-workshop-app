@@ -649,12 +649,6 @@ a:hover{color:var(--red-300)}
 </div>
 </section>
 
-<section data-label="반장 인터뷰" data-speaker-notes="우수 센터 반장 인터뷰 영상 재생. 아침 시간 관련 클립." style="background-color:var(--bg-page);background-image:var(--texture-carbon);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:32px" data-om-slide-id="92732182">
-<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">INTERVIEW</span></div>
-<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;line-height:1.1">[영상] 우수 센터 반장 인터뷰 <span data-om-id="1658d31b:1041" style="font-size: 47px; color: var(--text-muted);">— 아침 시간 관련</span></h2>
-<div style="flex:1;background:var(--surface-inset);border:1px dashed var(--border-line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-faint)">영상 자료 삽입</span><p style="margin:0;font-size:27px;color:var(--text-faint)">인터뷰 클립 파일을 이 영역에 배치</p></div>
-</section>
-
 <section data-label="조직문화" data-speaker-notes="조직문화는 반복되는 작은 행동으로 만들어진다." style="background-color:var(--bg-page);background-image:var(--texture-speedlines);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:40px" data-om-slide-id="e4ba0605">
 <span class="apex-eyebrow" style="font-size:24px;color:var(--grid-orange)">CULTURE</span>
 <h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;line-height:1.15;max-width:1500px">조직문화는 큰 이벤트보다 <br>반복되는 작은 행동으로 만들어집니다</h2>
@@ -726,10 +720,11 @@ a:hover{color:var(--red-300)}
 
 
 
-<section data-label="SM 인터뷰" data-speaker-notes="SM 인터뷰 영상. 반장님 덕분에 아침에 힘이 나요." style="background-color:var(--bg-page);background-image:var(--texture-carbon);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:32px" data-om-slide-id="aabb1fc9">
-<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">INTERVIEW</span></div>
-<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;line-height:1.1">[영상] SM 인터뷰 <span style="font-size: 47px; color: var(--text-muted);">— 반장님 덕분에 아침에 힘이 나요</span></h2>
-<div style="flex:1;background:var(--surface-inset);border:1px dashed var(--border-line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-faint)">영상 자료 삽입</span><p style="margin:0;font-size:27px;color:var(--text-faint)">인터뷰 클립 파일을 이 영역에 배치</p></div>
+<section data-label="SM 인터뷰" data-speaker-notes="SM 인터뷰 영상. 반장님 덕분에 아침에 힘이 나요. '다음으로' 1회 = 재생, 2회 = 일시정지." style="background-color:var(--bg-page);background-image:var(--texture-carbon);color:var(--text-primary);font-family:var(--font-core);padding:36px 48px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:16px" data-om-slide-id="aabb1fc9">
+<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px;width:100%"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">INTERVIEW</span></div>
+<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;line-height:1.1;text-align:center">[영상] SM 인터뷰 <span style="font-size:36px;color:var(--text-muted)">— 반장님 덕분에 아침에 힘이 나요</span></h2>
+<video ref="{{ vid3Ref }}" onPlay="{{ onVid3Play }}" onPause="{{ onVid3Pause }}" src="/host/assets/video-supervisor-interview.mp4" controls="controls" style="width:100%;max-width:1700px;aspect-ratio:16/9;background:#000;border-radius:8px"></video>
+<button type="button" data-build-start="1" onClick="{{ vid3Toggle }}" style="background:transparent;color:var(--text-muted);border:1px solid var(--border-hairline);border-radius:4px;padding:8px 18px;font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:.1em;cursor:pointer">{{ vid3Btn }}</button>
 </section>
 
 <section data-label="M2 WRAP-UP" data-speaker-notes="M2 마무리. 아침 인사로 상태를 확인하고, 반별 아침조회에서 성과와 실행을 맞춘다. 이 10분이 하루의 방향을 정한다." style="background:linear-gradient(103deg,var(--red-700) 0%,var(--red-600) 42%,var(--red-500) 100%);color:var(--white);font-family:var(--font-core);padding:56px 88px;display:flex;flex-direction:column;justify-content:center;gap:34px" data-om-slide-id="22647148">
@@ -1661,7 +1656,7 @@ class Component extends DCLogic {
     roster: [],
     copied: false,
     deckItems: [], deckCur: 0, deckIndexOpen: false, isFull: false, slideBox: null,
-    vid1Playing: false, vid2Playing: false,
+    vid1Playing: false, vid2Playing: false, vid3Playing: false,
   };
   _lg(k, v) { this.setState(s => ({ lg: { ...s.lg, [k]: v } })); }
   _vote(i, c) {
@@ -2321,6 +2316,11 @@ class Component extends DCLogic {
       onVid2Pause: () => this.setState({ vid2Playing: false }),
       vid2Toggle: () => { if (!this._vid2) return; if (this._vid2.paused) this._vid2.play(); else this._vid2.pause(); },
       vid2Btn: this.state.vid2Playing ? "일시정지" : "재생",
+      vid3Ref: el => { this._vid3 = el; },
+      onVid3Play: () => this.setState({ vid3Playing: true }),
+      onVid3Pause: () => this.setState({ vid3Playing: false }),
+      vid3Toggle: () => { if (!this._vid3) return; if (this._vid3.paused) this._vid3.play(); else this._vid3.pause(); },
+      vid3Btn: this.state.vid3Playing ? "일시정지" : "재생",
       copyLabel: this.state.copied ? "복사됨" : "URL 복사",
       doCopy: () => {
         navigator.clipboard && navigator.clipboard.writeText(joinFullUrl);
