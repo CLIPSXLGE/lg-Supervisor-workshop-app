@@ -7,6 +7,9 @@
 원본 자료/.thumbnail
 원본 자료/image-*.webp
 
+# BGM 원본 소스 (자르기/압축 전 원본 - 용량 매우 큼, 실제 사용 파일은 platform/public/host/assets/)
+참고자료/
+
 # OS / 편집기
 .DS_Store
 Thumbs.db
