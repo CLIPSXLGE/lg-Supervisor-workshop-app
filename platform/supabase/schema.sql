@@ -3,7 +3,9 @@
 --  Supabase → SQL Editor → New query 에 통째로 붙여넣고 Run.
 --  여러 번 실행해도 안전합니다.
 --
---  기준값 = session_code(차수코드: 1111/2222/3333/4444) + day(날짜)
+--  기준값 = session_code(차수코드: 1111/2222/3333/4444)
+--  day(날짜)는 각 행이 언제 저장됐는지 참고용으로만 남기고, 조회는 날짜로 자르지
+--  않는다(1박 2일 과정 내내 같은 이름+비밀번호면 같은 참가자로 데이터가 이어짐).
 -- ══════════════════════════════════════════════════════════════
 
 create table if not exists ws_participants (
@@ -11,11 +13,14 @@ create table if not exists ws_participants (
   session_code   text        not null,
   day            date        not null,
   name           text        not null,
+  password       text,
   team           int,
   joined_at      timestamptz not null default now()
 );
-create index if not exists ws_participants_scope on ws_participants (session_code, day, joined_at);
-create index if not exists ws_participants_lookup on ws_participants (session_code, day, name, team);
+-- 기존에 이미 만들어둔 테이블에도 안전하게 추가되도록(1박 2일 이름+비밀번호 재입장 기능용)
+alter table ws_participants add column if not exists password text;
+create index if not exists ws_participants_scope on ws_participants (session_code, joined_at);
+create index if not exists ws_participants_lookup on ws_participants (session_code, name);
 
 -- 팀 이름·구호 (조별, 1건)
 create table if not exists ws_team_info (

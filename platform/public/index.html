@@ -56,6 +56,11 @@ input,textarea,button{font-family:var(--font-core)}
 <span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">이름</span>
 <input type="text" placeholder="이름을 입력하세요" value="{{ inName }}" onChange="{{ onInName }}" style="background:#2C313C;border:1px solid rgba(255,255,255,.34);color:#fff;font-weight:700;font-size:20px;padding:14px 16px;outline:none;height:56px;box-sizing:border-box">
 </label>
+<label style="display:flex;flex-direction:column;gap:7px">
+<span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">비밀번호</span>
+<input type="password" inputMode="numeric" placeholder="본인만 아는 번호(다음날 재입장 시 필요)" value="{{ inPw }}" onChange="{{ onInPw }}" style="background:#2C313C;border:1px solid rgba(255,255,255,.34);color:#fff;font-weight:700;font-size:20px;letter-spacing:.06em;padding:14px 16px;outline:none;height:56px;box-sizing:border-box">
+<span style="font-size:12px;color:#8A92A0;line-height:1.5;word-break:keep-all">1일차에 정한 비밀번호를 2일차에도 똑같이 입력하면 이어서 진행됩니다.</span>
+</label>
 <div style="display:flex;flex-direction:column;gap:7px">
 <span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">오늘 배정된 조 번호</span>
 <div style="display:flex;flex-wrap:wrap;gap:6px">
@@ -71,7 +76,7 @@ input,textarea,button{font-family:var(--font-core)}
 </sc-if>
 
 <button type="button" onClick="{{ doJoin }}" style="background:{{ joinBg }};color:{{ joinFg }};border:none;padding:18px;font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:.16em;cursor:pointer;min-height:60px;margin-top:auto">입장하기</button>
-<div style="font-size:13px;color:#B4BBC7;line-height:1.5;word-break:keep-all">같은 이름으로 다시 접속하면 기존 참가자로 이어집니다.</div>
+<div style="font-size:13px;color:#B4BBC7;line-height:1.5;word-break:keep-all">같은 이름과 비밀번호로 다시 접속하면 기존 참가자로 이어집니다.</div>
 </div>
 </sc-if>
 
@@ -1042,7 +1047,7 @@ class Component extends DCLogic {
     screen: "team",
     tnDraft: "", tsDraft: "", trDraft: "", tmSaved: false,
     indexOpen: false,
-    inCode: "", inName: "", teamNo: 0,
+    inCode: "", inName: "", inPw: "", teamNo: 0,
     joinError: "", joining: false,
     me: null,
     page: 0,
@@ -1079,7 +1084,7 @@ class Component extends DCLogic {
 
   renderVals() {
     const st = this.state, me = st.me;
-    const ready = st.inCode.length === 4 && st.inName.trim().length > 0 && st.teamNo > 0;
+    const ready = st.inCode.length === 4 && st.inName.trim().length > 0 && st.inPw.trim().length > 0 && st.teamNo > 0;
     const answered = Object.keys(st.answers).length;
     const page = st.page, area = AREAS[page] || AREAS[0];
 
@@ -1090,7 +1095,7 @@ class Component extends DCLogic {
     });
     const total = areaScores.reduce((n, a) => n + a.score, 0);
 
-    const TEAM_COLORS = ["#00D2BE", "#FF8000", "#3671C6", "#FFD400", "#FF3AA0", "#6C4BF6"];
+    const TEAM_COLORS = ["#00D2BE", "#FF8000", "#3671C6", "#FFD400", "#FF3AA0", "#6C4BF6", "#00E701", "#1E41FF", "#B7BDC6", "#E10600"];
     const myNo = me && me.teamNo ? me.teamNo : 0;
     const sharedTeam = (st.live.teamInfo || []).find(t => Number(t.team) === myNo) || {};
     const tmReady = st.tnDraft.trim().length > 0;
@@ -1165,13 +1170,14 @@ class Component extends DCLogic {
       nextCursor: nextOk ? "pointer" : "not-allowed",
       nextGo: () => { if (nx && nextOk) this._go(nx.key); },
 
-      inCode: st.inCode, inName: st.inName,
+      inCode: st.inCode, inName: st.inName, inPw: st.inPw,
       joinError: st.joinError,
       onInCode: e => this.setState({ inCode: e.target.value.replace(/\D/g, "").slice(0, 4), joinError: "" }),
       onInName: e => this.setState({ inName: e.target.value, joinError: "" }),
+      onInPw: e => this.setState({ inPw: e.target.value, joinError: "" }),
       joinBg: ready ? "#E10600" : "#20242D",
       joinFg: ready ? "#FFFFFF" : "#8A92A0",
-      teamNos: [1, 2, 3, 4, 5, 6, 7, 8].map(n => ({
+      teamNos: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => ({
         n, key: "t" + n,
         pick: () => this.setState({ teamNo: n }),
         bg: st.teamNo === n ? "#E10600" : "#2C313C",
@@ -1181,7 +1187,7 @@ class Component extends DCLogic {
       joining: st.joining,
       doJoin: async () => {
         if (!ready) {
-          this.setState({ joinError: "입장코드 4자리, 이름, 조 번호를 모두 입력해주세요." });
+          this.setState({ joinError: "입장코드 4자리, 이름, 비밀번호, 조 번호를 모두 입력해주세요." });
           return;
         }
         if (!window.WS_ROUNDS || !window.WS_ROUNDS[st.inCode]) {
@@ -1189,8 +1195,16 @@ class Component extends DCLogic {
           return;
         }
         this.setState({ joining: true });
-        const p = await WSData.joinParticipant(st.inCode, st.inName.trim(), st.teamNo);
-        const nm = { code: st.inCode, name: st.inName.trim(), teamNo: st.teamNo, participantId: p ? p.participant_id : null };
+        const r = await WSData.joinParticipant(st.inCode, st.inName.trim(), st.inPw, st.teamNo);
+        if (!r || !r.ok) {
+          const reason = r && r.reason === "PASSWORD_MISMATCH"
+            ? "이미 등록된 이름입니다. 처음 입장할 때 사용한 비밀번호를 입력해주세요."
+            : "비밀번호를 입력해주세요.";
+          this.setState({ joining: false, joinError: reason });
+          return;
+        }
+        const p = r.participant;
+        const nm = { code: st.inCode, name: st.inName.trim(), teamNo: (p && p.team) || st.teamNo, participantId: p ? p.participant_id : null };
         localStorage.setItem("lgws-me", JSON.stringify(nm));
         this.setState({ me: nm, screen: "team", joinError: "", joining: false });
         this._poll();

@@ -72,8 +72,8 @@ a:hover{color:var(--red-300)}
 <span class="apex-eyebrow" style="font-size:20px;color:var(--text-muted)">비밀번호</span><input type="password" placeholder="사전 부여된 비밀번호를 입력하세요" value="{{ lgPw }}" onChange="{{ onPw }}" style="background:var(--surface-card);border:1px solid var(--border-strong);border-radius:4px;padding:18px 20px;font-family:var(--font-core);font-size:26px;color:var(--white);outline:none;height:64px" style-focus="border-color:var(--red-500)"></label><label style="display:flex;flex-direction:column;justify-content:center;gap:12px"><span class="apex-eyebrow" style="font-size:20px;color:var(--text-muted)">강사명</span>
 <input type="text" placeholder="이름을 입력하세요" value="{{ lgName }}" onChange="{{ onName }}" style="background:var(--surface-card);border:1px solid var(--border-strong);border-radius:4px;padding:18px 20px;font-family:var(--font-core);font-size:26px;color:var(--white);outline:none;height:64px" style-focus="border-color:var(--red-500)"></label><div style="display:flex;flex-direction:column;justify-content:center;gap:12px">
 <span class="apex-eyebrow" style="font-size:20px;color:var(--text-muted)">오늘 워크숍 총 팀 수</span>
-<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:14px">
-<sc-for list="{{ teamOpts }}" as="o" hint-placeholder-count="7">
+<div style="display:grid;grid-template-columns:repeat(9,1fr);gap:14px">
+<sc-for list="{{ teamOpts }}" as="o" hint-placeholder-count="9">
 <button type="button" onClick="{{ o.pick }}" style="background:{{ o.bg }};color:{{ o.fg }};border:1px solid {{ o.bd }};border-radius:4px;padding:18px 0;font-family:var(--font-numeric);font-weight:800;font-size:28px;cursor:pointer">{{ o.n }}</button>
 </sc-for>
 </div>
@@ -1995,7 +1995,7 @@ class Component extends DCLogic {
       vals["role" + i + "op"] = on ? 1 : 0;
       vals["role" + i + "tr"] = on ? "none" : "translateY(18px)";
     }
-    const TEAM_COLORS = ["var(--grid-teal)", "var(--grid-orange)", "var(--grid-azure)", "var(--grid-yellow)", "var(--grid-magenta)", "var(--grid-violet)", "var(--grid-green)", "var(--grid-blue)"];
+    const TEAM_COLORS = ["var(--grid-teal)", "var(--grid-orange)", "var(--grid-azure)", "var(--grid-yellow)", "var(--grid-magenta)", "var(--grid-violet)", "var(--grid-green)", "var(--grid-blue)", "var(--grid-silver)", "var(--red-500)"];
     /* 강사 로그인 전(리허설·강의 준비 단계)에는 실습 예시를 보여준다.
        로그인 후에는 실제 모바일 제출 데이터로 자동 전환된다. */
     const DEMO_TEAMS = {
@@ -2007,10 +2007,12 @@ class Component extends DCLogic {
       6: { name: "슬립스트림", slogan: "서로의 속도를 채운다", rep: "한OO" },
       7: { name: "언더컷", slogan: "한 발 먼저 움직인다", rep: "오OO" },
       8: { name: "포메이션랩", slogan: "대열을 맞춰 함께", rep: "서OO" },
+      9: { name: "드래프트존", slogan: "바짝 붙어 함께 간다", rep: "윤OO" },
+      10: { name: "빅토리랩", slogan: "마지막까지 속도를 유지한다", rep: "강OO" },
     };
-    /* 사전 로그인 과정에서 세팅한 조 수(2~8)만큼만 표시한다 */
-    const teamCount = Math.max(2, Math.min(8, Number(this.state.lg.teams) || 6));
-    const teamCols = teamCount <= 4 ? 2 : (teamCount <= 6 ? 3 : 4);
+    /* 사전 로그인 과정에서 세팅한 조 수(2~10)만큼만 표시한다 */
+    const teamCount = Math.max(2, Math.min(10, Number(this.state.lg.teams) || 6));
+    const teamCols = teamCount <= 4 ? 2 : (teamCount <= 6 ? 3 : (teamCount <= 8 ? 4 : 5));
     vals.teamGridCols = "repeat(" + teamCols + ",1fr)";
     vals.rosterGridCols = "repeat(" + teamCount + ",1fr)";
     vals.teamCount = teamCount;
@@ -2169,7 +2171,7 @@ class Component extends DCLogic {
     vals.bpCount = this.state.loggedIn ? (bpRaw.length ? bpRaw.length + "개 제출" : "제출 대기") : "실습 예시";
     vals.bpEmpty = bpRaw.length === 0;
     vals.bpAny = bpRaw.length > 0;
-    vals.bpList = bpRaw.slice(0, 8).map((b, i) => ({
+    vals.bpList = bpRaw.slice(0, 12).map((b, i) => ({
       key: "bp" + i, color: BPC[i % BPC.length],
       team: b.team ? b.team : "TEAM " + (b.teamNo || "-"),
       name: b.name || "", when: b.when || "",
@@ -2207,6 +2209,8 @@ class Component extends DCLogic {
       { nm: "조OO", no: 6 },
       { nm: "윤OO", no: 7 },
       { nm: "임OO", no: 8 },
+      { nm: "한OO", no: 9 },
+      { nm: "오OO", no: 10 },
     ];
     const liveRoster = ((this._live && this._live.roster) || []).map(r => ({ nm: r.name, no: r.teamNo || 1 }));
     const allRoster = this.state.loggedIn
@@ -2259,7 +2263,7 @@ class Component extends DCLogic {
       onCode: e => this._lg("code", e.target.value.replace(/\D/g, "").slice(0, 4)),
       onPw: e => this._lg("pw", e.target.value),
       onName: e => this._lg("name", e.target.value),
-      teamOpts: [2, 3, 4, 5, 6, 7, 8].map(n => ({
+      teamOpts: [2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => ({
         n, key: "team" + n,
         pick: () => this._lg("teams", n),
         bg: lg.teams === n ? "var(--red-500)" : "transparent",
@@ -2282,7 +2286,7 @@ class Component extends DCLogic {
           asking: phase === "asking",
           message: this.state.rsMsg || "",
           messageColor: this.state.rsErr ? "#FF9A94" : "var(--grid-teal)",
-          question: code ? (code + "차 오늘 데이터를 모두 지웁니다.") : "차수코드를 먼저 입력해주세요.",
+          question: code ? (code + "차 데이터를 모두 지웁니다(1박 2일 전체).") : "차수코드를 먼저 입력해주세요.",
           ask: () => {
             if (!code) return this.setState({ rsMsg: "차수코드를 먼저 입력해주세요.", rsErr: true });
             this.setState({ rsPhase: "asking", rsMsg: "" });
