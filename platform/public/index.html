@@ -29,10 +29,14 @@ input,textarea,button{font-family:var(--font-core)}
 @keyframes riseIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes pulseDot{0%,100%{opacity:1}50%{opacity:.25}}
 @keyframes lcpulse{0%{opacity:.25}50%{opacity:1}100%{opacity:.25}}
+@media (min-width:701px){
+  body{display:flex;justify-content:center;background:#16181d}
+  .ws-app-shell{max-width:520px;width:520px;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 40px 90px rgba(0,0,0,.55)}
+}
 </style>
 </helmet>
 
-<div style="min-height:100vh;background:#06070A;color:#fff;font-family:var(--font-core);display:flex;flex-direction:column">
+<div class="ws-app-shell" style="min-height:100vh;background:#06070A;color:#fff;font-family:var(--font-core);display:flex;flex-direction:column">
 
 <sc-if value="{{ showJoin }}" hint-placeholder-val="{{ true }}">
 <div style="flex:1;display:flex;flex-direction:column;padding:34px 20px 40px;gap:20px">
@@ -326,7 +330,6 @@ input,textarea,button{font-family:var(--font-core)}
 </div>
 
 <button type="button" onClick="{{ goDeepStart }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:16px;font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:.06em;cursor:pointer;min-height:52px">AI와 함께 구성원 개인별 분석하기</button>
-<button type="button" onClick="{{ goQuick }}" style="background:transparent;color:var(--text-primary);border:1px solid var(--grid-orange);border-radius:4px;padding:13px;font-size:14px;cursor:pointer;min-height:46px">빠르게 매핑하기 (Quick)</button>
 
 <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ true }}">
 <div style="border:1px dashed var(--border-strong);padding:24px 16px;text-align:center;display:flex;flex-direction:column;gap:6px">
@@ -350,8 +353,7 @@ input,textarea,button{font-family:var(--font-core)}
 
 <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
 <sc-if value="{{ hasAny }}" hint-placeholder-val="{{ false }}">
-<button type="button" onClick="{{ goFinal }}" style="background:transparent;color:var(--text-primary);border:1px solid var(--border-strong);border-radius:4px;padding:14px;font-size:14px;cursor:pointer;min-height:46px">우리 반 전체 Map 완성 보기</button>
-<button type="button" onClick="{{ exportExcel }}" style="background:transparent;color:var(--text-primary);border:1px solid var(--grid-teal);border-radius:4px;padding:14px;font-size:14px;cursor:pointer;min-height:46px">전체 분석 및 전략 엑셀 다운로드</button>
+<button type="button" onClick="{{ exportExcel }}" style="background:transparent;color:var(--grid-yellow);border:2px solid var(--grid-yellow);border-radius:4px;padding:14px;font-size:14px;font-weight:700;cursor:pointer;min-height:46px">전체 분석 및 전략 엑셀 다운로드</button>
 </sc-if>
 <button type="button" onClick="{{ wipe }}" style="background:transparent;color:var(--text-faint);border:1px solid var(--border-hairline);border-radius:4px;padding:12px;font-size:12px;cursor:pointer;min-height:40px">{{ wipeLabel }}</button>
 </div>
@@ -514,25 +516,7 @@ input,textarea,button{font-family:var(--font-core)}
 
 <p style="margin:0;font-size:12px;line-height:1.5;color:var(--text-muted);word-break:keep-all">유형보다 중요한 것은 지금 이 구성원에게 어떤 리더십이 필요한지입니다.</p>
 
-<button type="button" onClick="{{ toHypo }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:17px;font-family:var(--font-display);font-weight:700;font-size:17px;letter-spacing:.08em;cursor:pointer;min-height:54px">내 리더십 생각해보기</button>
-</div>
-</sc-if>
-
-<sc-if value="{{ isHypo }}" hint-placeholder-val="{{ false }}">
-<div style="display:flex;flex-direction:column;gap:16px;padding:20px 16px 8px">
-<div style="display:flex;flex-direction:column;gap:7px">
-<span class="apex-eyebrow" style="font-size:12px;color:var(--red-500)">STEP 5 · 반장의 가설</span>
-<h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:24px;line-height:1.2;color:var(--white)">지금 이 구성원에게 가장 필요한 것은 무엇이라고 생각하시나요?</h1>
-<p style="margin:0;font-size:12px;color:var(--text-muted)">최대 2개까지 선택 · {{ needCount }}개 선택</p>
-</div>
-<div style="display:flex;flex-direction:column;gap:2px">
-<sc-for list="{{ needs }}" as="n" hint-placeholder-count="9">
-<button type="button" onClick="{{ n.pick }}" style="background:{{ n.bg }};color:{{ n.fg }};border:0;border-left:5px solid {{ n.bd }};padding:13px 15px;font-size:14px;line-height:1.4;cursor:pointer;min-height:48px;text-align:left">{{ n.label }}</button>
-</sc-for>
-</div>
-<input type="text" placeholder="기타: 직접 입력 (선택 1개로 계산)" value="{{ dNeedEtc }}" onChange="{{ onNeedEtc }}" style="background:var(--surface-card);border:1px solid var(--border-strong);border-radius:4px;padding:13px;font-size:14px;color:var(--white);outline:none;width:100%;box-sizing:border-box;margin-top:4px">
-<p style="margin:0;font-size:11px;color:var(--text-faint)">{{ hypoHint }}</p>
-<button type="button" onClick="{{ runAi }}" style="background:{{ hypoBg }};color:{{ hypoFg }};border:0;border-radius:4px;padding:17px;font-family:var(--font-display);font-weight:700;font-size:17px;letter-spacing:.08em;cursor:pointer;min-height:54px">AI 코치에게 의견 받아보기</button>
+<button type="button" onClick="{{ runAi }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:17px;font-family:var(--font-display);font-weight:700;font-size:17px;letter-spacing:.08em;cursor:pointer;min-height:54px">AI 코치에게 의견 받아보기</button>
 </div>
 </sc-if>
 
@@ -597,101 +581,7 @@ input,textarea,button{font-family:var(--font-core)}
 <p style="margin:0;font-size:14px;line-height:1.55;color:var(--white);word-break:keep-all">{{ ai.avoid }}</p>
 </div>
 
-<button type="button" onClick="{{ toPurpose }}" style="background:{{ aiBg }};color:{{ aiFg }};border:0;border-radius:4px;padding:17px;font-family:var(--font-display);font-weight:700;font-size:17px;letter-spacing:.08em;cursor:pointer;min-height:54px">내 리더십 전략으로 정리</button>
-</div>
-</sc-if>
-
-<sc-if value="{{ isPurpose }}" hint-placeholder-val="{{ false }}">
-<div style="display:flex;flex-direction:column;gap:15px;padding:20px 16px 8px">
-<div style="display:flex;flex-direction:column;gap:7px">
-<span class="apex-eyebrow" style="font-size:12px;color:var(--grid-yellow)">STEP 7 · 대화 목적</span>
-<h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:24px;line-height:1.2;color:var(--white)">이 구성원과 다음 대화에서 가장 먼저 무엇을 해보고 싶나요?</h1>
-<p style="margin:0;font-size:11px;color:var(--text-faint)">{{ purHint }}</p>
-</div>
-<div style="display:flex;flex-direction:column;gap:2px">
-<sc-for list="{{ purposes }}" as="p" hint-placeholder-count="6">
-<button type="button" onClick="{{ p.pick }}" style="background:{{ p.bg }};color:{{ p.fg }};border:0;border-left:5px solid {{ p.bd }};padding:14px 15px;font-size:15px;cursor:pointer;min-height:50px;text-align:left">{{ p.label }}</button>
-</sc-for>
-</div>
-<button type="button" onClick="{{ runTalk }}" style="background:{{ purBg }};color:{{ purFg }};border:0;border-radius:4px;padding:17px;font-family:var(--font-display);font-weight:700;font-size:17px;letter-spacing:.08em;cursor:pointer;min-height:54px">대화 준비하기</button>
-</div>
-</sc-if>
-
-<sc-if value="{{ isTalk }}" hint-placeholder-val="{{ false }}">
-<div style="display:flex;flex-direction:column;gap:13px;padding:20px 16px 8px">
-<div style="display:flex;flex-direction:column;gap:7px">
-<span class="apex-eyebrow" style="font-size:12px;color:var(--grid-yellow)">STEP 8 · 대화 준비</span>
-<h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:24px;line-height:1.2;color:var(--white)">{{ dIni }}님과의 대화</h1>
-<p style="margin:0;font-size:12px;color:var(--text-muted)">{{ talkMeta }}</p>
-</div>
-
-<div style="background:var(--carbon-900);border-top:3px solid var(--red-500);padding:14px;display:flex;flex-direction:column;gap:11px">
-<div style="display:flex;align-items:baseline;justify-content:space-between">
-<span class="apex-eyebrow" style="font-size:11px;color:var(--red-400)">{{ talkModel }} 예시</span>
-<span class="apex-eyebrow" style="font-size:11px;color:var(--white)">{{ talkModelSub }}</span>
-</div>
-<sc-for list="{{ talkScript }}" as="s" hint-placeholder-count="3">
-<div style="display:flex;flex-direction:column;gap:5px;border-left:3px solid var(--border-strong);padding-left:11px">
-<span class="apex-eyebrow" style="font-size:10px;color:var(--text-faint)">{{ s.label }}</span>
-<p style="margin:0;font-size:15px;line-height:1.55;color:var(--white);word-break:keep-all">"{{ s.text }}"</p>
-</div>
-</sc-for>
-</div>
-
-<sc-if value="{{ talkHas2 }}" hint-placeholder-val="{{ false }}">
-<div style="background:var(--carbon-900);border-top:3px solid var(--grid-orange);padding:14px;display:flex;flex-direction:column;gap:11px">
-<div style="display:flex;align-items:baseline;justify-content:space-between">
-<span class="apex-eyebrow" style="font-size:11px;color:var(--grid-orange)">{{ talkModel2 }} 예시</span>
-<span class="apex-eyebrow" style="font-size:11px;color:var(--white)">{{ talkModel2Sub }}</span>
-</div>
-<p style="margin:0;font-size:12px;line-height:1.5;color:var(--text-muted)">{{ talkNote2 }}</p>
-<sc-for list="{{ talkScript2 }}" as="s" hint-placeholder-count="3">
-<div style="display:flex;flex-direction:column;gap:4px;border-left:3px solid var(--border-strong);padding-left:11px">
-<span class="apex-eyebrow" style="font-size:10px;color:var(--text-faint)">{{ s.label }}</span>
-<p style="margin:0;font-size:15px;line-height:1.55;color:var(--white);word-break:keep-all">"{{ s.text }}"</p>
-</div>
-</sc-for>
-</div>
-</sc-if>
-
-<div style="background:var(--surface-inset);border:1px solid var(--border-hairline);padding:14px;display:flex;flex-direction:column;gap:8px">
-<span class="apex-eyebrow" style="font-size:11px;color:var(--text-muted)">피해야 할 표현</span>
-<p style="margin:0;font-size:14px;line-height:1.55;color:var(--text-faint);text-decoration:line-through">"{{ talkAvoid }}"</p>
-<p style="margin:0;font-size:14px;line-height:1.55;color:var(--white);word-break:keep-all">대신 → "{{ talkInstead }}"</p>
-</div>
-
-<p style="margin:0;font-size:12px;line-height:1.5;color:var(--grid-yellow);word-break:keep-all">실제로 말할 수 있는 표현인지 한번 확인해보세요.</p>
-
-<div style="background:var(--surface-card);border:1px solid var(--border-hairline);padding:14px;display:flex;flex-direction:column;gap:9px">
-<span class="apex-eyebrow" style="font-size:11px;color:var(--text-muted)">다른 목적으로도 대화를 준비해보기 (선택사항)</span>
-<div style="display:flex;flex-direction:column;gap:2px">
-<sc-for list="{{ morePurposes }}" as="p" hint-placeholder-count="5">
-<button type="button" onClick="{{ p.pick }}" style="background:var(--carbon-900);color:var(--text-primary);border:0;border-left:5px solid var(--border-strong);padding:12px 14px;font-size:13px;line-height:1.35;cursor:pointer;min-height:44px;text-align:left">{{ p.label }}</button>
-</sc-for>
-</div>
-</div>
-
-<sc-if value="{{ hasExtraTalks }}" hint-placeholder-val="{{ false }}">
-<div style="display:flex;flex-direction:column;gap:9px">
-<span class="apex-eyebrow" style="font-size:11px;color:var(--grid-azure)">추가로 준비한 대화</span>
-<sc-for list="{{ extraTalks }}" as="t" hint-placeholder-count="0">
-<div style="background:var(--carbon-900);border-top:3px solid var(--grid-azure);padding:14px;display:flex;flex-direction:column;gap:10px">
-<div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">
-<span style="font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--white)">{{ t.purpose }}</span>
-<span class="apex-eyebrow" style="font-size:11px;color:var(--grid-azure);flex:none">{{ t.model }}</span>
-</div>
-<sc-for list="{{ t.script }}" as="s" hint-placeholder-count="3">
-<div style="display:flex;flex-direction:column;gap:4px;border-left:3px solid var(--border-strong);padding-left:10px">
-<span class="apex-eyebrow" style="font-size:10px;color:var(--text-faint)">{{ s.label }}</span>
-<p style="margin:0;font-size:14px;line-height:1.5;color:var(--white);word-break:keep-all">"{{ s.text }}"</p>
-</div>
-</sc-for>
-</div>
-</sc-for>
-</div>
-</sc-if>
-
-<button type="button" onClick="{{ toPlan }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:17px;font-family:var(--font-display);font-weight:700;font-size:17px;letter-spacing:.08em;cursor:pointer;min-height:54px">리더십 플랜 정리하기</button>
+<button type="button" onClick="{{ savePlan }}" style="background:{{ aiBg }};color:{{ aiFg }};border:0;border-radius:4px;padding:17px;font-family:var(--font-display);font-weight:700;font-size:17px;letter-spacing:.08em;cursor:pointer;min-height:54px">추천 리더십 전략 저장</button>
 </div>
 </sc-if>
 
@@ -699,7 +589,7 @@ input,textarea,button{font-family:var(--font-core)}
 <div style="display:flex;flex-direction:column;gap:13px;padding:20px 16px 8px">
 <div style="display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:11px">
 <h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:22px;line-height:1.1;color:var(--white)">{{ dIni }} | Leadership Plan</h1>
-<span class="apex-num apex-skew" style="display:inline-block;font-size:20px;color:var(--red-500)">v1.0</span>
+<span class="apex-eyebrow" style="font-size:11px;color:#06070A;background:var(--grid-teal);padding:6px 11px;border-radius:3px;flex-shrink:0">분석 완료</span>
 </div>
 
 <div style="background:var(--surface-card);border-left:5px solid {{ stColor }};padding:14px;display:flex;flex-direction:column;gap:6px">
@@ -715,6 +605,22 @@ input,textarea,button{font-family:var(--font-core)}
 <p style="margin:0;font-size:12px;color:var(--text-faint)">{{ dRecent }}</p>
 </div>
 
+<div style="display:flex;flex-direction:column;gap:8px">
+<span class="apex-eyebrow" style="font-size:11px;color:var(--text-muted);padding:0 2px">AI 코치의 의견</span>
+<div style="background:var(--surface-card);border-left:5px solid var(--grid-teal);padding:15px;display:flex;flex-direction:column;gap:6px">
+<span class="apex-eyebrow" style="font-size:11px;color:var(--grid-teal)">지금 판단에서 좋은 출발점</span>
+<p style="margin:0;font-size:14px;line-height:1.6;color:var(--white);word-break:keep-all">{{ ai.good }}</p>
+</div>
+<div style="background:var(--surface-card);border-left:5px solid var(--grid-yellow);padding:15px;display:flex;flex-direction:column;gap:6px">
+<span class="apex-eyebrow" style="font-size:11px;color:var(--grid-yellow)">한 번 더 확인해볼 것</span>
+<p style="margin:0;font-size:14px;line-height:1.6;color:var(--white);word-break:keep-all">{{ ai.check }}</p>
+</div>
+<div style="background:var(--surface-card);border-left:5px solid var(--grid-azure);padding:15px;display:flex;flex-direction:column;gap:6px">
+<span class="apex-eyebrow" style="font-size:11px;color:var(--grid-azure)">놓치고 있을 수 있는 관점</span>
+<p style="margin:0;font-size:14px;line-height:1.6;color:var(--white);word-break:keep-all">{{ ai.other }}</p>
+</div>
+</div>
+
 <div style="background:var(--surface-card);border:1px solid var(--border-hairline);padding:14px;display:flex;flex-direction:column;gap:8px">
 <span class="apex-eyebrow" style="font-size:11px;color:var(--red-400)">2 · 지금 필요한 리더십</span>
 <sc-for list="{{ planNeeds }}" as="n" hint-placeholder-count="2">
@@ -725,26 +631,13 @@ input,textarea,button{font-family:var(--font-core)}
 </sc-for>
 </div>
 
-<div style="background:var(--carbon-900);border-top:3px solid var(--grid-yellow);padding:14px;display:flex;flex-direction:column;gap:8px">
-<span class="apex-eyebrow" style="font-size:11px;color:var(--grid-yellow)">3 · 내가 먼저 바꿔볼 행동</span>
-<p style="margin:0;font-size:15px;line-height:1.55;font-weight:700;color:var(--white);word-break:keep-all">{{ planChange }}</p>
-</div>
-
-<div style="background:var(--surface-card);border:1px solid var(--border-hairline);padding:14px;display:flex;flex-direction:column;gap:8px">
-<span class="apex-eyebrow" style="font-size:11px;color:var(--text-muted)">4 · 다음 대화에서 쓸 질문</span>
-<sc-for list="{{ talkQs }}" as="q" hint-placeholder-count="2">
-<p style="margin:0;font-size:14px;line-height:1.55;color:var(--white);word-break:keep-all">"{{ q.t }}"</p>
-</sc-for>
-<p style="margin:0;font-size:12px;line-height:1.5;color:var(--text-muted)">{{ planModelNote }}</p>
-</div>
-
 <div style="background:var(--surface-inset);border-left:5px solid var(--grid-azure);padding:14px;display:flex;flex-direction:column;gap:6px">
-<span class="apex-eyebrow" style="font-size:11px;color:var(--grid-azure)">5 · 앞으로 1개월 관찰할 것</span>
+<span class="apex-eyebrow" style="font-size:11px;color:var(--grid-azure)">3 · 앞으로 1개월 관찰할 것</span>
 <p style="margin:0;font-size:13px;line-height:1.55;color:var(--white);word-break:keep-all">{{ planWatch }}</p>
 </div>
 
 <div style="display:flex;flex-direction:column;gap:8px;margin-top:2px">
-<button type="button" onClick="{{ savePlan }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:17px;font-family:var(--font-display);font-weight:700;font-size:17px;letter-spacing:.08em;cursor:pointer;min-height:54px">v1.0 저장</button>
+<button type="button" onClick="{{ goHome }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:17px;font-family:var(--font-display);font-weight:700;font-size:17px;letter-spacing:.08em;cursor:pointer;min-height:54px">처음으로 돌아가기</button>
 <button type="button" onClick="{{ savePlanImage }}" style="background:transparent;color:var(--text-primary);border:1px solid var(--border-strong);border-radius:4px;padding:14px;font-size:14px;cursor:pointer;min-height:46px">이미지 저장 (PNG)</button>
 </div>
 </div>
@@ -1369,7 +1262,6 @@ class Component extends DCLogic {
 
   async _coachRunAi() {
     const d = this.state.coach.d;
-    if (!this._coachNeedList(d).length) { this._coachFlash("지금 가장 필요한 것을 최소 1개 선택해주세요."); return; }
     this.setState({ coach: Object.assign({}, this.state.coach, { loading: "ai" }) });
     const t = this._coachClassify(d.comp, d.moti);
     const user = `[구성원 정보 · 익명]
@@ -1381,10 +1273,6 @@ class Component extends DCLogic {
 아쉽게 느끼는 모습${d.badCat ? "(" + d.badCat + ")" : ""}: ${d.bad || "미입력"}
 최근 모습: ${d.recent || "미입력"}
 
-[반장이 먼저 세운 가설]
-지금 가장 필요한 것: ${this._coachNeedList(d).join(" / ")}
-내가 다르게 해볼 것: ${d.change || d.changeEtc || "미입력"}
-
 아래 JSON 스키마로만 답하세요.
 {
  "good": "반장의 판단에서 확인되는 근거 2~3문장",
@@ -1395,7 +1283,7 @@ class Component extends DCLogic {
  ],
  "avoid": "피해야 할 접근 1개, 이유 포함 2문장 이내"
 }
-approaches는 정확히 5개. 반장이 선택한 방향과 겹치는 것 1~2개, 넓히는 것 3~4개로 구성하세요. member는 반드시 구성원 시점에서("구성원은 ~"으로 시작하지 않아도 됩니다) 이 접근이 어떻게 받아들여지고 왜 통하는지 한 문장으로 씁니다.`;
+approaches는 정확히 5개. 관찰된 강점을 살리는 것 1~2개, 관찰된 아쉬운 점을 보완하는 것 3~4개로 구성하세요. member는 반드시 구성원 시점에서("구성원은 ~"으로 시작하지 않아도 됩니다) 이 접근이 어떻게 받아들여지고 왜 통하는지 한 문장으로 씁니다.`;
     const out = await this._coachAi(user, 2800, () => this._coachFbAi(d));
     const appr = (out.approaches || []).slice(0, 5).map((a, i) => ({
       tag: ["A", "B", "C", "D", "E"][i], title: a.title || "", body: a.body || "", why: a.why || "", member: a.member || "",
@@ -1474,13 +1362,12 @@ script는 위 대화 목적에 맞는 모델로 씁니다. script2는 반드시 
       id: cs.curId || "m" + Date.now().toString(36),
       ini: d.ini.trim(), comp: d.comp, moti: d.moti, typeKey: t.key, boundary: t.boundary, mode: "deep",
       good: d.good, goodCat: d.goodCat, bad: d.bad, badCat: d.badCat, recent: d.recent,
-      needs: this._coachNeedList(d), change: d.change || d.changeEtc, purpose: d.purpose,
-      chosen, talk: cs.talk, at: Date.now(),
+      ai: cs.ai, chosen, at: Date.now(),
     };
     const exists = cs.members.some(m => m.id === rec.id);
     const members = exists ? cs.members.map(m => (m.id === rec.id ? rec : m)) : cs.members.concat([rec]);
     this._coachSave(members);
-    this.setState({ coach: Object.assign({}, this.state.coach, { members, curId: rec.id, step: "home" }) });
+    this.setState({ coach: Object.assign({}, this.state.coach, { members, curId: rec.id, step: "plan" }) });
     this._coachFlash("리더십 플랜 v1.0을 저장했습니다.");
   }
   _coachSaveQuick() {
@@ -1636,8 +1523,8 @@ script는 위 대화 목적에 맞는 모델로 씁니다. script2는 반드시 
     if (!ms.length) { this._coachFlash("저장할 구성원이 없습니다."); return; }
     const esc = v => String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\r?\n/g, "<br>");
     const head = ["NO", "이니셜", "유형", "역량", "동기", "관찰한 긍정 행동", "관찰한 아쉬운 행동",
-      "지금 필요한 리더십", "내가 바꿔볼 행동", "선택한 접근", "대화 목적", "모델", "대본"];
-    const W = [40, 70, 110, 50, 50, 260, 260, 200, 200, 280, 130, 60, 340];
+      "지금 필요한 리더십", "선택한 접근", "AI 의견 · 좋은 출발점", "AI 의견 · 확인해볼 것", "AI 의견 · 놓치고 있을 수 있는 관점"];
+    const W = [40, 70, 110, 50, 50, 260, 260, 200, 280, 260, 260, 260];
     const now = new Date();
     const stamp = `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, "0")}.${String(now.getDate()).padStart(2, "0")}`;
 
@@ -1655,11 +1542,10 @@ ${cell(m.moti, "center")}
 ${cell(m.good)}
 ${cell(m.bad)}
 ${cell((m.needs || []).join("\n"))}
-${cell(m.change)}
 ${cell((m.chosen || []).map(x => x.title + ": " + x.text).join("\n"))}
-${cell(m.purpose)}
-${cell(m.talk ? m.talk.model || "" : "", "center")}
-${cell(m.talk ? (m.talk.script || []).map(s => s.label + " — " + s.text).join("\n") : "")}
+${cell(m.ai ? m.ai.good || "" : "")}
+${cell(m.ai ? m.ai.check || "" : "")}
+${cell(m.ai ? m.ai.other || "" : "")}
 </tr>`;
     }).join("");
 
@@ -1719,7 +1605,7 @@ ${tr}
     const mv = ms.find(m => m.id === st.curId) || null;
     const statusOf = m => (m.mode === "deep" ? "분석완료" : "Quick 완료");
     const statusColor = m => (m.mode === "deep" ? "var(--grid-teal)" : "var(--grid-orange)");
-    const backTo = { home: "intro", score: "pick", obs: "score", state: "obs", hypo: "state", ai: "hypo", strat: "ai", purpose: "strat", talk: "purpose", plan: "talk", quick: "home", member: "home", final: "home" };
+    const backTo = { home: "intro", score: "pick", obs: "score", state: "obs", ai: "state", strat: "ai", plan: "strat", quick: "home", member: "home", final: "home" };
     const qT = q.comp && q.moti ? COACH_TYPES[this._coachClassify(q.comp, q.moti).key] : null;
 
     const vals = {
@@ -1893,15 +1779,16 @@ ${tr}
             { key: "b1", label: "관찰한 모습", color: "var(--grid-teal)",
               lines: L([mv.good ? "긍정: " + mv.good : "", mv.bad ? "아쉬움: " + mv.bad : ""]).length
                 ? L([mv.good ? "긍정: " + mv.good : "", mv.bad ? "아쉬움: " + mv.bad : ""]) : L(["입력 없음"]) },
-            { key: "b2", label: "지금 필요한 리더십", color: "var(--red-500)",
-              lines: L((mv.needs || []).length ? mv.needs : [COACH_TYPES[mv.typeKey].quick]) },
-            { key: "b3", label: "내가 먼저 바꿔볼 행동", color: "var(--grid-yellow)", lines: L([mv.change || "—"]) },
           ];
+          if (mv.ai) {
+            if (mv.ai.good) b.push({ key: "bai1", label: "지금 판단에서 좋은 출발점", color: "var(--grid-teal)", lines: L([mv.ai.good]) });
+            if (mv.ai.check) b.push({ key: "bai2", label: "한 번 더 확인해볼 것", color: "var(--grid-yellow)", lines: L([mv.ai.check]) });
+            if (mv.ai.other) b.push({ key: "bai3", label: "놓치고 있을 수 있는 관점", color: "var(--grid-azure)", lines: L([mv.ai.other]) });
+          }
+          b.push({ key: "b2", label: "지금 필요한 리더십", color: "var(--red-500)",
+            lines: L((mv.needs || []).length ? mv.needs : [COACH_TYPES[mv.typeKey].quick]) });
           if ((mv.chosen || []).length) b.push({ key: "b4", label: "내가 선택한 접근", color: "var(--grid-teal)",
             lines: L(mv.chosen.map(c => c.title + " — " + c.text)) });
-          if (mv.talk && (mv.talk.questions || []).length) b.push({ key: "b5", label: "다음 대화에서 쓸 질문", color: "var(--grid-azure)",
-            lines: L(mv.talk.questions) });
-          if (mv.purpose) b.push({ key: "b6", label: "대화 목적", color: "var(--grid-orange)", lines: L([mv.purpose]) });
           return b;
         })(),
         hasScripts: !!(mv.talk && ((mv.talk.script || []).length || (mv.talk.script2 || []).length)),
@@ -1941,8 +1828,8 @@ ${tr}
         : "선택한 전략과 대화 목적을 AIT/AID 대본으로 바꾸는 중입니다.",
       toast: st.toast,
     };
-    const FWD = { intro: "goHome", home: "goDeepStart", pick: "toScoreFirst", score: "toObs", obs: "toState", state: "toHypo",
-      hypo: "runAi", ai: "toStrat", strat: "toPurpose", purpose: "runTalk", talk: "toPlan",
+    const FWD = { intro: "goHome", home: "goDeepStart", pick: "toScoreFirst", score: "toObs", obs: "toState", state: "runAi",
+      ai: "toStrat", strat: "savePlan", plan: "goHome",
       member: "goHome", final: "goHome" };
     vals.fwdVis = FWD[sc] ? "visible" : "hidden";
     vals.fwd = () => { const f = vals[FWD[sc]]; if (typeof f === "function") f(); };
