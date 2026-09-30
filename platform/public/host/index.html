@@ -1799,6 +1799,42 @@ a:hover{color:var(--red-300)}
 </div>
 </section>
 
+<section class="apex-light" data-label="1% 매일의 성장" data-speaker-notes="나의 작은 실천이 우리 반원의 성장과 성과에 영향을 미친다. (1.00)^365=1 vs (1.01)^365=37.78. 음성 내레이션 포함, '다음으로' 1회 = 재생, 2회 = 일시정지." style="background:var(--bg-page);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:32px" data-om-slide-id="d2f-01">
+<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">나의 작은 실천이 우리의 반원의 성장과 성과에 영향을 미친다</span></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;flex:1">
+<div style="background:var(--surface-card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:36px">
+<p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:var(--text-muted)">(1.00)<sup style="font-size:28px">365</sup> = 1</p>
+<p style="margin:0;font-size:22px;line-height:1.7;color:var(--text-muted);text-align:center">1.00 X 1.00 X 1.00 X ⋯ X 1.00 =</p>
+<p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:72px;color:var(--text-muted)">1.00</p>
+</div>
+<div style="background:var(--surface-card);border-top:6px solid var(--grid-yellow);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:36px">
+<p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:var(--grid-yellow)">(1.01)<sup style="font-size:28px">365</sup> = 37.78</p>
+<p style="margin:0;font-size:22px;line-height:1.7;color:var(--text-body);text-align:center">1.01 X 1.01 X 1.01 X ⋯ X 1.01 =</p>
+<p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:72px;color:var(--red-500)">37.78</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+<audio ref="{{ aud1Ref }}" onPlay="{{ onAud1Play }}" onPause="{{ onAud1Pause }}" src="/host/assets/day2-audio-growth.m4a" controls="controls" style="width:100%;max-width:900px"></audio>
+<button type="button" data-build-start="1" onClick="{{ aud1Toggle }}" style="background:transparent;color:var(--text-muted);border:1px solid var(--border-hairline);border-radius:4px;padding:8px 18px;font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:.1em;cursor:pointer">{{ aud1Btn }}</button>
+</div>
+</section>
+
+<section data-label="스티븐 코비 인용" data-speaker-notes="매일의 작은 개선이 결국 엄청난 성과로 이어진다 - 스티븐 코비." style="background:#06070A;color:var(--white);font-family:var(--font-core);padding:0;display:flex;flex-direction:column" data-om-slide-id="d2f-02">
+<div style="display:grid;grid-template-columns:1fr 520px;flex:1">
+<div style="display:flex;flex-direction:column;justify-content:center;gap:22px;padding:64px 72px">
+<span class="apex-eyebrow" style="font-size:27px;color:var(--grid-yellow)">나의 작은 실천이 우리의 반원의 성장과 성과에 영향을 미친다</span>
+<p style="margin:0;font-style:italic;font-size:28px;color:var(--text-muted)">"Small daily improvements eventually lead to massive results."</p>
+<div style="display:flex;align-items:flex-start;gap:16px">
+<img src="/host/assets/day2-covey-book.jpg" alt="7 Habits on the Go" style="width:140px;border-radius:6px;flex-shrink:0">
+<div style="display:flex;flex-direction:column;gap:14px">
+<p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:46px;line-height:1.4;color:var(--white)">매일의 작은 개선이<br>결국 엄청난 성과로 이어진다.</p>
+</div>
+</div>
+<p style="margin:0;font-size:26px;color:var(--text-muted)">- 경영 컨설턴트, 작가, 연설가, 리더십과 자기계발 분야의 전문가 스티븐 코비(Stephen R. Covey) -</p>
+</div>
+<div style="width:100%;height:100%;overflow:hidden"><img src="/host/assets/day2-stephen-covey.jpg" alt="스티븐 코비" style="width:100%;height:100%;object-fit:cover;object-position:center 20%"></div>
+</div>
+</section>
 
 </x-import>
 </x-dc>
@@ -1812,7 +1848,7 @@ class Component extends DCLogic {
     roster: [],
     copied: false,
     deckItems: [], deckCur: 0, deckIndexOpen: false, isFull: false, slideBox: null,
-    vid1Playing: false, vid2Playing: false, vid3Playing: false, vid4Playing: false, vid5Playing: false,
+    vid1Playing: false, vid2Playing: false, vid3Playing: false, vid4Playing: false, vid5Playing: false, aud1Playing: false,
   };
   _lg(k, v) { this.setState(s => ({ lg: { ...s.lg, [k]: v } })); }
   _vote(i, c) {
@@ -2491,6 +2527,11 @@ class Component extends DCLogic {
       onVid5Pause: () => this.setState({ vid5Playing: false }),
       vid5Toggle: () => { if (!this._vid5) return; if (this._vid5.paused) this._vid5.play(); else this._vid5.pause(); },
       vid5Btn: this.state.vid5Playing ? "일시정지" : "재생",
+      aud1Ref: el => { this._aud1 = el; },
+      onAud1Play: () => this.setState({ aud1Playing: true }),
+      onAud1Pause: () => this.setState({ aud1Playing: false }),
+      aud1Toggle: () => { if (!this._aud1) return; if (this._aud1.paused) this._aud1.play(); else this._aud1.pause(); },
+      aud1Btn: this.state.aud1Playing ? "일시정지" : "재생",
       copyLabel: this.state.copied ? "복사됨" : "URL 복사",
       doCopy: () => {
         navigator.clipboard && navigator.clipboard.writeText(joinFullUrl);
