@@ -67,9 +67,9 @@ input,textarea,button{font-family:var(--font-core)}
 </label>
 <div style="display:flex;flex-direction:column;gap:7px">
 <span style="font-family:var(--font-display);font-weight:700;font-size:12px;letter-spacing:.16em;color:#DCE0E7">오늘 배정된 조 번호</span>
-<div style="display:flex;flex-wrap:wrap;gap:6px">
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px">
 <sc-for list="{{ teamNos }}" as="t" hint-placeholder-count="8">
-<button type="button" onClick="{{ t.pick }}" style="flex:1;min-width:52px;height:56px;background:{{ t.bg }};color:{{ t.fg }};border:1px solid {{ t.bd }};font-weight:700;font-size:20px;cursor:pointer">{{ t.n }}</button>
+<button type="button" onClick="{{ t.pick }}" style="height:56px;background:{{ t.bg }};color:{{ t.fg }};border:1px solid {{ t.bd }};font-weight:700;font-size:20px;cursor:pointer">{{ t.n }}</button>
 </sc-for>
 </div>
 </div>
@@ -282,12 +282,12 @@ input,textarea,button{font-family:var(--font-core)}
 <div style="display:flex;flex-direction:column;gap:20px;padding:26px 16px 8px">
 <div style="display:flex;flex-direction:column;gap:12px">
 <span class="apex-eyebrow" style="font-size:12px;color:var(--red-500)">WELCOME</span>
-<h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:30px;line-height:1.1;color:var(--white)">LG전자 서비스센터 AI 리더십 코치에 오신 것을 환영합니다.</h1>
+<h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:30px;line-height:1.1;color:var(--white)">LG전자 서비스센터 AI 리더십 코치에 <br>오신 것을 환영합니다.</h1>
 </div>
 <div style="background:var(--surface-card);border-left:5px solid var(--red-500);padding:16px;display:flex;flex-direction:column;gap:11px">
-<p style="margin:0;font-size:14px;line-height:1.6;color:var(--text-primary);word-break:keep-all">이 코치는 우리 반 구성원을 평가하기 위한 도구가 아닙니다. 최근 관찰한 행동을 정리하고, 지금 이 구성원에게 어떤 리더십이 필요한지 함께 생각해보기 위한 도구입니다.</p>
-<p style="margin:0;font-size:14px;line-height:1.6;color:var(--text-body);word-break:keep-all">이 AI 리더십 코치를 통해 우리 반 구성원 Map을 만들고, 구성원별 리더십 플랜과 다음 대화 준비까지 정리할 수 있습니다.</p>
-<p style="margin:0;font-size:14px;line-height:1.6;color:var(--text-body);word-break:keep-all">역량과 동기는 상황과 시기에 따라 달라집니다. 오늘 만드는 결과는 현재 시점의 리더십 가설이며, AI의 의견은 정답이 아니라 반장님의 판단을 넓히기 위한 참고용으로 활용해주세요.</p>
+<p style="margin:0;font-size:14px;line-height:1.6;color:var(--text-primary);word-break:keep-all">이 코치는 우리 반 구성원을 평가하기 위한 도구가 아닙니다. <br>최근 관찰한 행동을 정리하고, 지금 이 구성원에게 어떤 리더십이 필요한지 <br>함께 생각해보기 위한 도구입니다.</p>
+<p style="margin:0;font-size:14px;line-height:1.6;color:var(--text-body);word-break:keep-all">이 AI 리더십 코치를 통해 우리 반 구성원 Map을 만들고, <br>구성원별 리더십 플랜과 다음 대화 준비까지 정리할 수 있습니다.</p>
+<p style="margin:0;font-size:14px;line-height:1.6;color:var(--text-body);word-break:keep-all">역량과 동기는 상황과 시기에 따라 달라집니다. <br>오늘 만드는 결과는 현재 시점의 리더십 가설이며, AI의 의견은 정답이 아니라 <br>반장님의 판단을 넓히기 위한 참고용으로 활용해주세요.</p>
 </div>
 <div style="background:var(--surface-inset);border:1px solid var(--border-hairline);padding:16px;display:flex;flex-direction:column;gap:9px">
 <span class="apex-eyebrow" style="font-size:11px;color:var(--grid-yellow)">개인정보 안내</span>
@@ -1128,7 +1128,9 @@ class Component extends DCLogic {
       diagNext: () => {
         const unanswered = [0, 1, 2, 3, 4].find(i => !st.answers[page * 5 + i]);
         if (unanswered != null) { this._diagAutoScroll(page * 5 + unanswered - 1); return; }
-        this.setState(s => (s.page >= 3 ? { screen: "result" } : { page: s.page + 1 }));
+        if (page >= 3) { this.setState({ screen: "result" }); return; }
+        const nextPage = page + 1;
+        this.setState({ page: nextPage }, () => this._diagScrollTop(nextPage));
       },
       diagNextLabel: page >= 3 ? "결과 보기" : "다음 영역",
       diagRacerLeft: "calc(" + Math.round((answered / 20) * 100) + "% - 8px)",
@@ -1879,6 +1881,14 @@ ${tr}
     requestAnimationFrame(() => {
       const el = document.getElementById("q" + (fromId + 1));
       if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  }
+  /* 다음 영역으로 넘어가면 그 영역의 첫 문항이 화면 맨 위에 오도록 스크롤한다 */
+  _diagScrollTop(page) {
+    requestAnimationFrame(() => {
+      const el = document.getElementById("q" + (page * 5));
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      else window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 }
