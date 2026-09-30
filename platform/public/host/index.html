@@ -2566,11 +2566,6 @@ class Component extends DCLogic {
       onVid5Pause: () => this.setState({ vid5Playing: false }),
       vid5Toggle: () => { if (!this._vid5) return; if (this._vid5.paused) this._vid5.play(); else this._vid5.pause(); },
       vid5Btn: this.state.vid5Playing ? "일시정지" : "재생",
-      aud1Ref: el => { this._aud1 = el; },
-      onAud1Play: () => this.setState({ aud1Playing: true }),
-      onAud1Pause: () => this.setState({ aud1Playing: false }),
-      aud1Toggle: () => { if (!this._aud1) return; if (this._aud1.paused) this._aud1.play(); else this._aud1.pause(); },
-      aud1Btn: this.state.aud1Playing ? "일시정지" : "재생",
       copyLabel: this.state.copied ? "복사됨" : "URL 복사",
       doCopy: () => {
         navigator.clipboard && navigator.clipboard.writeText(joinFullUrl);
