@@ -85,7 +85,7 @@ a:hover{color:var(--red-300)}
 <sc-if value="{{ reset.message }}" hint-placeholder-val="{{ false }}">
 <span style="font-size:17px;color:{{ reset.messageColor }}">{{ reset.message }}</span>
 </sc-if>
-<span style="font-size:16px;color:var(--text-faint)">입력한 차수코드의 오늘 데이터(입장 명단·응답·진단)를 모두 지웁니다.</span>
+<span style="font-size:16px;color:var(--text-faint)">입력한 차수코드의 데이터(입장 명단·응답·진단)를 1박 2일 전체 모두 지웁니다.</span>
 </sc-if>
 <sc-if value="{{ reset.asking }}" hint-placeholder-val="{{ false }}">
 <div style="background:#2A0A08;border-left:4px solid var(--red-500);padding:16px 18px;display:flex;flex-direction:column;gap:12px">
@@ -831,9 +831,9 @@ a:hover{color:var(--red-300)}
 
 <section class="apex-light" data-label="고정관념 두 축" data-speaker-notes="사람을 판단할 때 쓰는 고정관념의 두 축(의도=따뜻함, 능력=유능함)을 소개하고 이어서 피스크 4분면으로 연결한다." style="background:var(--bg-page);color:var(--text-primary);font-family:var(--font-core);padding:0;display:flex;flex-direction:column" data-om-slide-id="rk-mem-07">
 <div style="position:relative;display:grid;grid-template-columns:1fr 1fr;flex:1">
-<div style="background:var(--surface-inset);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:72px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">상대방의 의도</span><span style="font-family:var(--font-display);font-weight:700;font-size:80px;color:var(--text-primary)">= 따뜻함</span></div>
-<div style="background:var(--grid-azure);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:72px"><span class="apex-eyebrow" style="font-size:27px;color:rgba(6,7,10,.62)">의도를 실행할 능력</span><span style="font-family:var(--font-display);font-weight:700;font-size:80px;color:#06070A">= 유능함</span></div>
-<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:920px;background:var(--carbon-950);border-radius:16px;padding:52px 60px;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;box-shadow:0 32px 70px rgba(0,0,0,.4)"><span style="font-size:52px;line-height:1">💡</span><p style="margin:0;font-size:38px;line-height:1.5;color:var(--white)">사람들은 타인을 판단할 때<br>고정관념적으로 판단하는 <span style="color:var(--grid-yellow)">2가지</span>가 있다</p></div>
+<div data-build="1" data-build-fx="fade" style="background:var(--surface-inset);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:72px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">상대방의 의도</span><span style="font-family:var(--font-display);font-weight:700;font-size:80px;color:var(--text-primary)">= 따뜻함</span></div>
+<div data-build="2" data-build-fx="fade" style="background:var(--grid-azure);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:72px"><span class="apex-eyebrow" style="font-size:27px;color:rgba(6,7,10,.62)">의도를 실행할 능력</span><span style="font-family:var(--font-display);font-weight:700;font-size:80px;color:#06070A">= 유능함</span></div>
+<div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:920px;background:var(--carbon-950);border-radius:16px;padding:52px 60px;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;box-shadow:0 32px 70px rgba(0,0,0,.4);z-index:2"><span style="font-size:52px;line-height:1">💡</span><p style="margin:0;font-size:38px;line-height:1.5;color:var(--white)">사람들은 타인을 판단할 때<br>고정관념적으로 판단하는 <span style="color:var(--grid-yellow)">2가지</span>가 있다</p></div>
 </div>
 </section>
 
@@ -997,6 +997,45 @@ a:hover{color:var(--red-300)}
 </div>
 </section>
 
+<section data-label="D1 랩업" data-speaker-notes="1일차 랩업. 세 축을 다시 정리한다." style="background-color:var(--bg-page);background-image:var(--texture-carbon);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:40px" data-om-slide-id="7870749e">
+<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">WRAP UP</span></div>
+<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;line-height:1.1">DAY 1 요약</h2>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;flex:1">
+<div style="background:var(--surface-card);border-top:6px solid var(--red-500);padding:40px;display:flex;flex-direction:column;justify-content:center;gap:20px">
+<span class="apex-eyebrow" style="font-size:44px;color:var(--text-primary);background:var(--surface-inset);padding:14px 22px;align-self:flex-start;line-height:1.2">M1 · 역할</span><p style="margin:0;font-size:40px;line-height:1.5;color:var(--white)">반장은 센터의 방향과 SM의 실행을 연결하는 브릿지 리더. <br>숫자를 오늘의 행동으로 바꾼다.</p></div>
+<div style="background:var(--surface-card);border-top:6px solid var(--grid-orange);padding:40px;display:flex;flex-direction:column;justify-content:center;gap:20px">
+<span class="apex-eyebrow" style="font-size:44px;color:var(--text-primary);background:var(--surface-inset);padding:14px 22px;align-self:flex-start;line-height:1.2">M2 · 관계</span><p style="margin:0;font-size:40px;line-height:1.5;color:var(--white)">아침 인사와 짧은 대화 3단계로 <br>구성원의 상태를 확인하고 <br>지원한다.</p></div>
+<div style="background:var(--surface-card);border-top:6px solid var(--grid-yellow);padding:40px;display:flex;flex-direction:column;justify-content:center;gap:20px">
+<span class="apex-eyebrow" style="font-size:44px;color:var(--text-primary);background:var(--surface-inset);padding:14px 22px;align-self:flex-start;line-height:1.2">M3 · 성과 촉진</span><p style="margin:0;font-size:40px;line-height:1.5;color:var(--white)">10분 아침조회를 통해 <br>실행의 기준을 맞춘다.</p></div>
+</div>
+</section>
+
+<section data-label="COVER D2" data-speaker-notes="2일차 오프닝. 대응에서 성장까지." style="background-color:var(--carbon-950);background-image:var(--texture-speedlines),linear-gradient(158deg,var(--carbon-800) 0%,var(--carbon-950) 52%,#000000 100%);color:var(--text-primary);font-family:var(--font-core);padding:0;display:flex;flex-direction:column;justify-content:space-between" data-om-slide-id="7dbb704c">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;padding:48px 72px">
+
+
+</div>
+<div style="padding:0 88px;display:flex;flex-direction:column;justify-content:center;gap:32px">
+<div style="display:flex;align-items:center;gap:20px">
+<span style="display:inline-block;width:72px;height:16px;background:var(--grid-teal);transform:skewX(-9deg)"></span>
+<span class="apex-eyebrow" style="font-size:24px;color:var(--white)">DAY 2</span>
+</div>
+<h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:132px;line-height:.9;letter-spacing:-.02em">반장 리더십 <span class="apex-num" style="display:inline-block;font-size:132px;color:var(--red-500);transform:skewX(-9deg)">RACE</span></h1>
+<p style="margin:0;font-size:47px;line-height:1.4;color:var(--text-body)"><span style="color: rgba(255, 255, 255, 0.88); background-color: rgb(5, 6, 10);">역할 인식에서 실행까지, 성과를 높이고 조직을 움직이는 리더십 레이스</span></p>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:44px 72px;border-top:1px solid var(--border-hairline)">
+<span style="font-size:35px;color:var(--text-muted)">{{ centerName }} 반장 워크숍</span>
+
+</div>
+</section>
+
+<section data-label="M4 CHAPTER" data-speaker-notes="M4 시작. 일과 시간에 숫자를 행동으로 바꾸는 성과관리." style="background:linear-gradient(103deg,var(--red-700) 0%,var(--red-600) 34%,var(--red-500) 68%,#FF3B33 100%);color:var(--white);font-family:var(--font-core);padding:0;display:flex;flex-direction:column;gap:36px;justify-content:center" data-om-slide-id="5571ca5c">
+<div style="padding:0 88px;display:flex;flex-direction:column;justify-content:center;gap:28px">
+<span class="apex-num apex-skew" style="display:inline-block;font-size:200px;line-height:.8;color:rgba(255,255,255,.35)">M3</span>
+<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:92px;line-height:1;color:var(--white)">일과 시간 , 구성원&amp;성과 동시에 관리하기</h2>
+<div style="display:flex;align-items:center;gap:20px"><span style="display:inline-block;width:56px;height:10px;background:var(--white);transform:skewX(-9deg)"></span><p style="margin:0;font-size:47px;color:rgba(255,255,255,.92)">숫자를 행동으로 바꾸는 성과관리</p></div>
+</div>
+</section>
 
 
 <section data-label="명확한 업무지시" data-speaker-notes="다음 주제 전환: 명확한 업무 지시." style="background-color:var(--carbon-950);background-image:var(--texture-speedlines),linear-gradient(158deg,var(--carbon-800) 0%,var(--carbon-950) 52%,#000000 100%);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:32px" data-om-slide-id="8ff18cc0">
@@ -1013,17 +1052,6 @@ a:hover{color:var(--red-300)}
 <div style="background:var(--surface-card);border-top:6px solid var(--red-500);padding:36px;display:flex;flex-direction:column;justify-content:center;gap:18px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:var(--text-primary)">표현이 모호함</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">잘·빨리·적당히<br><br></p></div>
 <div style="background:var(--surface-card);border-top:6px solid var(--red-500);padding:36px;display:flex;flex-direction:column;justify-content:center;gap:18px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:var(--text-primary)">기준이 다름</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">완료 모습이 <br>사람마다 다름</p></div>
 <div style="background:var(--surface-card);border-top:6px solid var(--red-500);padding:36px;display:flex;flex-direction:column;justify-content:center;gap:18px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:var(--text-primary)">확인이 없음</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">이해한 내용을 <br>다시 맞추지 않음</p></div>
-</div>
-</section>
-
-<section class="apex-light" data-label="PREP 모델" data-speaker-notes="PREP: Point-Reason-Example-Point." style="background:var(--bg-page);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:40px" data-om-slide-id="5d679f49">
-<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">PREP MODEL</span></div>
-<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;line-height:1.1">빠른 업무 지시는 PREP으로</h2>
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;flex:1">
-<div style="background:var(--surface-card);border-top:6px solid var(--grid-yellow);padding:40px;display:flex;flex-direction:column;justify-content:center;gap:20px"><span class="apex-num apex-skew" style="display:inline-block;font-size:88px;color:var(--text-primary)">P</span><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:47px;color:var(--text-primary)">Point</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">핵심 지시 내용<br><br></p></div>
-<div style="background:var(--surface-card);border-top:6px solid var(--grid-yellow);padding:40px;display:flex;flex-direction:column;justify-content:center;gap:20px"><span class="apex-num apex-skew" style="display:inline-block;font-size:88px;color:var(--text-primary)">R</span><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:47px;color:var(--text-primary)">Reason</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">일을 해야 하는 <br>배경과 이유, 맥락</p></div>
-<div style="background:var(--surface-card);border-top:6px solid var(--grid-yellow);padding:40px;display:flex;flex-direction:column;justify-content:center;gap:20px"><span class="apex-num apex-skew" style="display:inline-block;font-size:88px;color:var(--text-primary)">E</span><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:47px;color:var(--text-primary)">Example</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">발생할 결과, <br>접근 방법, 참고사항</p></div>
-<div style="background:var(--surface-card);border-top:6px solid var(--red-500);padding:40px;display:flex;flex-direction:column;justify-content:center;gap:20px"><span class="apex-num apex-skew" style="display:inline-block;font-size:88px;color:var(--red-600)">P</span><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:47px;color:var(--text-primary)">Point</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">핵심 지시 내용을<br>다시 한번 강조</p></div>
 </div>
 </section>
 
@@ -1067,6 +1095,17 @@ a:hover{color:var(--red-300)}
 </div>
 </section>
 
+<section class="apex-light" data-label="PREP 모델" data-speaker-notes="PREP: Point-Reason-Example-Point." style="background:var(--bg-page);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:40px" data-om-slide-id="5d679f49">
+<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">PREP MODEL</span></div>
+<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;line-height:1.1">빠른 업무 지시는 PREP으로</h2>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;flex:1">
+<div style="background:var(--surface-card);border-top:6px solid var(--grid-yellow);padding:40px;display:flex;flex-direction:column;justify-content:center;gap:20px"><span class="apex-num apex-skew" style="display:inline-block;font-size:88px;color:var(--text-primary)">P</span><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:47px;color:var(--text-primary)">Point</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">핵심 지시 내용<br><br></p></div>
+<div style="background:var(--surface-card);border-top:6px solid var(--grid-yellow);padding:40px;display:flex;flex-direction:column;justify-content:center;gap:20px"><span class="apex-num apex-skew" style="display:inline-block;font-size:88px;color:var(--text-primary)">R</span><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:47px;color:var(--text-primary)">Reason</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">일을 해야 하는 <br>배경과 이유, 맥락</p></div>
+<div style="background:var(--surface-card);border-top:6px solid var(--grid-yellow);padding:40px;display:flex;flex-direction:column;justify-content:center;gap:20px"><span class="apex-num apex-skew" style="display:inline-block;font-size:88px;color:var(--text-primary)">E</span><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:47px;color:var(--text-primary)">Example</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">발생할 결과, <br>접근 방법, 참고사항</p></div>
+<div style="background:var(--surface-card);border-top:6px solid var(--red-500);padding:40px;display:flex;flex-direction:column;justify-content:center;gap:20px"><span class="apex-num apex-skew" style="display:inline-block;font-size:88px;color:var(--red-600)">P</span><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:47px;color:var(--text-primary)">Point</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">핵심 지시 내용을<br>다시 한번 강조</p></div>
+</div>
+</section>
+
 <section data-label="R 이유 랭거 인용" data-speaker-notes="에렌 랭거 교수의 결론으로 R(이유) 파트를 마무리." style="background:var(--bg-page);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:28px" data-om-slide-id="rk-prep-12">
 <div style="display:grid;grid-template-columns:420px 1fr;gap:56px;flex:1;align-items:center">
 <div style="width:100%;height:520px;border-radius:8px;overflow:hidden;background:var(--surface-inset)">
@@ -1088,48 +1127,6 @@ a:hover{color:var(--red-300)}
 <div style="background:var(--surface-card);display:flex;gap:32px;padding:24px 34px;align-items:center;flex:1"><span class="apex-num apex-skew" style="display:inline-block;font-size:48px;color:var(--grid-yellow);width:70px">R</span><span style="flex:1;border-bottom:2px solid var(--border-line);height:40px"></span></div>
 <div style="background:var(--surface-card);display:flex;gap:32px;padding:24px 34px;align-items:center;flex:1"><span class="apex-num apex-skew" style="display:inline-block;font-size:48px;color:var(--grid-yellow);width:70px">E</span><span style="flex:1;border-bottom:2px solid var(--border-line);height:40px"></span></div>
 <div style="background:var(--surface-card);border-left:6px solid var(--red-500);display:flex;gap:32px;padding:24px 34px;align-items:center;flex:1"><span class="apex-num apex-skew" style="display:inline-block;font-size:48px;color:var(--red-600);width:70px">P</span><span style="flex:1;border-bottom:2px solid var(--border-line);height:40px"></span></div>
-</div>
-</section>
-
-<section data-label="D1 랩업" data-speaker-notes="1일차 랩업. 세 축을 다시 정리한다." style="background-color:var(--bg-page);background-image:var(--texture-carbon);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:40px" data-om-slide-id="7870749e">
-<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">WRAP UP</span></div>
-<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:62px;line-height:1.1">DAY 1 요약</h2>
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;flex:1">
-<div style="background:var(--surface-card);border-top:6px solid var(--red-500);padding:40px;display:flex;flex-direction:column;justify-content:center;gap:20px">
-<span class="apex-eyebrow" style="font-size:44px;color:var(--text-primary);background:var(--surface-inset);padding:14px 22px;align-self:flex-start;line-height:1.2">M1 · 역할</span><p style="margin:0;font-size:40px;line-height:1.5;color:var(--white)">반장은 센터의 방향과 SM의 실행을 연결하는 브릿지 리더. <br>숫자를 오늘의 행동으로 바꾼다.</p></div>
-<div style="background:var(--surface-card);border-top:6px solid var(--grid-orange);padding:40px;display:flex;flex-direction:column;justify-content:center;gap:20px">
-<span class="apex-eyebrow" style="font-size:44px;color:var(--text-primary);background:var(--surface-inset);padding:14px 22px;align-self:flex-start;line-height:1.2">M2 · 관계</span><p style="margin:0;font-size:40px;line-height:1.5;color:var(--white)">아침 인사와 짧은 대화 3단계로 <br>구성원의 상태를 확인하고 <br>지원한다.</p></div>
-<div style="background:var(--surface-card);border-top:6px solid var(--grid-yellow);padding:40px;display:flex;flex-direction:column;justify-content:center;gap:20px">
-<span class="apex-eyebrow" style="font-size:44px;color:var(--text-primary);background:var(--surface-inset);padding:14px 22px;align-self:flex-start;line-height:1.2">M3 · 성과 촉진</span><p style="margin:0;font-size:40px;line-height:1.5;color:var(--white)">10분 미팅 5단계와<br>PREP 지시로 실행의 기준을 <br>맞춘다.</p></div>
-</div>
-</section>
-
-<section data-label="COVER D2" data-speaker-notes="2일차 오프닝. 대응에서 성장까지." style="background-color:var(--carbon-950);background-image:var(--texture-speedlines),linear-gradient(158deg,var(--carbon-800) 0%,var(--carbon-950) 52%,#000000 100%);color:var(--text-primary);font-family:var(--font-core);padding:0;display:flex;flex-direction:column;justify-content:space-between" data-om-slide-id="7dbb704c">
-<div style="display:flex;justify-content:space-between;align-items:flex-start;padding:48px 72px">
-
-
-</div>
-<div style="padding:0 88px;display:flex;flex-direction:column;justify-content:center;gap:32px">
-<div style="display:flex;align-items:center;gap:20px">
-<span style="display:inline-block;width:72px;height:16px;background:var(--grid-teal);transform:skewX(-9deg)"></span>
-<span class="apex-eyebrow" style="font-size:24px;color:var(--white)">DAY 2</span>
-</div>
-<h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:132px;line-height:.9;letter-spacing:-.02em">반장 리더십 <span class="apex-num" style="display:inline-block;font-size:132px;color:var(--red-500);transform:skewX(-9deg)">RACE</span></h1>
-<p style="margin:0;font-size:47px;line-height:1.4;color:var(--text-body)"><span style="color: rgba(255, 255, 255, 0.88); background-color: rgb(5, 6, 10);">역할 인식에서 실행까지, 성과를 높이고 조직을 움직이는 리더십 레이스</span></p>
-</div>
-<div style="display:flex;align-items:center;justify-content:space-between;padding:44px 72px;border-top:1px solid var(--border-hairline)">
-<span style="font-size:35px;color:var(--text-muted)">{{ centerName }} 반장 워크숍</span>
-
-</div>
-</section>
-
-
-
-<section data-label="M4 CHAPTER" data-speaker-notes="M4 시작. 일과 시간에 숫자를 행동으로 바꾸는 성과관리." style="background:linear-gradient(103deg,var(--red-700) 0%,var(--red-600) 34%,var(--red-500) 68%,#FF3B33 100%);color:var(--white);font-family:var(--font-core);padding:0;display:flex;flex-direction:column;gap:36px;justify-content:center" data-om-slide-id="5571ca5c">
-<div style="padding:0 88px;display:flex;flex-direction:column;justify-content:center;gap:28px">
-<span class="apex-num apex-skew" style="display:inline-block;font-size:200px;line-height:.8;color:rgba(255,255,255,.35)">M3</span>
-<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:92px;line-height:1;color:var(--white)">일과 시간 , 구성원&amp;성과 동시에 관리하기</h2>
-<div style="display:flex;align-items:center;gap:20px"><span style="display:inline-block;width:56px;height:10px;background:var(--white);transform:skewX(-9deg)"></span><p style="margin:0;font-size:47px;color:rgba(255,255,255,.92)">숫자를 행동으로 바꾸는 성과관리</p></div>
 </div>
 </section>
 
