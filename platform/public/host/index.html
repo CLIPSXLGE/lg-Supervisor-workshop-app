@@ -1891,12 +1891,43 @@ a:hover{color:var(--red-300)}
 
 
 <section data-label="반장 액션플랜 카드 작성" data-speaker-notes="반장 액션플랜 카드 v1.0을 작성한다. 오늘 가설로 채우고, 발표는 다음 화면에서." style="background:var(--carbon-950);color:var(--text-primary);font-family:var(--font-core);padding:64px 80px;display:flex;flex-direction:column;justify-content:flex-start;gap:22px" data-om-slide-id="a1b2c3d4">
-<button type="button" data-build-start="1" onClick="{{ bgmS131Toggle }}" class="export-hidden" style="display:none">🎵 {{ bgmS131Btn }}</button>
+<button type="button" data-build-start="2" onClick="{{ bgmS131Toggle }}" class="export-hidden" style="display:none">🎵 {{ bgmS131Btn }}</button>
 <span class="apex-eyebrow" style="font-size:24px;letter-spacing:.16em;color:var(--text-muted)">M4 · PLAN</span>
 <div style="border-top:1px solid var(--border-hairline);padding-top:26px"><h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:68px;line-height:1.15">반장 액션플랜 카드 <span style="color:var(--red-500)">v.1.0</span> <span style="color:var(--white)">만들기</span></h2></div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:56px;flex:1;min-height:0;align-items:center">
 <img src="/host/assets/action-plan-card.png" alt="반장 액션플랜 카드 예시" style="width:100%;height:100%;max-height:760px;object-fit:contain">
-<div style="height:100%;max-height:760px;border:2px dashed var(--border-strong);border-radius:8px"></div>
+<div data-build="1" data-build-fx="fade" style="position:relative;display:flex;height:100%;max-height:760px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35)">
+<div style="width:64px;flex-shrink:0;background:#DA246C;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:26px 0">
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:5px">
+<span style="width:13px;height:18px;background:rgba(255,255,255,.92);transform:skewX(-10deg)"></span>
+<span style="width:13px;height:18px;background:rgba(255,255,255,.92);transform:skewX(-10deg)"></span>
+<span style="width:13px;height:18px;background:rgba(255,255,255,.92);transform:skewX(-10deg)"></span>
+<span style="width:13px;height:18px;background:rgba(255,255,255,.92);transform:skewX(-10deg)"></span>
+</div>
+<span style="writing-mode:vertical-rl;transform:rotate(180deg);color:#fff;font-family:var(--font-display);font-weight:700;font-size:19px;letter-spacing:.14em">Driver Card · 작성 예시</span>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:5px">
+<span style="width:13px;height:18px;background:rgba(255,255,255,.92);transform:skewX(-10deg)"></span>
+<span style="width:13px;height:18px;background:rgba(255,255,255,.92);transform:skewX(-10deg)"></span>
+<span style="width:13px;height:18px;background:rgba(255,255,255,.92);transform:skewX(-10deg)"></span>
+<span style="width:13px;height:18px;background:rgba(255,255,255,.92);transform:skewX(-10deg)"></span>
+</div>
+</div>
+<div style="flex:1;padding:30px 34px;display:flex;flex-direction:column;gap:16px;min-height:0">
+<div style="display:flex;align-items:flex-start;justify-content:space-between;flex-shrink:0">
+<div style="font-family:var(--font-display);font-weight:800;font-size:36px;color:#DA246C;line-height:1.08">반장<br>액션플랜</div>
+<div style="width:72px;height:72px;border-radius:50%;border:4px solid #DA246C;background:#F7F4EF;flex-shrink:0"></div>
+</div>
+<div style="font-family:var(--font-display);font-weight:700;font-size:16px;color:#06070A;border-bottom:2px dotted #06070A;padding-bottom:6px;flex-shrink:0">NAME <span style="font-weight:400;color:#8A8F98">김반장(예시)</span></div>
+<div style="border:2px solid #06070A;border-radius:4px;overflow:hidden;flex:1;min-height:0;display:flex;flex-direction:column">
+<div style="background:#DA246C;color:#fff;font-family:var(--font-display);font-weight:700;font-size:15px;padding:8px 14px;flex-shrink:0">성과관리</div>
+<div style="padding:12px 14px;font-size:15px;line-height:1.55;color:#06070A;overflow:auto">매일 아침조회에서 수리지연 건의 원인과 필요한 지원을 확인하겠습니다. 담당 SM과 오늘 할 일, 완료 기준, 확인 시간을 정하고, 퇴근 전 진행 결과를 함께 점검하겠습니다.</div>
+</div>
+<div style="border:2px solid #06070A;border-radius:4px;overflow:hidden;flex:1;min-height:0;display:flex;flex-direction:column">
+<div style="background:#DA246C;color:#fff;font-family:var(--font-display);font-weight:700;font-size:15px;padding:8px 14px;flex-shrink:0">조직문화 &amp; 소통</div>
+<div style="padding:12px 14px;font-size:15px;line-height:1.55;color:#06070A;overflow:auto">매일 먼저 이름을 부르며 인사하고, "오늘 업무에서 도움이 필요한 부분이 있나요?"라고 묻겠습니다. 어려움을 말하면 끝까지 듣고 필요한 지원을 함께 정하겠습니다.</div>
+</div>
+</div>
+</div>
 </div>
 </section>
 
@@ -2187,6 +2218,13 @@ class Component extends DCLogic {
       const GAME_BGM_STOP = [74, 76, 78, 80, 82, 116];
       if (GAME_BGM_START[idx] !== undefined) this._playGameBgm(GAME_BGM_START[idx]);
       if (GAME_BGM_STOP.indexOf(idx) >= 0) this._stopGameBgm();
+      /* AI 리더십 코치 잠금 해제: 강사가 100번 슬라이드(M5 입구)에 들어서면
+         이 차수의 coach 페이지 진입 잠금을 연다. 한 번 열리면 계속 열려 있다. */
+      if (idx === 99 && !this._aiCoachGateOpened) {
+        this._aiCoachGateOpened = true;
+        const gateCode = (this.state.lg.code || "").trim();
+        if (gateCode && window.WSData) WSData.openGate(gateCode, "ai_coach");
+      }
       this.setState({ deckCur: idx, deckIndexOpen: false });
       this.measureSlideBox();
       this.mountBadges();

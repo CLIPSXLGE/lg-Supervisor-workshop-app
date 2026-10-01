@@ -261,6 +261,18 @@
       return S.setCoachPlan({ session_code: toSessionCode(sessionCode), day: today(), participant_id: participantId, plan: plan, updated_at: new Date().toISOString() });
     },
 
+    /* 진행 잠금(게이트) — "강사가 특정 화면까지 왔는지" 같은 차수 전체 상태를 공유한다.
+       스키마 변경 없이 ws_responses를 재사용한다: participant_id="__system__",
+       question_id="gate_"+key, text="open". ws_participants에 이 participant_id가
+       없어서 참가자 관련 조회(JOIN)에는 섞이지 않는다. */
+    openGate: function (sessionCode, gateKey) {
+      return this.submitResponses(sessionCode, '__system__', [{ question_id: 'gate_' + gateKey, text: 'open' }]);
+    },
+    isGateOpen: function (sessionCode, gateKey) {
+      return this.getResponses(sessionCode, 'gate_' + gateKey)
+        .then(function (rows) { return (rows || []).some(function (r) { return r.participant_id === '__system__' && r.text === 'open'; }); });
+    },
+
     /* 교육생 접속 주소 — 강사 화면과 같은 배포에서 서비스되므로 현재 오리진을 그대로 쓴다 */
     joinUrl: function (accessCode) {
       var origin = /^https?:$/.test(location.protocol) ? location.origin + '/' : '';
