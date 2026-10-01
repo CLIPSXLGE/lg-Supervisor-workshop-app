@@ -121,6 +121,19 @@
           .then(function () { return true; }).catch(function (e) { if (window.WS_DEBUG) console.warn(e); return false; });
       })).then(function (r) { return r.every(Boolean); });
     },
+    /* 강사용 슬라이드 순서·추가/삭제 커스터마이징 — 차수 하나당 1행. ws_deck_config(session_code pk, config jsonb). */
+    getDeckConfig: function (code) {
+      return soft(rest('ws_deck_config?session_code=eq.' + encodeURIComponent(code) + '&select=config'), [])
+        .then(function (rows) { return (rows && rows[0] && rows[0].config) || null; });
+    },
+    setDeckConfig: function (row) {
+      return rest('ws_deck_config?on_conflict=session_code', { method: 'POST', body: [row], prefer: 'resolution=merge-duplicates,return=minimal' })
+        .then(function () { return true; }).catch(function (e) { if (window.WS_DEBUG) console.warn(e); return false; });
+    },
+    deleteDeckConfig: function (code) {
+      return rest('ws_deck_config?' + scopeQs(code), { method: 'DELETE', prefer: 'return=minimal' })
+        .then(function () { return true; }).catch(function (e) { if (window.WS_DEBUG) console.warn(e); return false; });
+    },
   };
 
   /* ── LOCAL : localStorage + BroadcastChannel ─────────────── */
@@ -188,6 +201,18 @@
       ['participants', 'teams', 'responses', 'coach'].forEach(function (k) { lsWrite(code, k, []); });
       return Promise.resolve(true);
     },
+    getDeckConfig: function (code) {
+      var rows = lsRead(code, 'deckconfig', []);
+      return Promise.resolve(rows.length ? rows[0].config : null);
+    },
+    setDeckConfig: function (row) {
+      lsWrite(row.session_code, 'deckconfig', [row]);
+      return Promise.resolve(true);
+    },
+    deleteDeckConfig: function (code) {
+      lsWrite(code, 'deckconfig', []);
+      return Promise.resolve(true);
+    },
   };
 
   var S = LIVE ? liveStore : localStore;
@@ -221,6 +246,18 @@
       var code = toSessionCode(sessionCode);
       var label = ROUNDS[code];
       return Promise.resolve(label ? { session_code: code, round_label: label, day: today() } : null);
+    },
+
+    /* 강사용 슬라이드 순서·추가/삭제 커스터마이징. config = { order: [slideId,...], customSlides: { id: {image, label} } }.
+       재접속/새로고침에는 유지되고, '초기화' 또는 '화면 순서 기본으로' 버튼으로만 지워진다. */
+    getDeckConfig: function (sessionCode) { return S.getDeckConfig(toSessionCode(sessionCode)); },
+    submitDeckConfig: function (sessionCode, config) {
+      return S.setDeckConfig({ session_code: toSessionCode(sessionCode), config: config, updated_at: new Date().toISOString() });
+    },
+    resetDeckConfig: function (sessionCode) {
+      var code = toSessionCode(sessionCode);
+      if (!code) return Promise.resolve(false);
+      return S.deleteDeckConfig(code);
     },
 
     getParticipants: function (sessionCode) { return S.listParticipants(toSessionCode(sessionCode)); },

@@ -46,11 +46,20 @@ a:hover{color:var(--red-300)}
 <div style="padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.12);font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.14em;color:#DCE0E7">전체 목차</div>
 <div style="flex:1;overflow-y:auto;padding:8px 0">
 <sc-for list="{{ deckIndex.items }}" as="it" hint-placeholder-count="10">
-<button type="button" onClick="{{ it.go }}" style="width:100%;background:{{ it.bg }};border:none;border-left:3px solid {{ it.accent }};color:#fff;cursor:pointer;padding:10px 16px;display:flex;gap:10px;align-items:baseline;text-align:left">
+<div style="width:100%;background:{{ it.bg }};border-left:3px solid {{ it.accent }};display:flex;align-items:stretch">
+<button type="button" onClick="{{ it.go }}" style="flex:1;min-width:0;background:transparent;border:none;color:#fff;cursor:pointer;padding:10px 8px 10px 13px;display:flex;gap:10px;align-items:baseline;text-align:left">
 <span style="font-family:var(--font-numeric);font-weight:900;font-size:13px;color:{{ it.noColor }}">{{ it.no }}</span>
-<span style="font-size:14px">{{ it.label }}</span>
+<span style="font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ it.label }}</span>
 </button>
+<button type="button" onClick="{{ it.up }}" title="위로" style="flex:none;width:26px;background:transparent;border:none;color:{{ it.canUp ? 'rgba(255,255,255,.65)' : 'rgba(255,255,255,.18)' }};cursor:pointer;font-size:12px">▲</button>
+<button type="button" onClick="{{ it.down }}" title="아래로" style="flex:none;width:26px;background:transparent;border:none;color:{{ it.canDown ? 'rgba(255,255,255,.65)' : 'rgba(255,255,255,.18)' }};cursor:pointer;font-size:12px">▼</button>
+<button type="button" onClick="{{ it.del }}" title="삭제" style="flex:none;width:30px;background:transparent;border:none;color:{{ it.canDel ? 'rgba(255,100,90,.8)' : 'rgba(255,255,255,.18)' }};cursor:pointer;font-size:15px">✕</button>
+</div>
 </sc-for>
+</div>
+<div style="padding:12px 14px;border-top:1px solid rgba(255,255,255,.12)">
+<button type="button" onClick="{{ deckIndex.addImageAfter }}" style="width:100%;background:var(--surface-card);color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:4px;padding:11px 0;font-family:var(--font-core);font-size:14px;cursor:pointer">+ 이미지 슬라이드 추가 (현재 화면 다음에)</button>
+<input type="file" accept="image/*" ref="{{ deckFileInputRef }}" onChange="{{ onDeckFileChange }}" style="display:none">
 </div>
 </div>
 </sc-if>
@@ -89,6 +98,11 @@ a:hover{color:var(--red-300)}
 <span style="font-size:17px;color:{{ reset.messageColor }}">{{ reset.message }}</span>
 </sc-if>
 <span style="font-size:16px;color:var(--text-faint)">입력한 차수코드의 데이터(입장 명단·응답·진단)를 1박 2일 전체 모두 지웁니다.</span>
+<button type="button" onClick="{{ resetOrder.go }}" style="background:transparent;color:var(--text-muted);border:1px solid var(--border-hairline);border-radius:4px;padding:16px 0;font-family:var(--font-core);font-size:22px;cursor:pointer;margin-top:6px" style-hover="color:var(--white)">화면 순서 기본 버전으로 되돌리기</button>
+<sc-if value="{{ resetOrder.message }}" hint-placeholder-val="{{ false }}">
+<span style="font-size:17px;color:{{ resetOrder.messageColor }}">{{ resetOrder.message }}</span>
+</sc-if>
+<span style="font-size:16px;color:var(--text-faint)">이 차수에서 강사가 바꾼 슬라이드 순서·추가·삭제만 기본 구성으로 되돌립니다. 참가자 데이터는 지워지지 않습니다.</span>
 </sc-if>
 <sc-if value="{{ reset.asking }}" hint-placeholder-val="{{ false }}">
 <div style="background:#2A0A08;border-left:4px solid var(--red-500);padding:16px 18px;display:flex;flex-direction:column;gap:12px">
@@ -1990,6 +2004,10 @@ a:hover{color:var(--red-300)}
 </x-import>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;centerName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;LG전자 서비스센터&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;과정 정보&quot;},&quot;courseDate&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2026. 10.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;과정 정보&quot;},&quot;showAnswers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;진행 옵션&quot;}}">
+/* 기본(원본) 슬라이드 순서 — data-om-slide-id 기준, 135개. 강사가 순서를 바꾸거나
+   추가/삭제한 뒤 "화면 순서 기본 버전으로 되돌리기"를 누르면 이 배열로 복원된다. */
+const DEFAULT_SLIDE_ORDER = ["9bc6600a", "ecb6294b", "58f8fcb9", "a0a81a88", "fb0098e6", "135a3e47", "24cd9bc9", "7d5f5596", "03432091", "c051e4a5", "86779f60", "6b87e2c1", "41762336", "f1089a93", "45149e9d", "8f57dd2e", "66e2d046", "718666b2", "ba492d81", "5b62ec01", "b8c3b018", "c3e58b1b", "b04860ae", "7f4f97e6", "16dfb8dd", "16dfb8de", "d19684b9", "442877bd", "46385c9f", "63b5361a", "884db4d5", "b06313b0", "e4ba0605", "b05cf305", "26fb6ee8", "4e9bd8a1", "1b51048f", "9204f0ee", "aabb1fc9", "22647148", "3c611565", "22e549ac", "rk-mem-01", "rk-mem-02", "rk-mem-03", "rk-mem-04", "rk-mem-05", "rk-mem-06", "rk-mem-07", "2cce7414", "aed335d0", "rk-mem-08", "0754cc32", "4e459c8e", "bbf0ca49", "a67ec9c7", "491aaa0a", "00698745", "rk-mem-13", "7870749e", "7dbb704c", "5571ca5c", "8ff18cc0", "33dc5761", "c0ada2c0", "rk-prep-09", "rk-prep-10", "rk-prep-11", "5d679f49", "rk-prep-12", "6937850d", "14697dfa", "d2q-00", "d2q-01", "d2q-02", "d2q-03", "d2q-04", "d2q-05", "d2q-06", "d2q-07", "d2q-08", "d2q-09", "d2q-10", "d2q-11", "d2q-12", "2df8e9ed", "8c411fc9", "ee5f9019", "910e7d53", "92f018b1", "375c084d", "a9f9fcd4", "d1a75637", "8c099017", "3e3fd5a2", "c539e0b0", "9e7946c9", "415bdebe", "c86b914f", "607d99ea", "c62f50b0", "f8bdbf28", "4d9db68f", "46898c0e", "ff317d30", "73be0dbf", "b4e43fba", "d2c-01", "d2c-02", "d2c-03", "d2c-topic1", "d2c-topic2", "d2c-topic3", "d2c-topic4", "d2c-topic5", "d2c-topic6", "d2c-05", "d2c-06", "d2c-07", "d2c-08", "d2c-09", "c98c0e86", "ef2f5aeb", "e464fda6", "37b2e5ac", "ea3e7123", "853a90b6", "300dc922", "b67c0a01", "b3eed1e2", "a1b2c3d4", "18c29f1a", "833f525d", "d2f-01", "d2f-02"];
+
 class Component extends DCLogic {
   state = {
     t: {},
@@ -2198,34 +2216,40 @@ class Component extends DCLogic {
     this.installBuildSteps(stage);
     this.installPresenterKeys(stage);
     const items = Array.from(document.querySelectorAll("deck-stage > section")).map((s, i) => ({
-      i, label: (s.dataset.label || "").replace(/^[\d-]+\s*/, "") || ("슬라이드 " + (i + 1)),
+      i, id: s.getAttribute("data-om-slide-id") || "", label: (s.dataset.label || "").replace(/^[\d-]+\s*/, "") || ("슬라이드 " + (i + 1)),
     }));
     this.setState({ deckItems: items, deckCur: stage.index || 0 });
     this._onSlide = e => {
       const idx = (e.detail && e.detail.index) || 0;
-      /* 2번 슬라이드(교육생 입장 안내)에 들어서면 자동 전체화면 */
-      if (idx === 1 && !document.fullscreenElement && document.documentElement.requestFullscreen) {
+      /* 강사가 화면 순서를 바꿔도 아래 기능들은 "그 슬라이드 자체"를 따라가야 하므로
+         몇 번째 자리인지(idx)가 아니라 data-om-slide-id로 식별한다. */
+      const slideEl = e.detail && e.detail.slide;
+      const sid = (slideEl && slideEl.getAttribute && slideEl.getAttribute("data-om-slide-id")) || "";
+      /* 교육생 입장 안내 슬라이드에 들어서면 자동 전체화면, 강사 로그인 슬라이드로 돌아오면 해제 */
+      if (sid === "ecb6294b" && !document.fullscreenElement && document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen().catch(() => {});
       }
-      if (idx === 0 && document.fullscreenElement && document.exitFullscreen) {
+      if (sid === "9bc6600a" && document.fullscreenElement && document.exitFullscreen) {
         document.exitFullscreen().catch(() => {});
       }
-      /* 게임 BGM 자동 시작/정지: 73번(초성퀴즈 인트로) 입장과 동시에 시작해 74번까지 유지되다가
-         75번 진입 시 정지. 초성퀴즈 문제 슬라이드(76·78·80·82번)도 입장과 동시에 시작하고
-         다음 슬라이드(77·79·81·83번)로 넘어가면 정지.
-         111~116번(제시어 게임)은 111번 입장 시 다른 페이지와 동일한 볼륨으로 시작, 117번 입장 시 정지. */
-      const GAME_BGM_START = { 72: 1, 75: 1, 77: 1, 79: 1, 81: 1, 110: 1 };
-      const GAME_BGM_STOP = [74, 76, 78, 80, 82, 116];
-      if (GAME_BGM_START[idx] !== undefined) this._playGameBgm(GAME_BGM_START[idx]);
-      if (GAME_BGM_STOP.indexOf(idx) >= 0) this._stopGameBgm();
-      /* AI 리더십 코치 잠금 해제: 강사가 100번 슬라이드(M5 입구)에 들어서면
+      /* 게임 BGM 자동 시작/정지: 초성퀴즈 인트로(d2q-00) 입장과 동시에 시작해 d2q-02 진입 시
+         정지. 초성퀴즈 문제 슬라이드(d2q-03/05/07/09)도 입장과 동시에 시작하고 다음 슬라이드
+         (d2q-02/04/06/08/10)로 넘어가면 정지. 제시어 게임(d2c-topic1)은 입장 시 다른 페이지와
+         동일한 볼륨으로 시작, d2c-05 입장 시 정지. */
+      const GAME_BGM_START = { "d2q-00": 1, "d2q-03": 1, "d2q-05": 1, "d2q-07": 1, "d2q-09": 1, "d2c-topic1": 1 };
+      const GAME_BGM_STOP = ["d2q-02", "d2q-04", "d2q-06", "d2q-08", "d2q-10", "d2c-05"];
+      if (GAME_BGM_START[sid] !== undefined) this._playGameBgm(GAME_BGM_START[sid]);
+      if (GAME_BGM_STOP.indexOf(sid) >= 0) this._stopGameBgm();
+      /* AI 리더십 코치 잠금 해제: 강사가 100번 슬라이드(607d99ea, M5 입구)에 들어서면
          이 차수의 coach 페이지 진입 잠금을 연다. 한 번 열리면 계속 열려 있다. */
-      if (idx === 99 && !this._aiCoachGateOpened) {
+      if (sid === "607d99ea" && !this._aiCoachGateOpened) {
         this._aiCoachGateOpened = true;
         const gateCode = (this.state.lg.code || "").trim();
         if (gateCode && window.WSData) WSData.openGate(gateCode, "ai_coach");
       }
-      this.setState({ deckCur: idx, deckIndexOpen: false });
+      /* 편집 중(순서 변경/추가/삭제)에 일어나는 slotchange는 목차 드로어를 닫지 않는다 —
+         안 그러면 버튼을 하나 누를 때마다 드로어가 닫혀 연속 편집이 불가능해진다. */
+      this.setState(this._deckEditing ? { deckCur: idx } : { deckCur: idx, deckIndexOpen: false });
       this.measureSlideBox();
       this.mountBadges();
     };
@@ -2242,6 +2266,145 @@ class Component extends DCLogic {
     };
     document.addEventListener("fullscreenchange", this._onFull);
     this._boxIv = setInterval(() => this.measureSlideBox(), 500);
+  }
+
+  /* ───────── 강사용 슬라이드 순서/추가/삭제 커스터마이징 ─────────
+     deck-stage는 자기 자식 section 요소를 slotchange로 실시간 반영하는 구조라,
+     여기서 DOM을 직접 재배치/추가/삭제하면 컴포넌트가 알아서 다시 인식한다.
+     차수별 config({order, customSlides})는 ws_deck_config에 저장되고,
+     재접속/새로고침에는 그대로 유지되며 '초기화' 또는 '화면 순서 기본으로'
+     버튼을 눌렀을 때만 DEFAULT_SLIDE_ORDER로 되돌아간다. */
+
+  _deckSections() {
+    const stage = document.querySelector("deck-stage");
+    return stage ? Array.from(stage.querySelectorAll(":scope > section[data-om-slide-id]")) : [];
+  }
+
+  _buildCustomSlide(id, data) {
+    const sec = document.createElement("section");
+    sec.setAttribute("data-om-slide-id", id);
+    sec.setAttribute("data-label", data.label || "이미지 슬라이드");
+    sec.style.cssText = "background:#06070A;display:flex;align-items:center;justify-content:center";
+    const img = document.createElement("img");
+    img.src = data.image;
+    img.alt = data.label || "이미지 슬라이드";
+    img.style.cssText = "width:100%;height:100%;object-fit:contain";
+    sec.appendChild(img);
+    return sec;
+  }
+
+  /* cfg.order 순서대로 deck-stage의 실제 section 자식을 재배치한다.
+     cfg.order에 없는 기존 슬라이드는 삭제된 것으로 보고 DOM에서 뺀다.
+     cfg.order에 있는데 DOM에 없는 id는 customSlides에서 새로 만들어 넣는다. */
+  _applyDeckConfig(cfg) {
+    const stage = document.querySelector("deck-stage");
+    if (!stage || !cfg || !Array.isArray(cfg.order) || !cfg.order.length) return;
+    const existing = this._deckSections();
+    const byId = {};
+    existing.forEach(s => { byId[s.getAttribute("data-om-slide-id")] = s; });
+    const keep = new Set(cfg.order);
+    existing.forEach(s => { if (!keep.has(s.getAttribute("data-om-slide-id"))) s.remove(); });
+    const customSlides = cfg.customSlides || {};
+    cfg.order.forEach(id => {
+      let sec = byId[id];
+      if (!sec && customSlides[id]) sec = this._buildCustomSlide(id, customSlides[id]);
+      if (sec) stage.appendChild(sec);
+    });
+  }
+
+  /* 로그인 시 이 차수의 저장된 커스터마이징을 불러와 적용한다. 저장된 게 없으면
+     기본 순서 그대로 둔다. slotchange 재인식 시간을 조금 주고 onDone을 부른다. */
+  _loadDeckConfig(code, onDone) {
+    const finish = () => { if (onDone) onDone(); };
+    if (!code || !window.WSData) return finish();
+    WSData.getDeckConfig(code).then(cfg => {
+      if (cfg && Array.isArray(cfg.order) && cfg.order.length) {
+        this._applyDeckConfig(cfg);
+        setTimeout(finish, 80);
+      } else {
+        finish();
+      }
+    }).catch(finish);
+  }
+
+  /* 현재 DOM 순서를 그대로 서버에 저장한다(디바운스 없이 즉시 — 편집 빈도가 낮음). */
+  _persistDeckOrder() {
+    const code = (this.state.lg.code || "").trim();
+    if (!code || !window.WSData) return;
+    const secs = this._deckSections();
+    const order = secs.map(s => s.getAttribute("data-om-slide-id"));
+    const customSlides = {};
+    secs.forEach(s => {
+      const id = s.getAttribute("data-om-slide-id");
+      if (id.indexOf("custom:") === 0) {
+        const img = s.querySelector("img");
+        customSlides[id] = { image: img ? img.src : "", label: s.getAttribute("data-label") || "이미지 슬라이드" };
+      }
+    });
+    WSData.submitDeckConfig(code, { order, customSlides });
+  }
+
+  _refreshDeckItems() {
+    const secs = this._deckSections();
+    const items = secs.map((s, i) => ({
+      i, id: s.getAttribute("data-om-slide-id"),
+      label: (s.getAttribute("data-label") || "").replace(/^[\d-]+\s*/, "") || ("슬라이드 " + (i + 1)),
+    }));
+    this.setState({ deckItems: items });
+  }
+
+  /* 편집으로 인한 DOM 변경은 deck-stage의 slotchange → slidechange를 다시 일으키는데,
+     그 재방송이 목차 드로어를 닫아버리지 않도록 잠깐 플래그를 세워둔다. */
+  _withDeckEditing(fn) {
+    this._deckEditing = true;
+    fn();
+    this._persistDeckOrder();
+    setTimeout(() => { this._refreshDeckItems(); this._deckEditing = false; }, 80);
+  }
+
+  /* dir -1=위로, +1=아래로. 맨 앞(강사 로그인 슬라이드)은 자리를 고정해 로그인 흐름이 깨지지 않게 한다. */
+  _moveSlide(id, dir) {
+    const stage = document.querySelector("deck-stage");
+    if (!stage) return;
+    const secs = this._deckSections();
+    const i = secs.findIndex(s => s.getAttribute("data-om-slide-id") === id);
+    const j = i + dir;
+    if (i <= 0 || j <= 0 || j >= secs.length) return;
+    const a = secs[i], b = secs[j];
+    this._withDeckEditing(() => { if (dir < 0) stage.insertBefore(a, b); else stage.insertBefore(b, a); });
+  }
+
+  _deleteSlide(id) {
+    if (id === DEFAULT_SLIDE_ORDER[0]) return; // 강사 로그인 슬라이드는 삭제 불가
+    const secs = this._deckSections();
+    const sec = secs.find(s => s.getAttribute("data-om-slide-id") === id);
+    if (!sec) return;
+    if (!window.confirm("이 슬라이드를 삭제할까요? 지금 바로 목록에서 빠집니다.")) return;
+    this._withDeckEditing(() => sec.remove());
+  }
+
+  /* afterId 바로 뒤에 이미지 전체화면 슬라이드를 추가한다(없으면 맨 끝). */
+  _addImageSlide(afterId, dataUrl) {
+    const stage = document.querySelector("deck-stage");
+    if (!stage || !dataUrl) return;
+    const id = "custom:" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+    const sec = this._buildCustomSlide(id, { image: dataUrl, label: "이미지 슬라이드" });
+    const secs = this._deckSections();
+    const afterEl = afterId ? secs.find(s => s.getAttribute("data-om-slide-id") === afterId) : null;
+    this._withDeckEditing(() => {
+      if (afterEl && afterEl.nextSibling) stage.insertBefore(sec, afterEl.nextSibling);
+      else stage.appendChild(sec);
+    });
+  }
+
+  _onDeckImageFile(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this._addImageSlide(this._deckFileInputAfter || null, reader.result);
+      this._deckFileInputAfter = null;
+    };
+    reader.readAsDataURL(file);
   }
 
   /* 전체화면에서는 좌측 슬라이드 썸네일 레일을 감춘다(deck-stage의 no-rail 속성). */
@@ -2654,7 +2817,7 @@ class Component extends DCLogic {
       const items = this.state.deckItems || [];
       const cur = this.state.deckCur || 0;
       return {
-        visible: cur > 0 && items.length > 0,
+        visible: cur > 0 && items.length > 0 && !this.state.deckIndexOpen,
         left: (this.state.isFull ? 0 : ((this.state.slideBox && this.state.slideBox.left) || 192)) + "px",
         top: (this.state.isFull ? 0 : ((this.state.slideBox && this.state.slideBox.top) || 0)) + "px",
         open: !!this.state.deckIndexOpen,
@@ -2666,9 +2829,21 @@ class Component extends DCLogic {
           accent: it.i === cur ? "#E10600" : "transparent",
           noColor: it.i === cur ? "#E10600" : "#B4BBC7",
           go: () => { if (this._stage) this._stage.goTo(it.i); this.setState({ deckIndexOpen: false }); },
+          canUp: it.i > 1, canDown: it.i > 0 && it.i < items.length - 1,
+          canDel: it.i > 0,
+          up: () => this._moveSlide(it.id, -1),
+          down: () => this._moveSlide(it.id, 1),
+          del: () => this._deleteSlide(it.id),
         })),
+        addImageAfter: () => { if (this._deckFileInput) { this._deckFileInputAfter = (items[cur] || {}).id || null; this._deckFileInput.click(); } },
       };
     })();
+    vals.deckFileInputRef = el => { this._deckFileInput = el; };
+    vals.onDeckFileChange = e => {
+      const file = e.target.files && e.target.files[0];
+      this._onDeckImageFile(file);
+      e.target.value = "";
+    };
     Object.assign(vals, {
       lgCode: lg.code, lgPw: lg.pw, lgName: lg.name, lgTeams: lg.teams,
       onCode: e => this._lg("code", e.target.value.replace(/\D/g, "").slice(0, 4)),
@@ -2687,7 +2862,7 @@ class Component extends DCLogic {
       doLogin: () => {
         if (!ready) return;
         this.setState({ loggedIn: true });
-        if (this._stage) this._stage.goTo(1);
+        this._loadDeckConfig(lg.code, () => { if (this._stage) this._stage.goTo(1); });
       },
       reset: (() => {
         const code = (lg.code || "").trim();
@@ -2706,12 +2881,33 @@ class Component extends DCLogic {
           confirm: () => {
             if (!code || !window.WSData) return;
             this.setState({ rsPhase: "idle", rsMsg: "지우는 중...", rsErr: false });
-            WSData.resetSession(code).then(ok => {
+            /* 삭제된 기본 슬라이드는 DOM 복구가 불가능하므로(원본이 남아있지 않음) 새로고침으로
+               마크업을 통째로 다시 불러온다 — 화면 순서도 함께 기본으로 되돌아간다. */
+            Promise.all([WSData.resetSession(code), WSData.resetDeckConfig(code)]).then(([ok]) => {
+              if (ok) { location.reload(); return; }
               this.setState({
                 lg: { code: "", pw: "", name: "", teams: 6 }, loggedIn: false,
-                rsMsg: ok ? "삭제되었습니다." : "삭제에 실패했습니다.", rsErr: !ok,
+                rsMsg: "삭제에 실패했습니다.", rsErr: true,
               });
             });
+          },
+        };
+      })(),
+      resetOrder: (() => {
+        const code = (lg.code || "").trim();
+        return {
+          disabled: !code,
+          message: this.state.roMsg || "",
+          messageColor: this.state.roErr ? "#FF9A94" : "var(--grid-teal)",
+          go: () => {
+            if (!code || !window.WSData) return this.setState({ roMsg: "차수코드를 먼저 입력해주세요.", roErr: true });
+            if (!window.confirm("이 차수의 슬라이드 순서/추가/삭제를 전부 기본 구성으로 되돌립니다. 참가자 데이터는 지워지지 않습니다. 화면이 새로고침됩니다. 계속할까요?")) return;
+            this.setState({ roMsg: "되돌리는 중...", roErr: false });
+            /* 한 번 삭제된 기본 슬라이드는 DOM에서 완전히 사라지므로(복원할 원본이 남아있지 않음),
+               DOM을 직접 복구하려 하지 않고 새로고침으로 원본 마크업을 통째로 다시 불러온다 —
+               이게 "기본으로 되돌리기"가 모든 경우에 확실하게 맞는 유일한 방법이다. */
+            WSData.resetDeckConfig(code).then(() => { location.reload(); })
+              .catch(() => this.setState({ roMsg: "되돌리기에 실패했습니다.", roErr: true }));
           },
         };
       })(),
