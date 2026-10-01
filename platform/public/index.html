@@ -961,6 +961,7 @@ class Component extends DCLogic {
       const saved = JSON.parse(localStorage.getItem("lgws-me") || "null");
       if (saved && saved.name && saved.code) {
         this.setState({ me: saved, screen: "team", teamNo: saved.teamNo || 0, inCode: saved.code || "", inName: saved.name });
+        this._restoreMyResponses();
       }
     } catch (e) {}
     this._poll();
@@ -972,6 +973,34 @@ class Component extends DCLogic {
     const me = this.state.me;
     if (!me || !window.WSData) return;
     WSData.getTeamInfoAll(me.code).then(teamInfo => this.setState({ live: { teamInfo: teamInfo || [] } })).catch(() => {});
+  }
+
+  /* 재접속/새로고침 시 본인이 이미 제출한 자가진단·반별아침조회 응답을 서버에서 다시 불러와
+     화면에 채운다. 로그인 직후(doJoin)와 localStorage 자동 재로그인(componentDidMount) 양쪽에서 호출한다. */
+  _restoreMyResponses() {
+    const me = this.state.me;
+    if (!me || !me.participantId || !window.WSData) return;
+    const DIAG_QS = Array.from({ length: 20 }, (_, i) => "diag_" + i);
+    WSData.getResponses(me.code, DIAG_QS.concat(["bp_when", "bp_how", "bp_best"])).then(rows => {
+      const mine = (rows || []).filter(r => r.participant_id === me.participantId);
+      if (!mine.length) return;
+      const answers = {};
+      let bpWhen = "", bpHow = "", bpBest = "";
+      mine.forEach(r => {
+        const m = /^diag_(\d+)$/.exec(r.question_id);
+        if (m) { answers[Number(m[1])] = Number(r.text); return; }
+        if (r.question_id === "bp_when") bpWhen = r.text || "";
+        else if (r.question_id === "bp_how") bpHow = r.text || "";
+        else if (r.question_id === "bp_best") bpBest = r.text || "";
+      });
+      this.setState(s => ({
+        answers: Object.assign({}, answers, s.answers),
+        bpWhen: s.bpWhen || bpWhen,
+        bpHow: s.bpHow || bpHow,
+        bpBest: s.bpBest || bpBest,
+        bpSaved: s.bpSaved || !!bpHow,
+      }));
+    }).catch(() => {});
   }
   _go(screen) { this.setState({ screen, indexOpen: false }); }
 
@@ -1101,6 +1130,7 @@ class Component extends DCLogic {
         localStorage.setItem("lgws-me", JSON.stringify(nm));
         this.setState({ me: nm, screen: "team", joinError: "", joining: false });
         this._poll();
+        this._restoreMyResponses();
       },
       logout: () => { localStorage.removeItem("lgws-me"); this.setState({ me: null, screen: "team", indexOpen: false }); },
 
