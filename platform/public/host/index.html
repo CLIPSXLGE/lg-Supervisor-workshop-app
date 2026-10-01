@@ -2206,6 +2206,64 @@ class Component extends DCLogic {
     window.addEventListener("keydown", this._presenterKeys, true);
   }
 
+  /* deck-stage는 좌측 썸네일 레일에 드래그 재정렬 · 우클릭(Skip/위로/아래로/복제/삭제) ·
+     Delete 키 삭제가 이미 내장되어 있다. 다만 이 페이지가 dc-runtime(window.__dcUpdate) 위에서
+     돌고 있어서, 레일은 DOM을 스스로 바꾸지 않고 'dc-op' 이벤트만 쏜 뒤 host가 처리해 주길
+     기다린다(처리 안 해주면 레일을 조작해도 아무 반응이 없다 — 지금까지의 증상이 이것).
+     여기서 그 이벤트를 받아 실제로 DOM에 반영하고, postMessage로 ack를 돌려줘서 레일 잠금을 푼다. */
+  installRailEditing(stage) {
+    if (this._onDcOp) return;
+    this._onDcOp = e => {
+      const op = e.detail;
+      if (!op) return;
+      const secs = this._deckSections();
+      let applied = true;
+      this._deckEditing = true;
+      try {
+        if (op.op === "move") {
+          if (op.at === 0 || op.to === 0) { applied = false; } // 강사 로그인 슬라이드 자리는 고정
+          else {
+            const slide = secs[op.at];
+            const j = Math.max(0, Math.min(op.to, secs.length - 1));
+            if (!slide || !secs[j]) applied = false;
+            else {
+              const ref = j < op.at ? secs[j] : secs[j].nextSibling;
+              stage.insertBefore(slide, ref || null);
+            }
+          }
+        } else if (op.op === "remove") {
+          const slide = secs[op.at];
+          if (!slide || op.at === 0) applied = false;
+          else slide.remove();
+        } else if (op.op === "removeMany") {
+          const targets = (op.indices || []).map(i => secs[i]).filter(Boolean);
+          if (!targets.length || (op.indices || []).indexOf(0) >= 0) applied = false;
+          else targets.forEach(s => s.remove());
+        } else if (op.op === "duplicate") {
+          const slide = secs[op.at];
+          if (!slide) applied = false;
+          else {
+            const copy = slide.cloneNode(true);
+            copy.setAttribute("data-om-slide-id", "custom:" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7));
+            stage.insertBefore(copy, slide.nextSibling);
+          }
+        } else if (op.op === "setAttr") {
+          const slide = secs[op.at];
+          if (!slide) applied = false; else slide.setAttribute(op.attr, op.value);
+        } else if (op.op === "removeAttr") {
+          const slide = secs[op.at];
+          if (!slide) applied = false; else slide.removeAttribute(op.attr);
+        } else {
+          applied = false;
+        }
+      } catch (err) { applied = false; }
+      if (applied) this._persistDeckOrder();
+      window.postMessage({ __dc_op_ack: true, applied }, "*");
+      setTimeout(() => { this._refreshDeckItems(); this._deckEditing = false; }, 80);
+    };
+    stage.addEventListener("dc-op", this._onDcOp);
+  }
+
   initDeckIndex(tries) {
     const stage = document.querySelector("deck-stage");
     if (!stage || !stage.length) {
@@ -2215,6 +2273,7 @@ class Component extends DCLogic {
     this._stage = stage;
     this.installBuildSteps(stage);
     this.installPresenterKeys(stage);
+    this.installRailEditing(stage);
     const items = Array.from(document.querySelectorAll("deck-stage > section")).map((s, i) => ({
       i, id: s.getAttribute("data-om-slide-id") || "", label: (s.dataset.label || "").replace(/^[\d-]+\s*/, "") || ("슬라이드 " + (i + 1)),
     }));
