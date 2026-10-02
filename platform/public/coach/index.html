@@ -1142,8 +1142,8 @@ script는 위 대화 목적에 맞는 모델로 씁니다. script2는 반드시 
     if (!ms.length) { this._coachFlash("저장할 구성원이 없습니다."); return; }
     const esc = v => String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\r?\n/g, "<br>");
     const head = ["NO", "이니셜", "유형", "역량", "동기", "관찰한 긍정 행동", "관찰한 아쉬운 행동",
-      "지금 필요한 리더십", "내가 바꿔볼 행동", "선택한 접근", "대화 목적", "모델", "대본"];
-    const W = [40, 70, 110, 50, 50, 260, 260, 200, 200, 280, 130, 60, 340];
+      "내가 바꿔볼 행동", "선택한 접근", "대화 목적", "모델", "대본"];
+    const W = [40, 70, 110, 50, 50, 260, 260, 200, 280, 130, 60, 340];
     const now = new Date();
     const stamp = `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, "0")}.${String(now.getDate()).padStart(2, "0")}`;
 
@@ -1160,7 +1160,6 @@ ${cell(m.comp, "center")}
 ${cell(m.moti, "center")}
 ${cell(m.good)}
 ${cell(m.bad)}
-${cell((m.needs || []).join("\n"))}
 ${cell(m.change)}
 ${cell((m.chosen || []).map(x => x.title + ": " + x.text).join("\n"))}
 ${cell(m.purpose)}
