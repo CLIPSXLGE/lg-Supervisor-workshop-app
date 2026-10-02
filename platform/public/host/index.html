@@ -2330,9 +2330,12 @@ class Component extends DCLogic {
       });
       /* 일반 BGM도 같은 이유로 자동 정지한다 — 단, 지금 들어온 슬라이드 자체에 BGM 트리거
          버튼이 있으면(그 슬라이드가 막 자기 BGM을 새로 켰을 수 있으므로) 건드리지 않는다.
-         게임 BGM(_gameBgm)은 별도 START/STOP 구간 로직으로 관리되므로 여기서 손대지 않는다. */
+         게임 BGM(_gameBgm)은 별도 START/STOP 구간 로직으로 관리되므로 여기서 손대지 않는다.
+         141~142번(1% 매일의 성장 ~ THANK YOU) 구간도 별도 START/STOP 구간 로직으로 관리되므로
+         이 구간 안에서는 건드리지 않는다. */
+      const GENERAL_BGM_REGION = { "d2f-01": 1, "thank-you-01": 1 };
       const hasOwnBgmTrigger = slideEl && Array.from(slideEl.querySelectorAll("button.export-hidden")).some(b => /🎵|^play$/.test((b.textContent || "").trim()));
-      if (!hasOwnBgmTrigger && this._generalBgm && !this._generalBgm.paused) this._stopGeneralBgm();
+      if (!hasOwnBgmTrigger && !GENERAL_BGM_REGION[sid] && this._generalBgm && !this._generalBgm.paused) this._stopGeneralBgm();
       /* 교육생 입장 안내 슬라이드에 들어서면 자동 전체화면, 강사 로그인 슬라이드로 돌아오면 해제 */
       if (sid === "ecb6294b" && !document.fullscreenElement && document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen().catch(() => {});
@@ -2348,6 +2351,11 @@ class Component extends DCLogic {
       const GAME_BGM_STOP = ["d2q-02", "d2q-04", "d2q-06", "d2q-08", "d2q-10", "d2c-05", "a67ec9c7"];
       if (GAME_BGM_START[sid] !== undefined) this._playGameBgm(GAME_BGM_START[sid]);
       if (GAME_BGM_STOP.indexOf(sid) >= 0) this._stopGameBgm();
+      /* 일반 BGM 자동 시작/정지: "1% 매일의 성장"(d2f-01) 입장과 동시에 시작해
+         "THANK YOU"(thank-you-01)까지 계속 재생되고, 그다음 슬라이드(d2f-02, 스티븐 코비
+         인용) 입장 시 정지한다. */
+      if (sid === "d2f-01" && (!this._generalBgm || this._generalBgm.paused)) this._playGeneralBgm("general-bgm-s141.mp3");
+      if (sid === "d2f-02") this._stopGeneralBgm();
       /* AI 리더십 코치 잠금 해제: 강사가 100번 슬라이드(607d99ea, M5 입구)에 들어서면
          이 차수의 coach 페이지 진입 잠금을 연다. 한 번 열리면 계속 열려 있다. */
       if (sid === "607d99ea" && !this._aiCoachGateOpened) {
