@@ -2364,7 +2364,7 @@ class Component extends DCLogic {
          (d2q-02/04/06/08/10)로 넘어가면 정지. 제시어 게임(d2c-topic1)은 입장 시 다른 페이지와
          동일한 볼륨으로 시작, d2c-05 입장 시 정지. */
       const GAME_BGM_START = { "d2q-00": 1, "d2q-03": 1, "d2q-05": 1, "d2q-07": 1, "d2q-09": 1, "d2c-topic1": 1, "d2cup-02": 1 };
-      const GAME_BGM_STOP = ["d2q-02", "d2q-04", "d2q-06", "d2q-08", "d2q-10", "d2c-05", "4e459c8e"];
+      const GAME_BGM_STOP = ["d2q-02", "d2q-04", "d2q-06", "d2q-08", "d2q-10", "d2c-05", "a67ec9c7"];
       if (GAME_BGM_START[sid] !== undefined) this._playGameBgm(GAME_BGM_START[sid]);
       if (GAME_BGM_STOP.indexOf(sid) >= 0) this._stopGameBgm();
       /* AI 리더십 코치 잠금 해제: 강사가 100번 슬라이드(607d99ea, M5 입구)에 들어서면
