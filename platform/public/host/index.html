@@ -627,7 +627,7 @@ a:hover{color:var(--red-300)}
 </section>
 
 <section data-label="COVER D2" data-speaker-notes="2일차 오프닝. 대응에서 성장까지." style="background-color:var(--carbon-950);background-image:var(--texture-speedlines),linear-gradient(158deg,var(--carbon-800) 0%,var(--carbon-950) 52%,#000000 100%);color:var(--text-primary);font-family:var(--font-core);padding:0;display:flex;flex-direction:column;justify-content:space-between" data-om-slide-id="7dbb704c">
-<button type="button" data-build-start="1" onClick="{{ bgmS61Toggle }}" class="export-hidden" style="display:none">🎵 {{ bgmS61Btn }}</button>
+<button type="button" data-build-start="1" onClick="{{ bgmS42Toggle }}" class="export-hidden" style="display:none">🎵 {{ bgmS42Btn }}</button>
 <div style="display:flex;justify-content:space-between;align-items:flex-start;padding:48px 72px">
 
 </div>
@@ -646,6 +646,7 @@ a:hover{color:var(--red-300)}
 </section>
 
 <section data-label="1일차 Wrap up" data-speaker-notes="1일차 마무리 질문. 어제 교육 중 기억에 남는 것과 인사이트를 나눈다." style="background-color:var(--bg-page);background-image:var(--texture-carbon);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:48px" data-om-slide-id="d2w-01">
+<button type="button" data-build-start="1" onClick="{{ bgmS43Toggle }}" class="export-hidden" style="display:none">🎵 {{ bgmS43Btn }}</button>
 <h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:44px;line-height:1.1;text-align:center;color:var(--grid-yellow)">1일차 Wrap up</h2>
 <p style="margin:0;font-size:52px;line-height:1.7;color:var(--white);text-align:center;max-width:1400px">① 어제 교육에서 가장 기억에 남은 한 가지는? <br>② 우리 팀 반장님의 이야기 중 가장 큰 인사이트를 얻었거나, <br>현업에 적용해 보고 싶은 점은 무엇인가요?</p>
 </section>
@@ -697,7 +698,6 @@ a:hover{color:var(--red-300)}
 </section>
 
 <section data-label="M2 CHAPTER" data-speaker-notes="M2 시작. 출근 시간의 인사가 긍정적 관계와 조직문화의 시작." style="background:linear-gradient(103deg,var(--red-700) 0%,var(--red-600) 34%,var(--red-500) 68%,#FF3B33 100%);color:var(--white);font-family:var(--font-core);padding:0;display:flex;flex-direction:column;gap:36px;justify-content:center" data-om-slide-id="63b5361a">
-<button type="button" data-build-start="1" onClick="{{ bgmS30Toggle }}" class="export-hidden" style="display:none">🎵 {{ bgmS30Btn }}</button>
 <div style="padding:0 88px;display:flex;flex-direction:column;justify-content:center;gap:28px">
 <div style="display:flex;align-items:baseline;gap:32px">
 <span class="apex-num apex-skew" style="display:inline-block;font-size:200px;line-height:.8;color:rgba(255,255,255,.35)">M2</span>
@@ -3148,7 +3148,7 @@ class Component extends DCLogic {
     vals.gameBgmRef = el => { this._gameBgm = el; };
     vals.generalBgmRef = el => { this._generalBgm = el; };
     const bgmOn = this.state.bgmOn || {};
-    ["04", "27", "30", "31", "34", "54", "61", "71", "92", "94", "100", "123", "128", "131"].forEach(id => {
+    ["04", "27", "31", "34", "42", "43", "54", "71", "92", "94", "100", "123", "128", "131"].forEach(id => {
       vals["bgmS" + id + "Btn"] = bgmOn[id] ? "BGM 일시정지" : "BGM 재생";
       vals["bgmS" + id + "Toggle"] = () => this._toggleSlideBgm(id);
     });
