@@ -881,7 +881,7 @@ a:hover{color:var(--red-300)}
 <div style="font-size:112px;line-height:1;letter-spacing:.04em">☕ 🍪</div>
 <h2 style="margin:0;font-family:var(--font-display);font-weight:900;font-size:138px;line-height:1;letter-spacing:.04em;color:#FFFFFF;text-shadow:rgba(6,7,10,.22) 0 6px 18px">BREAK TIME</h2>
 <div style="width:260px;height:7px;background:var(--red-500);transform:skewX(-9deg)"></div>
-<input aria-label="시간" value="15:00 ~ 15:15" style="width:780px;text-align:center;background:rgba(255,255,255,.78);border-width:medium medium 5px;border-style:none none solid;border-color:currentcolor currentcolor rgba(18,21,26,.35);color:#12151A;font-family:var(--font-numeric);font-weight:900;font-size:84px;letter-spacing:.06em;padding:18px 10px;outline:none">
+<input aria-label="시간" value="10:50 ~ 11:00" style="width:780px;text-align:center;background:rgba(255,255,255,.78);border-width:medium medium 5px;border-style:none none solid;border-color:currentcolor currentcolor rgba(18,21,26,.35);color:#12151A;font-family:var(--font-numeric);font-weight:900;font-size:84px;letter-spacing:.06em;padding:18px 10px;outline:none">
 </section>
 
 <section data-label="CHALLENGE 3" data-speaker-notes="챌린지 2 시작. 반별 아침 조회 장면을 조별로 공유한다." style="background-color:var(--grid-teal);background-image:var(--texture-speedlines),linear-gradient(158deg,#7BE3D0 0%,var(--grid-teal) 48%,#0B8F7E 100%);color:#06070A;font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:32px" data-om-slide-id="0754cc32">
@@ -963,6 +963,38 @@ a:hover{color:var(--red-300)}
 <div style="background:var(--surface-card);display:flex;align-items:center;gap:36px;padding:28px 36px"><span class="apex-eyebrow" style="font-size:24px;color:var(--text-primary);width:180px">지원 확인</span><p style="margin:0;flex:1;font-size:40px;line-height:1.45;color:var(--text-primary)">“기술·일정·고객 안내 중 지금 지원이 필요한 부분이 있나요?”</p></div>
 </div>
 <p style="margin:0;font-size:27px;color:var(--text-muted)"><br></p>
+</section>
+
+<section data-label="SM 인터뷰" data-speaker-notes="SM 인터뷰 영상. 반장님 덕분에 아침에 힘이 나요. '다음으로' 1회 = 재생, 2회 = 일시정지." style="background-color:var(--bg-page);background-image:var(--texture-carbon);color:var(--text-primary);font-family:var(--font-core);padding:36px 48px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:16px" data-om-slide-id="aabb1fc9">
+<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px;width:100%"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">INTERVIEW</span></div>
+<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;line-height:1.1;text-align:center">[영상] SM 인터뷰 <span style="font-size:36px;color:var(--text-muted)">— 반장님 덕분에 아침에 힘이 나요</span></h2>
+<video ref="{{ vid3Ref }}" onPlay="{{ onVid3Play }}" onPause="{{ onVid3Pause }}" src="/host/assets/video-supervisor-interview.mp4" controls="controls" style="width:100%;max-width:1700px;aspect-ratio:16/9;background:#000;border-radius:8px"></video>
+<button type="button" data-build-start="1" onClick="{{ vid3Toggle }}" style="background:transparent;color:var(--text-muted);border:1px solid var(--border-hairline);border-radius:4px;padding:8px 18px;font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:.1em;cursor:pointer">{{ vid3Btn }}</button>
+</section>
+
+<section data-label="M2 WRAP-UP" data-speaker-notes="M2 마무리. 아침 인사로 상태를 확인하고, 반별 아침조회에서 성과와 실행을 맞춘다. 이 10분이 하루의 방향을 정한다." style="background:linear-gradient(103deg,var(--red-700) 0%,var(--red-600) 42%,var(--red-500) 100%);color:var(--white);font-family:var(--font-core);padding:56px 88px;display:flex;flex-direction:column;justify-content:center;gap:34px" data-om-slide-id="22647148">
+<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.28);padding-bottom:16px">
+
+</div>
+<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:88px;line-height:1.05;color:var(--white)">성과와 실행을 맞추는 아침 10분</h2>
+<div style="display:flex;align-items:center;gap:20px"><span style="display:inline-block;width:56px;height:10px;background:var(--white);transform:skewX(-9deg)"></span><p style="margin:0;font-size:44px;color:rgba(255,255,255,.92)">아침 인사로 상태를 확인하고, 조회로 오늘의 기준을 맞춥니다.</p></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px">
+<div style="background:rgba(6,7,10,.34);padding:34px 32px;display:flex;flex-direction:column;gap:14px">
+<span class="apex-num apex-skew" style="display:inline-block;font-size:62px;line-height:.9;color:var(--white)">01</span>
+<p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:44px;line-height:1.2;color:var(--white)">먼저 인사한다</p>
+<p style="margin:0;font-size:34px;line-height:1.5;color:rgba(255,255,255,.88)">눈을 맞추는 한마디가 그날의 관계를 엽니다.</p>
+</div>
+<div style="background:rgba(6,7,10,.34);padding:34px 32px;display:flex;flex-direction:column;gap:14px">
+<span class="apex-num apex-skew" style="display:inline-block;font-size:62px;line-height:.9;color:var(--white)">02</span>
+<p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:44px;line-height:1.2;color:var(--white)">상태를 확인한다</p>
+<p style="margin:0;font-size:34px;line-height:1.5;color:rgba(255,255,255,.88)">표정·말투·행동의 변화를 알아차리고 짧게 묻습니다.</p>
+</div>
+<div style="background:rgba(6,7,10,.34);padding:34px 32px;display:flex;flex-direction:column;gap:14px">
+<span class="apex-num apex-skew" style="display:inline-block;font-size:62px;line-height:.9;color:var(--white)">03</span>
+<p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:44px;line-height:1.2;color:var(--white)">방향을 맞춘다</p>
+<p style="margin:0;font-size:34px;line-height:1.5;color:rgba(255,255,255,.88)">성과·우선순위·업무 배분을 같은<br>그림으로 정리합니다.</p>
+</div>
+</div>
 </section>
 
 <section data-label="M4 CHAPTER" data-speaker-notes="M4 시작. 일과 시간에 숫자를 행동으로 바꾸는 성과관리." style="background:linear-gradient(103deg,var(--red-700) 0%,var(--red-600) 34%,var(--red-500) 68%,#FF3B33 100%);color:var(--white);font-family:var(--font-core);padding:0;display:flex;flex-direction:column;gap:36px;justify-content:center" data-om-slide-id="5571ca5c">
@@ -1123,38 +1155,6 @@ a:hover{color:var(--red-300)}
 <div style="background:var(--surface-card);border-top:6px solid var(--grid-orange);padding:32px;display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:center;gap:14px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:var(--text-primary)">말투</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">대답이 짧다<br>평소보다 날카롭다</p><span style="font-size:120px;line-height:1">🗯️</span></div>
 <div style="background:var(--surface-card);border-top:6px solid var(--grid-orange);padding:32px;display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:center;gap:14px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:var(--text-primary)">행동</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">준비나 실행이 늦다<br>실수가 반복된다</p><span style="font-size:120px;line-height:1">🐢</span></div>
 <div style="background:var(--surface-card);border-top:6px solid var(--grid-orange);padding:32px;display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:center;gap:14px"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;color:var(--text-primary)">관계</p><p style="margin:0;font-size:40px;line-height:1.5;color:var(--text-body)">대화를 피한다<br>혼자 떨어져 있는다</p><span style="font-size:120px;line-height:1">🙅</span></div>
-</div>
-</section>
-
-<section data-label="SM 인터뷰" data-speaker-notes="SM 인터뷰 영상. 반장님 덕분에 아침에 힘이 나요. '다음으로' 1회 = 재생, 2회 = 일시정지." style="background-color:var(--bg-page);background-image:var(--texture-carbon);color:var(--text-primary);font-family:var(--font-core);padding:36px 48px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:16px" data-om-slide-id="aabb1fc9">
-<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px;width:100%"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">INTERVIEW</span></div>
-<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:48px;line-height:1.1;text-align:center">[영상] SM 인터뷰 <span style="font-size:36px;color:var(--text-muted)">— 반장님 덕분에 아침에 힘이 나요</span></h2>
-<video ref="{{ vid3Ref }}" onPlay="{{ onVid3Play }}" onPause="{{ onVid3Pause }}" src="/host/assets/video-supervisor-interview.mp4" controls="controls" style="width:100%;max-width:1700px;aspect-ratio:16/9;background:#000;border-radius:8px"></video>
-<button type="button" data-build-start="1" onClick="{{ vid3Toggle }}" style="background:transparent;color:var(--text-muted);border:1px solid var(--border-hairline);border-radius:4px;padding:8px 18px;font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:.1em;cursor:pointer">{{ vid3Btn }}</button>
-</section>
-
-<section data-label="M2 WRAP-UP" data-speaker-notes="M2 마무리. 아침 인사로 상태를 확인하고, 반별 아침조회에서 성과와 실행을 맞춘다. 이 10분이 하루의 방향을 정한다." style="background:linear-gradient(103deg,var(--red-700) 0%,var(--red-600) 42%,var(--red-500) 100%);color:var(--white);font-family:var(--font-core);padding:56px 88px;display:flex;flex-direction:column;justify-content:center;gap:34px" data-om-slide-id="22647148">
-<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.28);padding-bottom:16px">
-
-</div>
-<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:88px;line-height:1.05;color:var(--white)">성과와 실행을 맞추는 아침 10분</h2>
-<div style="display:flex;align-items:center;gap:20px"><span style="display:inline-block;width:56px;height:10px;background:var(--white);transform:skewX(-9deg)"></span><p style="margin:0;font-size:44px;color:rgba(255,255,255,.92)">아침 인사로 상태를 확인하고, 조회로 오늘의 기준을 맞춥니다.</p></div>
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px">
-<div style="background:rgba(6,7,10,.34);padding:34px 32px;display:flex;flex-direction:column;gap:14px">
-<span class="apex-num apex-skew" style="display:inline-block;font-size:62px;line-height:.9;color:var(--white)">01</span>
-<p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:44px;line-height:1.2;color:var(--white)">먼저 인사한다</p>
-<p style="margin:0;font-size:34px;line-height:1.5;color:rgba(255,255,255,.88)">눈을 맞추는 한마디가 그날의 관계를 엽니다.</p>
-</div>
-<div style="background:rgba(6,7,10,.34);padding:34px 32px;display:flex;flex-direction:column;gap:14px">
-<span class="apex-num apex-skew" style="display:inline-block;font-size:62px;line-height:.9;color:var(--white)">02</span>
-<p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:44px;line-height:1.2;color:var(--white)">상태를 확인한다</p>
-<p style="margin:0;font-size:34px;line-height:1.5;color:rgba(255,255,255,.88)">표정·말투·행동의 변화를 알아차리고 짧게 묻습니다.</p>
-</div>
-<div style="background:rgba(6,7,10,.34);padding:34px 32px;display:flex;flex-direction:column;gap:14px">
-<span class="apex-num apex-skew" style="display:inline-block;font-size:62px;line-height:.9;color:var(--white)">03</span>
-<p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:44px;line-height:1.2;color:var(--white)">방향을 맞춘다</p>
-<p style="margin:0;font-size:34px;line-height:1.5;color:rgba(255,255,255,.88)">성과·우선순위·업무 배분을 같은<br>그림으로 정리합니다.</p>
-</div>
 </div>
 </section>
 
@@ -1976,7 +1976,7 @@ a:hover{color:var(--red-300)}
 <script type="text/x-dc" data-dc-script data-props="{&quot;centerName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;LG전자 서비스센터&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;과정 정보&quot;},&quot;courseDate&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2026. 10.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;과정 정보&quot;},&quot;showAnswers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;진행 옵션&quot;}}">
 /* 기본(원본) 슬라이드 순서 — data-om-slide-id 기준, 135개. 강사가 순서를 바꾸거나
    추가/삭제한 뒤 "화면 순서 기본 버전으로 되돌리기"를 누르면 이 배열로 복원된다. */
-const DEFAULT_SLIDE_ORDER = ["9bc6600a", "ecb6294b", "58f8fcb9", "a0a81a88", "135a3e47", "24cd9bc9", "fb0098e6", "7d5f5596", "03432091", "c051e4a5", "86779f60", "6b87e2c1", "41762336", "f1089a93", "45149e9d", "8f57dd2e", "66e2d046", "718666b2", "ba492d81", "5b62ec01", "b8c3b018", "c3e58b1b", "b04860ae", "7f4f97e6", "16dfb8dd", "16dfb8de", "d19684b9", "46385c9f", "d2q-00", "d2q-01", "d2q-02", "d2q-03", "d2q-04", "d2q-05", "d2q-06", "d2q-07", "d2q-08", "d2q-09", "d2q-10", "d2q-11", "d2q-12", "7dbb704c", "d2w-01", "6b87e2c1-copy1", "c3e58b1b-copy1", "b04860ae-copy1", "46385c9f-copy1", "63b5361a", "22e549ac", "rk-mem-07", "2cce7414", "aed335d0", "rk-mem-08", "d2c-07", "d2c-08", "d2c-09", "d2c-10", "d2c-11", "d2c-12", "d2c-13", "1b51048f", "4e9bd8a1", "9204f0ee", "rk-mem-13", "d2w-break", "0754cc32", "4e459c8e", "bbf0ca49", "a67ec9c7", "491aaa0a", "5571ca5c", "8ff18cc0", "33dc5761", "5d679f49", "d2pr-01", "7870749e", "c0ada2c0", "rk-prep-11", "rk-mem-03", "rk-prep-12", "d2w-lunch", "e4ba0605", "b05cf305", "26fb6ee8", "aabb1fc9", "22647148", "3c611565", "rk-mem-01", "rk-mem-02", "rk-mem-04", "rk-mem-05", "rk-mem-06", "00698745", "rk-prep-10", "6937850d", "14697dfa", "2df8e9ed", "8c411fc9", "ee5f9019", "910e7d53", "92f018b1", "375c084d", "a9f9fcd4", "d1a75637", "8c099017", "3e3fd5a2", "c539e0b0", "9e7946c9", "415bdebe", "c86b914f", "607d99ea", "c62f50b0", "f8bdbf28", "4d9db68f", "46898c0e", "ff317d30", "73be0dbf", "b4e43fba", "d2c-01", "d2c-02", "d2c-03", "d2c-topic1", "d2c-topic2", "d2c-topic3", "d2c-topic4", "d2c-topic5", "d2c-topic6", "d2c-05", "d2c-06", "c98c0e86", "ef2f5aeb", "e464fda6", "37b2e5ac", "ea3e7123", "853a90b6", "300dc922", "b67c0a01", "b3eed1e2", "a1b2c3d4", "18c29f1a", "833f525d", "d2f-01", "d2f-02"];
+const DEFAULT_SLIDE_ORDER = ["9bc6600a", "ecb6294b", "58f8fcb9", "a0a81a88", "135a3e47", "24cd9bc9", "fb0098e6", "7d5f5596", "03432091", "c051e4a5", "86779f60", "6b87e2c1", "41762336", "f1089a93", "45149e9d", "8f57dd2e", "66e2d046", "718666b2", "ba492d81", "5b62ec01", "b8c3b018", "c3e58b1b", "b04860ae", "7f4f97e6", "16dfb8dd", "16dfb8de", "d19684b9", "46385c9f", "d2q-00", "d2q-01", "d2q-02", "d2q-03", "d2q-04", "d2q-05", "d2q-06", "d2q-07", "d2q-08", "d2q-09", "d2q-10", "d2q-11", "d2q-12", "7dbb704c", "d2w-01", "6b87e2c1-copy1", "c3e58b1b-copy1", "b04860ae-copy1", "46385c9f-copy1", "63b5361a", "22e549ac", "rk-mem-07", "2cce7414", "aed335d0", "rk-mem-08", "d2c-07", "d2c-08", "d2c-09", "d2c-10", "d2c-11", "d2c-12", "d2c-13", "1b51048f", "4e9bd8a1", "9204f0ee", "rk-mem-13", "d2w-break", "0754cc32", "4e459c8e", "bbf0ca49", "a67ec9c7", "491aaa0a", "aabb1fc9", "22647148", "5571ca5c", "8ff18cc0", "33dc5761", "5d679f49", "d2pr-01", "7870749e", "c0ada2c0", "rk-prep-11", "rk-mem-03", "rk-prep-12", "d2w-lunch", "e4ba0605", "b05cf305", "26fb6ee8", "3c611565", "rk-mem-01", "rk-mem-02", "rk-mem-04", "rk-mem-05", "rk-mem-06", "00698745", "rk-prep-10", "6937850d", "14697dfa", "2df8e9ed", "8c411fc9", "ee5f9019", "910e7d53", "92f018b1", "375c084d", "a9f9fcd4", "d1a75637", "8c099017", "3e3fd5a2", "c539e0b0", "9e7946c9", "415bdebe", "c86b914f", "607d99ea", "c62f50b0", "f8bdbf28", "4d9db68f", "46898c0e", "ff317d30", "73be0dbf", "b4e43fba", "d2c-01", "d2c-02", "d2c-03", "d2c-topic1", "d2c-topic2", "d2c-topic3", "d2c-topic4", "d2c-topic5", "d2c-topic6", "d2c-05", "d2c-06", "c98c0e86", "ef2f5aeb", "e464fda6", "37b2e5ac", "ea3e7123", "853a90b6", "300dc922", "b67c0a01", "b3eed1e2", "a1b2c3d4", "18c29f1a", "833f525d", "d2f-01", "d2f-02"];
 
 class Component extends DCLogic {
   state = {
