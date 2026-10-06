@@ -2387,6 +2387,7 @@ class Component extends DCLogic {
          몇 번째 자리인지(idx)가 아니라 data-om-slide-id로 식별한다. */
       const slideEl = e.detail && e.detail.slide;
       const sid = (slideEl && slideEl.getAttribute && slideEl.getAttribute("data-om-slide-id")) || "";
+      this._curSid = sid;
       /* 영상 슬라이드를 벗어나면 그 영상은 무조건 정지한다(가끔 뒤에서 계속 재생되는 문제 방지).
          현재 슬라이드 안에 있는 video는 그대로 두고, 그 밖의 모든 video만 멈춘다. */
       document.querySelectorAll("video").forEach(v => {
@@ -2398,8 +2399,7 @@ class Component extends DCLogic {
          141~142번(1% 매일의 성장 ~ THANK YOU) 구간도 별도 START/STOP 구간 로직으로 관리되므로
          이 구간 안에서는 건드리지 않는다. */
       const GENERAL_BGM_REGION = { "d2f-01": 1, "thank-you-01": 1 };
-      const hasOwnBgmTrigger = slideEl && Array.from(slideEl.querySelectorAll("button.export-hidden")).some(b => /🎵|^play$/.test((b.textContent || "").trim()));
-      if (!hasOwnBgmTrigger && !GENERAL_BGM_REGION[sid] && this._generalBgm && !this._generalBgm.paused) this._stopGeneralBgm();
+      if (this._generalBgm && !this._generalBgm.paused && this._generalOwner !== sid && !GENERAL_BGM_REGION[sid]) this._stopGeneralBgm();
       /* 교육생 입장 안내 슬라이드에 들어서면 자동 전체화면, 강사 로그인 슬라이드로 돌아오면 해제 */
       if (sid === "ecb6294b" && !document.fullscreenElement && document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen().catch(() => {});
@@ -2413,8 +2413,21 @@ class Component extends DCLogic {
          동일한 볼륨으로 시작, d2c-05 입장 시 정지. */
       const GAME_BGM_START = { "d2q-00": 1, "d2q-03": 1, "d2q-05": 1, "d2q-07": 1, "d2q-09": 1, "d2c-topic1": 1, "d2cup-02": 1 };
       const GAME_BGM_STOP = ["d2q-02", "d2q-04", "d2q-06", "d2q-08", "d2q-10", "d2c-05", "a67ec9c7"];
-      if (GAME_BGM_START[sid] !== undefined) this._playGameBgm(GAME_BGM_START[sid]);
+      if (GAME_BGM_START[sid] !== undefined) { this._gameTimer = false; this._playGameBgm(GAME_BGM_START[sid]); }
       if (GAME_BGM_STOP.indexOf(sid) >= 0) this._stopGameBgm();
+      /* 직접 끄지 않는 한 계속 반복 재생하되, 지정한 게임 구간(시작~정지 슬라이드 사이)을 벗어나면 페이지 이동 시 자동 정지.
+         타이머로 켠 게임 BGM은 해당 타이머 슬라이드(TIMER 02/03)를 벗어나면 정지한다. */
+      if (this._gameWant) {
+        if (this._gameTimer) {
+          if (sid !== "ba492d81" && sid !== "5b62ec01") { this._gameTimer = false; this._stopGameBgm(); }
+        } else {
+          const ids = Array.from(document.querySelectorAll("deck-stage > section")).map(s => s.getAttribute("data-om-slide-id"));
+          const cur = ids.indexOf(sid);
+          const REGIONS = [["d2q-00", "d2q-02"], ["d2q-03", "d2q-04"], ["d2q-05", "d2q-06"], ["d2q-07", "d2q-08"], ["d2q-09", "d2q-10"], ["d2c-topic1", "d2c-05"], ["d2cup-02", "a67ec9c7"]];
+          const inRegion = REGIONS.some(([a, b]) => { const si = ids.indexOf(a), ei = ids.indexOf(b); return si >= 0 && cur >= si && (ei < 0 || cur < ei); });
+          if (!inRegion) this._stopGameBgm();
+        }
+      }
       /* 일반 BGM 자동 시작/정지: "1% 매일의 성장"(d2f-01) 입장과 동시에 시작해
          "THANK YOU"(thank-you-01)까지 계속 재생되고, 그다음 슬라이드(d2f-02, 스티븐 코비
          인용) 입장 시 정지한다. */
@@ -2707,6 +2720,7 @@ class Component extends DCLogic {
   }
   _playGeneralBgm(file) {
     this._generalWant = true;
+    this._generalOwner = this._curSid;
     const el = this._generalBgm; if (!el) return;
     const full = "/host/assets/" + file;
     if (el.getAttribute("data-src") !== full) { el.src = full; el.setAttribute("data-src", full); }
@@ -2728,7 +2742,7 @@ class Component extends DCLogic {
     };
     const cfg = map[k];
     if (!cfg) return;
-    if (cfg.type === "game") { running ? this._playGameBgm() : this._stopGameBgm(); }
+    if (cfg.type === "game") { if (running) { this._gameTimer = true; this._playGameBgm(); } else { this._gameTimer = false; this._stopGameBgm(); } }
     else { running ? this._playGeneralBgm(cfg.src) : this._stopGeneralBgm(); }
   }
   /* 단순 토글형 일반 BGM 슬라이드(다음으로 1회=재생, 2회=정지) */
