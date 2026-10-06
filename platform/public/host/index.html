@@ -1526,9 +1526,8 @@ a:hover{color:var(--red-300)}
 </div>
 </section>
 
-<section data-label="AI 코치 가이드 3 저장과 유의사항" data-speaker-notes="리더십 플랜을 이미지로 저장하고, 다음 구성원도 같은 방법으로 반복한다. 입력 시 유의사항을 함께 안내한다. 다음으로 1회=저장 영역, 2회=입력 유의 영역 등장. 첫 다음으로에서 BGM이 시작되어 슬라이드를 넘길 때까지 반복된다." style="background-color:var(--bg-page);background-image:var(--texture-speedlines);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:30px;word-break:keep-all" data-om-slide-id="ai-guide-3">
+<section data-label="AI 코치 가이드 3 저장과 유의사항" data-speaker-notes="리더십 플랜을 이미지로 저장하고, 다음 구성원도 같은 방법으로 반복한다. 입력 시 유의사항을 함께 안내한다. 다음으로 1회=저장 영역, 2회=입력 유의 영역 등장. BGM은 109번 진입 시 시작해 110번에서 마지막 다음으로를 누르면 꺼진다." style="background-color:var(--bg-page);background-image:var(--texture-speedlines);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:30px;word-break:keep-all" data-om-slide-id="ai-guide-3">
 <div style="position:absolute;top:0;right:0;display:flex;align-items:flex-start;z-index:3"><div style="background:#FFD400;color:#06070A;font-weight:800;font-size:27px;padding:16px 28px;white-space:nowrap">모바일 접속 QR</div><div style="background:#fff;padding:9px;line-height:0"><img class="lgws-qr-lg" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="교육생 입장 QR" style="width:180px;height:180px;display:block"></div></div>
-<button type="button" data-build-start="1" data-build-timer="1:start" onClick="{{ bgmS100Toggle }}" class="export-hidden" style="display:none">🎵 {{ bgmS100Btn }}</button>
 <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:14px"><span class="apex-eyebrow" style="font-size:27px;color:var(--grid-teal)">AI COACH GUIDE 3 / 3 · 마무리</span></div>
 <h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:72px;line-height:1.1">저장하고, 이렇게 입력해 주세요</h2>
 <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:28px">
@@ -1542,7 +1541,7 @@ a:hover{color:var(--red-300)}
 <p style="margin:0;font-size:38px;line-height:1.45;color:var(--white)">‘소극적이다’ 대신 <span style="color:var(--red-400);font-weight:700">실제로 본 행동</span>을 적어요.</p>
 <p style="margin:0;font-size:38px;line-height:1.45;color:var(--white)"><span style="color:var(--red-400);font-weight:700">구체적이고 자세하게</span> 적을수록,<br>양질의 솔루션이 나와요.</p>
 <p style="margin:0;font-size:38px;line-height:1.45;color:var(--white)">AI 의견은 <span style="color:var(--red-400);font-weight:700">참고용</span>이며,<br>실제 판단과 실행은 반장님이 해요.</p>
-<p style="margin:0;font-size:32px;line-height:1.45;color:var(--text-muted)">입력 내용은 이 기기에만 저장돼요.</p></div>
+</div>
 </div>
 </section>
 
@@ -2220,7 +2219,7 @@ class Component extends DCLogic {
          게임 BGM(_gameBgm)은 별도 START/STOP 구간 로직으로 관리되므로 여기서 손대지 않는다.
          141~142번(1% 매일의 성장 ~ THANK YOU) 구간도 별도 START/STOP 구간 로직으로 관리되므로
          이 구간 안에서는 건드리지 않는다. */
-      const GENERAL_BGM_REGION = { "d2f-01": 1, "thank-you-01": 1 };
+      const GENERAL_BGM_REGION = { "d2f-01": 1, "thank-you-01": 1, "ai-guide-2": 1, "ai-guide-3": 1 };
       if (this._generalBgm && !this._generalBgm.paused && this._generalOwner !== sid && !GENERAL_BGM_REGION[sid]) { this._stopGeneralBgm(); this.setState({ bgmOn: {} }); }
       /* 교육생 입장 안내 슬라이드에 들어서면 자동 전체화면, 강사 로그인 슬라이드로 돌아오면 해제 */
       if (sid === "ecb6294b" && !document.fullscreenElement && document.documentElement.requestFullscreen) {
@@ -2254,6 +2253,8 @@ class Component extends DCLogic {
          "THANK YOU"(thank-you-01)까지 계속 재생되고, 그다음 슬라이드(d2f-02, 스티븐 코비
          인용) 입장 시 정지한다. */
       if (sid === "d2f-01" && (!this._generalBgm || this._generalBgm.paused)) this._playGeneralBgm("general-bgm-s141.mp3");
+      /* AI 리더십 코치 가이드: 109번(ai-guide-2) 진입 시 시작, 110번(ai-guide-3)까지 유지, 110번에서 다음 슬라이드로 넘어가면 정지(구간 밖 자동 정지) */
+      if (sid === "ai-guide-2" && (!this._generalBgm || this._generalBgm.paused)) this._playGeneralBgm("general-bgm-s100.mp3");
       if (sid === "d2f-02") this._stopGeneralBgm();
       /* AI 리더십 코치 잠금 해제: 강사가 100번 슬라이드(607d99ea, M5 입구)에 들어서면
          이 차수의 coach 페이지 진입 잠금을 연다. 한 번 열리면 계속 열려 있다. */
