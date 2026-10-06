@@ -2120,6 +2120,8 @@ class Component extends DCLogic {
     this._startLive();
     /* BGM 끊김 방지: 재생이 켜져 있어야 하는 동안(타이머 진행 등)에는 예기치 않게 멈추거나 끝나도 곧바로 이어서 다시 재생한다 */
     this._bgmWatch = setInterval(() => {
+      if (this._gameBgm) this._gameBgm.loop = true;
+      if (this._generalBgm) this._generalBgm.loop = true;
       if (this._gameWant && this._gameBgm && this._gameBgm.paused) this._gameBgm.play().catch(() => {});
       if (this._generalWant && this._generalBgm && this._generalBgm.paused) this._generalBgm.play().catch(() => {});
     }, 800);
