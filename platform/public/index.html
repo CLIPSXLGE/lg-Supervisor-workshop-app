@@ -1555,8 +1555,8 @@ script는 위 대화 목적에 맞는 모델로 씁니다. script2는 반드시 
     if (!ms.length) { this._coachFlash("저장할 구성원이 없습니다."); return; }
     const esc = v => String(v == null ? "" : v).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\r?\n/g, "<br>");
     const head = ["NO", "이니셜", "유형", "역량", "동기", "관찰한 긍정 행동", "관찰한 아쉬운 행동",
-      "지금 필요한 리더십", "선택한 접근", "AI 의견 · 좋은 출발점", "AI 의견 · 확인해볼 것", "AI 의견 · 놓치고 있을 수 있는 관점"];
-    const W = [40, 70, 110, 50, 50, 260, 260, 200, 280, 260, 260, 260];
+      "선택한 접근", "AI 의견 · 좋은 출발점", "AI 의견 · 확인해볼 것", "AI 의견 · 놓치고 있을 수 있는 관점"];
+    const W = [40, 70, 110, 50, 50, 260, 260, 280, 260, 260, 260];
     const now = new Date();
     const stamp = `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, "0")}.${String(now.getDate()).padStart(2, "0")}`;
 
@@ -1573,7 +1573,6 @@ ${cell(m.comp, "center")}
 ${cell(m.moti, "center")}
 ${cell(m.good)}
 ${cell(m.bad)}
-${cell((m.needs || []).join("\n"))}
 ${cell((m.chosen || []).map(x => x.title + ": " + x.text).join("\n"))}
 ${cell(m.ai ? m.ai.good || "" : "")}
 ${cell(m.ai ? m.ai.check || "" : "")}
