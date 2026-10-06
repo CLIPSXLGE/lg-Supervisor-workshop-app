@@ -1503,7 +1503,6 @@ a:hover{color:var(--red-300)}
 </section>
 
 <section data-label="AI 실습" data-speaker-notes="AI 실습 진행. 실습 도구와 절차는 현장 안내." style="background-color:var(--bg-page);background-image:var(--texture-speedlines);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:32px" data-om-slide-id="607d99ea" data-lgws-badge>
-<button type="button" data-build-start="1" onClick="{{ bgmS100Toggle }}" class="export-hidden" style="display:none">🎵 {{ bgmS100Btn }}</button>
 <span class="apex-eyebrow" style="font-size:24px;color:var(--grid-teal)">AI PRACTICE</span>
 <h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:130px;line-height:.98"><span style="color:var(--grid-teal)">AI 리더십 코치</span>와 함께하는&nbsp;<br>SM별 리더십 전략 수립</h2>
 </section>
@@ -1526,6 +1525,7 @@ a:hover{color:var(--red-300)}
 </section>
 
 <section data-label="AI 코치 가이드 3 저장과 유의사항" data-speaker-notes="리더십 플랜을 이미지로 저장하고, 다음 구성원도 같은 방법으로 반복한다. 입력 시 유의사항을 함께 안내한다." style="background-color:var(--bg-page);background-image:var(--texture-speedlines);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:30px;word-break:keep-all" data-om-slide-id="ai-guide-3">
+<button type="button" data-build-start="1" onClick="{{ bgmS100Toggle }}" class="export-hidden" style="display:none">🎵 {{ bgmS100Btn }}</button>
 <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:40px"><div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:30px"><div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:14px"><span class="apex-eyebrow" style="font-size:27px;color:var(--grid-teal)">AI COACH GUIDE 3 / 3 · 마무리</span></div>
 <h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:72px;line-height:1.1">저장하고, 이렇게 입력해 주세요</h2></div><div style="flex:none;background:#fff;padding:12px 12px 10px;border-radius:6px;display:flex;flex-direction:column;align-items:center;gap:6px"><img class="lgws-qr-lg" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="교육생 입장 QR" style="width:240px;height:240px;display:block"><span style="font-weight:800;font-size:26px;line-height:1;color:#06070A;white-space:nowrap">모바일 접속 QR</span></div></div>
 <div style="display:grid;grid-template-columns:1.1fr 1fr;gap:28px">
@@ -2218,7 +2218,7 @@ class Component extends DCLogic {
          141~142번(1% 매일의 성장 ~ THANK YOU) 구간도 별도 START/STOP 구간 로직으로 관리되므로
          이 구간 안에서는 건드리지 않는다. */
       const GENERAL_BGM_REGION = { "d2f-01": 1, "thank-you-01": 1 };
-      if (this._generalBgm && !this._generalBgm.paused && this._generalOwner !== sid && !GENERAL_BGM_REGION[sid]) this._stopGeneralBgm();
+      if (this._generalBgm && !this._generalBgm.paused && this._generalOwner !== sid && !GENERAL_BGM_REGION[sid]) { this._stopGeneralBgm(); this.setState({ bgmOn: {} }); }
       /* 교육생 입장 안내 슬라이드에 들어서면 자동 전체화면, 강사 로그인 슬라이드로 돌아오면 해제 */
       if (sid === "ecb6294b" && !document.fullscreenElement && document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen().catch(() => {});
