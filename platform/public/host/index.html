@@ -3111,8 +3111,8 @@ class Component extends DCLogic {
       vals[k + "Toggle"] = () => this._toggle(k, total);
       vals[k + "Reset"] = () => this._reset(k, total);
     });
-    vals.gameBgmRef = el => { this._gameBgm = el; if (el && !el.__loopFix) { el.__loopFix = 1; el.addEventListener("ended", () => { el.currentTime = 0; if (this._gameWant) el.play().catch(() => {}); }); } };
-    vals.generalBgmRef = el => { this._generalBgm = el; if (el && !el.__loopFix) { el.__loopFix = 1; el.addEventListener("ended", () => { el.currentTime = 0; if (this._generalWant) el.play().catch(() => {}); }); } };
+    vals.gameBgmRef = el => { this._gameBgm = el; if (el) el.loop = true; if (el && !el.__loopFix) { el.__loopFix = 1; el.addEventListener("ended", () => { el.currentTime = 0; if (this._gameWant) el.play().catch(() => {}); }); } };
+    vals.generalBgmRef = el => { this._generalBgm = el; if (el) el.loop = true; if (el && !el.__loopFix) { el.__loopFix = 1; el.addEventListener("ended", () => { el.currentTime = 0; if (this._generalWant) el.play().catch(() => {}); }); } };
     const bgmOn = this.state.bgmOn || {};
     ["04", "27", "31", "34", "42", "43", "54", "71", "92", "94", "100", "123", "128", "131"].forEach(id => {
       vals["bgmS" + id + "Btn"] = bgmOn[id] ? "BGM 일시정지" : "BGM 재생";
