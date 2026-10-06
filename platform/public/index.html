@@ -293,51 +293,9 @@ input,textarea,button{font-family:var(--font-core)}
 <span class="apex-eyebrow" style="font-size:11px;color:var(--grid-yellow)">개인정보 안내</span>
 <p style="margin:0;font-size:13px;line-height:1.6;color:var(--text-body)">· 구성원 실명 대신 이니셜 또는 별칭을 사용하세요.<br>· 실제 관찰한 업무 행동 중심으로 입력하세요.<br>· 입력 내용은 이 기기에만 저장됩니다.</p>
 </div>
-<button type="button" onClick="{{ goGuide }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:17px;font-family:var(--font-display);font-weight:700;font-size:17px;letter-spacing:.08em;cursor:pointer;min-height:54px">활용 가이드 보기 (3장)</button>
-<button type="button" onClick="{{ goHome }}" style="background:transparent;color:var(--text-muted);border:1px solid var(--border-hairline);border-radius:4px;padding:12px;font-size:13px;cursor:pointer;min-height:44px">가이드 건너뛰고 시작</button>
+<button type="button" onClick="{{ goHome }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:17px;font-family:var(--font-display);font-weight:700;font-size:17px;letter-spacing:.08em;cursor:pointer;min-height:54px">시작하기</button>
 </div>
 </sc-if>
-
-<sc-if value="{{ isG1 }}" hint-placeholder-val="{{ false }}">
-<div style="display:flex;flex-direction:column;gap:18px;padding:22px 16px 8px">
-<div style="display:flex;gap:6px"><span style="flex:1;height:4px;border-radius:2px;background:{{ gb0 }}"></span><span style="flex:1;height:4px;border-radius:2px;background:{{ gb1 }}"></span><span style="flex:1;height:4px;border-radius:2px;background:{{ gb2 }}"></span></div>
-<div style="display:flex;flex-direction:column;gap:12px"><span class="apex-eyebrow" style="font-size:12px;color:var(--red-500)">GUIDE 1 / 3 · 어떤 도구인가요?</span><h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:28px;line-height:1.15;color:var(--white);word-break:keep-all">이런 때 열어보세요</h1></div>
-<p style="margin:0;font-size:16px;line-height:1.6;color:var(--text-primary);word-break:keep-all">‘이 반원에게 지금 어떤 리더십이 필요할까?’ 고민될 때, 생각을 함께 정리해 주는 코치입니다.</p>
-<div style="background:var(--surface-card);border-left:5px solid var(--red-500);padding:16px;display:flex;flex-direction:column;gap:14px">
-<div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:700;font-size:15px;color:var(--white)">평가 도구가 아니에요</span><span style="font-size:14px;line-height:1.55;color:var(--text-body);word-break:keep-all">최근 관찰한 행동을 정리하면서 내 판단을 점검하는 도구예요.</span></div><div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:700;font-size:15px;color:var(--white)">결과물이 남아요</span><span style="font-size:14px;line-height:1.55;color:var(--text-body);word-break:keep-all">우리 반 구성원 Map과 구성원별 리더십 플랜이 만들어져요.</span></div><div style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:700;font-size:15px;color:var(--white)">AI는 참고용이에요</span><span style="font-size:14px;line-height:1.55;color:var(--text-body);word-break:keep-all">AI 의견은 정답이 아니라 판단을 넓히는 힌트예요. 결정은 반장님이 해요.</span></div>
-</div>
-<div style="background:var(--surface-inset);border:1px solid var(--border-hairline);padding:15px;display:flex;flex-direction:column;gap:8px">
-<span class="apex-eyebrow" style="font-size:11px;color:var(--grid-yellow)">시작 전 준비</span>
-<p style="margin:0;font-size:13px;line-height:1.6;color:var(--text-body);word-break:keep-all">· 지금 고민되는 구성원 1명 (이니셜 또는 별칭)<br>· 그 구성원이 최근 1년간 실제로 보인 행동</p>
-</div>
-<button type="button" onClick="{{ guideNext }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:17px;font-family:var(--font-display);font-weight:700;font-size:17px;letter-spacing:.08em;cursor:pointer;min-height:54px">다음</button>
-<button type="button" onClick="{{ guideSkip }}" style="background:transparent;color:var(--text-muted);border:1px solid var(--border-hairline);border-radius:4px;padding:12px;font-size:13px;cursor:pointer;min-height:44px">가이드 건너뛰고 시작</button>
-</div>
-</sc-if>
-
-<sc-if value="{{ isG2 }}" hint-placeholder-val="{{ false }}">
-<div style="display:flex;flex-direction:column;gap:16px;padding:22px 16px 8px">
-<div style="display:flex;gap:6px"><span style="flex:1;height:4px;border-radius:2px;background:{{ gb0 }}"></span><span style="flex:1;height:4px;border-radius:2px;background:{{ gb1 }}"></span><span style="flex:1;height:4px;border-radius:2px;background:{{ gb2 }}"></span></div>
-<div style="display:flex;flex-direction:column;gap:12px"><span class="apex-eyebrow" style="font-size:12px;color:var(--red-500)">GUIDE 2 / 3 · 진행 방법</span><h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:28px;line-height:1.15;color:var(--white);word-break:keep-all">이렇게 진행돼요</h1></div>
-<div style="display:flex;flex-direction:column;gap:8px">
-<div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--surface-card);border:1px solid var(--border-hairline)"><span class="apex-num apex-skew" style="font-size:22px;line-height:1.1;color:var(--red-500);width:22px;flex:none">1</span><div style="display:flex;flex-direction:column;gap:3px"><span style="font-weight:700;font-size:15px;color:var(--white)">대상 고르기</span><span style="font-size:13px;line-height:1.5;color:var(--text-body);word-break:keep-all">고민되는 구성원 한 명의 이니셜(별칭)을 입력해요.</span></div></div><div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--surface-card);border:1px solid var(--border-hairline)"><span class="apex-num apex-skew" style="font-size:22px;line-height:1.1;color:var(--red-500);width:22px;flex:none">2</span><div style="display:flex;flex-direction:column;gap:3px"><span style="font-weight:700;font-size:15px;color:var(--white)">역량·동기 점수</span><span style="font-size:13px;line-height:1.5;color:var(--text-body);word-break:keep-all">업무 수행 수준과 일에 몰입하는 정도를 1~10에서 골라요. 진단이 아니라 ‘지금의 위치’예요.</span></div></div><div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--surface-card);border:1px solid var(--border-hairline)"><span class="apex-num apex-skew" style="font-size:22px;line-height:1.1;color:var(--red-500);width:22px;flex:none">3</span><div style="display:flex;flex-direction:column;gap:3px"><span style="font-weight:700;font-size:15px;color:var(--white)">관찰한 사실 적기</span><span style="font-size:13px;line-height:1.5;color:var(--text-body);word-break:keep-all">긍정적으로 보는 모습, 아쉬운 모습, 최근 모습을 고르고 실제로 본 행동을 한 줄로 적어요.</span></div></div><div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--surface-card);border:1px solid var(--border-hairline)"><span class="apex-num apex-skew" style="font-size:22px;line-height:1.1;color:var(--red-500);width:22px;flex:none">4</span><div style="display:flex;flex-direction:column;gap:3px"><span style="font-weight:700;font-size:15px;color:var(--white)">상태 확인</span><span style="font-size:13px;line-height:1.5;color:var(--text-body);word-break:keep-all">입력한 내용으로 가까운 유형과 지금의 리더십 초점을 확인해요.</span></div></div><div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--surface-card);border:1px solid var(--border-hairline)"><span class="apex-num apex-skew" style="font-size:22px;line-height:1.1;color:var(--red-500);width:22px;flex:none">5</span><div style="display:flex;flex-direction:column;gap:3px"><span style="font-weight:700;font-size:15px;color:var(--white)">AI 의견 받기</span><span style="font-size:13px;line-height:1.5;color:var(--text-body);word-break:keep-all">좋은 출발점, 한 번 더 확인할 점, 놓치고 있을 수 있는 관점을 받아봐요.</span></div></div><div style="display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--surface-card);border:1px solid var(--border-hairline)"><span class="apex-num apex-skew" style="font-size:22px;line-height:1.1;color:var(--red-500);width:22px;flex:none">6</span><div style="display:flex;flex-direction:column;gap:3px"><span style="font-weight:700;font-size:15px;color:var(--white)">전략 고르고 저장</span><span style="font-size:13px;line-height:1.5;color:var(--text-body);word-break:keep-all">추천 전략 중 맞는 것을 고르거나 고쳐서 리더십 플랜을 완성해요.</span></div></div>
-</div>
-<button type="button" onClick="{{ guideNext }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:17px;font-family:var(--font-display);font-weight:700;font-size:17px;letter-spacing:.08em;cursor:pointer;min-height:54px">다음</button>
-<button type="button" onClick="{{ guideSkip }}" style="background:transparent;color:var(--text-muted);border:1px solid var(--border-hairline);border-radius:4px;padding:12px;font-size:13px;cursor:pointer;min-height:44px">가이드 건너뛰고 시작</button>
-</div>
-</sc-if>
-
-<sc-if value="{{ isG3 }}" hint-placeholder-val="{{ false }}">
-<div style="display:flex;flex-direction:column;gap:16px;padding:22px 16px 8px">
-<div style="display:flex;gap:6px"><span style="flex:1;height:4px;border-radius:2px;background:{{ gb0 }}"></span><span style="flex:1;height:4px;border-radius:2px;background:{{ gb1 }}"></span><span style="flex:1;height:4px;border-radius:2px;background:{{ gb2 }}"></span></div>
-<div style="display:flex;flex-direction:column;gap:12px"><span class="apex-eyebrow" style="font-size:12px;color:var(--red-500)">GUIDE 3 / 3 · 잘 쓰는 방법</span><h1 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:28px;line-height:1.15;color:var(--white);word-break:keep-all">이렇게 쓰면 더 좋아요</h1></div>
-<div style="display:flex;flex-direction:column;gap:8px">
-<div style="display:flex;flex-direction:column;gap:4px;padding:13px 14px;background:var(--surface-card);border-left:5px solid var(--grid-yellow)"><span style="font-weight:700;font-size:15px;color:var(--white)">‘성격’ 말고 ‘행동’으로 적어요</span><span style="font-size:13px;line-height:1.55;color:var(--text-body);word-break:keep-all">‘소극적이다’ 대신 ‘회의에서 의견을 묻기 전에는 먼저 말하지 않는다’처럼 실제로 본 행동을 적어요.</span></div><div style="display:flex;flex-direction:column;gap:4px;padding:13px 14px;background:var(--surface-card);border-left:5px solid var(--grid-yellow)"><span style="font-weight:700;font-size:15px;color:var(--white)">결과는 저장해서 가져가세요</span><span style="font-size:13px;line-height:1.55;color:var(--text-body);word-break:keep-all">구성원별 리더십 플랜은 이미지(PNG)로, 우리 반 전체 분석은 홈 화면에서 엑셀로 내려받을 수 있어요.</span></div><div style="display:flex;flex-direction:column;gap:4px;padding:13px 14px;background:var(--surface-card);border-left:5px solid var(--grid-yellow)"><span style="font-weight:700;font-size:15px;color:var(--white)">이니셜만, 이 기기에만</span><span style="font-size:13px;line-height:1.55;color:var(--text-body);word-break:keep-all">실명 대신 이니셜을 쓰고, 입력 내용은 이 기기에만 저장돼요. 다른 기기에서는 보이지 않아요.</span></div><div style="display:flex;flex-direction:column;gap:4px;padding:13px 14px;background:var(--surface-card);border-left:5px solid var(--grid-yellow)"><span style="font-weight:700;font-size:15px;color:var(--white)">시간이 지나면 다시 살펴봐요</span><span style="font-size:13px;line-height:1.55;color:var(--text-body);word-break:keep-all">역량과 동기는 상황에 따라 달라져요. 오늘의 결과는 현재의 가설이니, 변화가 보이면 다시 정리해 보세요.</span></div>
-</div>
-<button type="button" onClick="{{ guideNext }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:17px;font-family:var(--font-display);font-weight:700;font-size:17px;letter-spacing:.08em;cursor:pointer;min-height:54px">시작하기</button>
-</div>
-</sc-if>
-
 
 <sc-if value="{{ isHome }}" hint-placeholder-val="{{ false }}">
 <div style="display:flex;flex-direction:column;gap:16px;padding:20px 16px 8px">
@@ -372,7 +330,6 @@ input,textarea,button{font-family:var(--font-core)}
 </div>
 
 <button type="button" onClick="{{ goDeepStart }}" style="background:var(--red-500);color:#FFFFFF;border:0;border-radius:4px;padding:16px;font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:.06em;cursor:pointer;min-height:52px">AI와 함께 구성원 개인별 분석하기</button>
-<button type="button" onClick="{{ goGuide }}" style="background:transparent;color:var(--text-muted);border:1px solid var(--border-hairline);border-radius:4px;padding:12px;font-size:13px;cursor:pointer;min-height:44px">AI 리더십 코치 활용 가이드 보기</button>
 
 <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ true }}">
 <div style="border:1px dashed var(--border-strong);padding:24px 16px;text-align:center;display:flex;flex-direction:column;gap:6px">
@@ -1683,18 +1640,13 @@ ${tr}
     const qT = q.comp && q.moti ? COACH_TYPES[this._coachClassify(q.comp, q.moti).key] : null;
 
     const vals = {
-      isGuide: sc === "guide", isG1: sc === "guide" && (st.gp || 0) === 0, isG2: sc === "guide" && st.gp === 1, isG3: sc === "guide" && st.gp === 2,
-      gb0: "var(--red-500)", gb1: (st.gp || 0) >= 1 ? "var(--red-500)" : "var(--border-hairline)", gb2: (st.gp || 0) >= 2 ? "var(--red-500)" : "var(--border-hairline)",
-      goGuide: () => goto("guide", { gp: 0 }),
-      guideNext: () => { const p = st.gp || 0; if (p < 2) goto("guide", { gp: p + 1 }); else goto("home"); },
-      guideSkip: () => goto("home"),
       isIntro: sc === "intro", isHome: sc === "home", isPick: sc === "pick", isObs: sc === "obs",
       isScore: sc === "score", isState: sc === "state", isHypo: sc === "hypo", isAi: sc === "ai",
       isStrat: sc === "strat", toStrat: () => goto("strat"),
       isPurpose: sc === "purpose", isTalk: sc === "talk", isPlan: sc === "plan", isQuick: sc === "quick",
       isMember: sc === "member", isFinal: sc === "final",
       backVis: sc === "intro" ? "hidden" : "visible",
-      back: () => { if (sc === "guide") { const p = st.gp || 0; if (p > 0) goto("guide", { gp: p - 1 }); else goto("intro"); } else goto(backTo[sc] || "home"); },
+      back: () => goto(backTo[sc] || "home"),
       goHome: () => goto("home"),
       goFinal: () => goto("final"),
       goQuick: () => goto("quick", { q: { ini: "", behavior: "", comp: 0, moti: 0, needs: [], needEtc: "", change: "" } }),
@@ -1907,7 +1859,7 @@ ${tr}
         : "선택한 전략과 대화 목적을 AIT/AID 대본으로 바꾸는 중입니다.",
       toast: st.toast,
     };
-    const FWD = { intro: "goGuide", guide: "guideNext", home: "goDeepStart", pick: "toScoreFirst", score: "toObs", obs: "toState", state: "runAi",
+    const FWD = { intro: "goHome", home: "goDeepStart", pick: "toScoreFirst", score: "toObs", obs: "toState", state: "runAi",
       ai: "toStrat", strat: "savePlan", plan: "goHome",
       member: "goHome", final: "goHome" };
     vals.fwdVis = FWD[sc] ? "visible" : "hidden";
