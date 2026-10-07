@@ -1049,6 +1049,7 @@ a:hover{color:var(--red-300)}
 </section>
 
 <section data-label="Wrap-up 팀 특징" data-speaker-notes="챌린지 마무리 질문. 활동 중 우리 팀이 보였던 특징을 나눈다." style="background-color:var(--bg-page);background-image:var(--texture-carbon);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:56px" data-om-slide-id="wrapup-team">
+<button type="button" data-build-start="1" onClick="{{ bgmS77Toggle }}" class="export-hidden" style="display:none">🎵 {{ bgmS77Btn }}</button>
 <h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:72px;line-height:1.1;text-align:center;color:var(--grid-yellow)">Wrap-up</h2>
 <p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:96px;line-height:1.4;color:var(--white);text-align:center;max-width:1700px;word-break:keep-all">활동 중 우리 팀이 보였던 특징은?</p>
 </section>
@@ -2000,7 +2001,7 @@ class Component extends DCLogic {
         for (const k in t) {
           if (!t[k].run) continue;
           const lim = t[k].total || 0;
-          if (t[k].left + 1 < lim) { t[k] = { ...t[k], left: t[k].left + 1 }; changed = true; }
+          if (k !== "t4" || t[k].left + 1 < lim) { t[k] = { ...t[k], left: t[k].left + 1 }; changed = true; }
           else { t[k] = { ...t[k], left: lim, run: false }; changed = true; this._timerBgmSync(k, false); }
         }
         return changed ? { t } : null;
@@ -2235,7 +2236,7 @@ class Component extends DCLogic {
          (d2q-02/04/06/08/10)로 넘어가면 정지. 제시어 게임(d2c-topic1)은 입장 시 다른 페이지와
          동일한 볼륨으로 시작, d2c-05 입장 시 정지. */
       const GAME_BGM_START = { "d2q-00": 1, "d2q-03": 1, "d2q-05": 1, "d2q-07": 1, "d2q-09": 1, "d2c-topic1": 1, "d2cup-02": 1 };
-      const GAME_BGM_STOP = ["d2q-02", "d2q-04", "d2q-06", "d2q-08", "d2q-10", "d2c-05", "a67ec9c7"];
+      const GAME_BGM_STOP = ["d2q-02", "d2q-04", "d2q-06", "d2q-08", "d2q-10", "d2c-05", "wrapup-team", "a67ec9c7"];
       if (GAME_BGM_START[sid] !== undefined) { this._gameTimer = false; this._playGameBgm(GAME_BGM_START[sid]); }
       if (GAME_BGM_STOP.indexOf(sid) >= 0) this._stopGameBgm();
       /* 직접 끄지 않는 한 계속 반복 재생하되, 지정한 게임 구간(시작~정지 슬라이드 사이)을 벗어나면 페이지 이동 시 자동 정지.
@@ -2246,7 +2247,7 @@ class Component extends DCLogic {
         } else {
           const ids = Array.from(document.querySelectorAll("deck-stage > section")).map(s => s.getAttribute("data-om-slide-id"));
           const cur = ids.indexOf(sid);
-          const REGIONS = [["d2q-00", "d2q-02"], ["d2q-03", "d2q-04"], ["d2q-05", "d2q-06"], ["d2q-07", "d2q-08"], ["d2q-09", "d2q-10"], ["d2c-topic1", "d2c-05"], ["d2cup-02", "a67ec9c7"]];
+          const REGIONS = [["d2q-00", "d2q-02"], ["d2q-03", "d2q-04"], ["d2q-05", "d2q-06"], ["d2q-07", "d2q-08"], ["d2q-09", "d2q-10"], ["d2c-topic1", "d2c-05"], ["d2cup-02", "wrapup-team"]];
           const inRegion = REGIONS.some(([a, b]) => { const si = ids.indexOf(a), ei = ids.indexOf(b); return si >= 0 && cur >= si && (ei < 0 || cur < ei); });
           if (!inRegion) this._stopGameBgm();
         }
@@ -2521,7 +2522,7 @@ class Component extends DCLogic {
   _toggle(k, total) {
     this.setState(s => {
       const c = s.t[k] || { left: 0, run: false, total };
-      const done = c.left >= total;
+      const done = !c.run && c.left >= total;
       const running = done ? true : !c.run;
       this._timerBgmSync(k, running);
       return { t: { ...s.t, [k]: { left: done ? 0 : c.left, run: running, total } } };
@@ -3001,7 +3002,7 @@ class Component extends DCLogic {
     vals.gameBgmRef = el => { this._gameBgm = el; if (el) el.loop = true; if (el && !el.__loopFix) { el.__loopFix = 1; el.addEventListener("ended", () => { el.currentTime = 0; if (this._gameWant) el.play().catch(() => {}); }); } };
     vals.generalBgmRef = el => { this._generalBgm = el; if (el) el.loop = true; if (el && !el.__loopFix) { el.__loopFix = 1; el.addEventListener("ended", () => { el.currentTime = 0; if (this._generalWant) el.play().catch(() => {}); }); } };
     const bgmOn = this.state.bgmOn || {};
-    ["04", "09", "27", "31", "34", "42", "43", "54", "71", "92", "94", "100", "123", "128", "131"].forEach(id => {
+    ["04", "09", "27", "31", "34", "42", "43", "54", "71", "77", "92", "94", "100", "123", "128", "131"].forEach(id => {
       vals["bgmS" + id + "Btn"] = bgmOn[id] ? "BGM 일시정지" : "BGM 재생";
       vals["bgmS" + id + "Toggle"] = () => this._toggleSlideBgm(id);
     });
