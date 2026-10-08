@@ -93,7 +93,17 @@
           ? '&question_id=in.(' + questionId.map(encodeURIComponent).join(',') + ')'
           : '&question_id=eq.' + encodeURIComponent(questionId);
       }
-      return soft(rest(q + '&order=updated_at.asc'), [])
+      /* PostgREST는 한 번에 1000행까지만 돌려준다. 응답이 많은 차수(자가진단×인원 등)에서 늦게 입력된 값이
+         잘리지 않도록 페이지를 나눠 전부 가져온다. */
+      var PAGE = 1000, all = [];
+      function page(offset) {
+        return soft(rest(q + '&order=updated_at.asc,id.asc&limit=' + PAGE + '&offset=' + offset), null).then(function (rows) {
+          if (!rows) return all.length ? all : [];
+          all = all.concat(rows);
+          return rows.length === PAGE && offset < 50000 ? page(offset + PAGE) : all;
+        });
+      }
+      return page(0)
         .then(function (rows) { return dedupeLatest(rows, function (r) { return r.participant_id + '::' + r.question_id; }); });
     },
     upsertResponses: function (rows) {
