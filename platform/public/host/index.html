@@ -939,7 +939,7 @@ a:hover{color:var(--red-300)}
 <div style="flex:1;display:flex;align-items:center;justify-content:center;background:var(--surface-inset);border:1px dashed var(--border-line)"><span class="apex-eyebrow" style="font-size:30px;color:var(--text-muted)">모바일 제출을 기다리는 중</span></div>
 </sc-if>
 <sc-if value="{{ bpAny }}" hint-placeholder-val="{{ false }}">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;flex:1;align-content:start;overflow-y:auto;min-height:0">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;flex:1;align-content:start;overflow-y:auto;min-height:0;scrollbar-width:thin;scrollbar-color:var(--red-500) transparent;overscroll-behavior:contain">
 <sc-for list="{{ bpList }}" as="b" hint-placeholder-count="0">
 <div style="background:var(--surface-card);border-left:6px solid {{ b.color }};padding:22px 26px;display:flex;flex-direction:column;gap:8px">
 <div style="display:flex;align-items:baseline;gap:14px">
@@ -2770,7 +2770,7 @@ class Component extends DCLogic {
     vals.bpCount = this.state.loggedIn ? (bpRaw.length ? bpRaw.length + "개 제출" : "제출 대기") : "실습 예시";
     vals.bpEmpty = bpRaw.length === 0;
     vals.bpAny = bpRaw.length > 0;
-    vals.bpList = bpRaw.slice(0, 12).map((b, i) => ({
+    vals.bpList = bpRaw.map((b, i) => ({
       key: "bp" + i, color: BPC[i % BPC.length],
       team: b.team ? b.team : "TEAM " + (b.teamNo || "-"),
       name: b.name || "", when: b.when || "",
