@@ -252,6 +252,18 @@
       if (!code) return Promise.resolve(false);
       return S.wipeSession(code);
     },
+    /* 강사 '초기화' 뒤 교육생 기기(localStorage)도 비우기 위한 표식. 서버 데이터를 지운 직후 새 값을 기록하고,
+       교육생 앱/코치 화면은 자기 기기에 저장해 둔 값과 다르면 로그인·입력 기록을 지운다. */
+    markReset: function (sessionCode) {
+      return this.submitResponses(sessionCode, '__system__', [{ question_id: 'reset_epoch', text: String(Date.now()) }]);
+    },
+    getResetEpoch: function (sessionCode) {
+      return this.getResponses(sessionCode, 'reset_epoch').then(function (rows) {
+        var best = null;
+        (rows || []).forEach(function (r) { if (!best || String(r.updated_at) > String(best.updated_at)) best = r; });
+        return best ? String(best.text || '') : '';
+      }).catch(function () { return ''; });
+    },
     getSession: function (sessionCode) {
       var code = toSessionCode(sessionCode);
       var label = ROUNDS[code];

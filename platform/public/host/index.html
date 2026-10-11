@@ -283,8 +283,7 @@ a:hover{color:var(--red-300)}
 </div>
 </section>
 
-<section data-label="QUIZ 리더 포비아" data-speaker-notes="퀴즈. 힌트는 리더 ㅍㅂㅇ(공포). 정답은 리더 포비아. 마지막 단계(질문)에서 슬라이도 QR이 함께 뜨고 일반 BGM이 시작되며, 슬라이드를 넘기면 꺼진다." style="background-color:var(--bg-page);background-image:var(--texture-carbon);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:36px" data-om-slide-id="c051e4a5">
-<button type="button" data-build-start="5" data-build-timer="5:start" onClick="{{ bgmS09Toggle }}" class="export-hidden" style="display:none">🎵 {{ bgmS09Btn }}</button>
+<section data-label="QUIZ 리더 포비아" data-speaker-notes="퀴즈. 힌트는 리더 ㅍㅂㅇ(공포). 정답은 리더 포비아. 다음 장표(리더 포비아 순간)에서 교육생 모바일로 받은 답변이 실시간으로 뜬다." style="background-color:var(--bg-page);background-image:var(--texture-carbon);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:36px" data-om-slide-id="c051e4a5">
 <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">QUIZ</span></div>
 <h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:56px;line-height:1.1">이러한 심리 상태를 무엇이라고 부를까요?</h2>
 <div style="background:var(--surface-card);border:1px solid var(--border-hairline);border-radius:4px;padding:40px;display:flex;flex-direction:column;justify-content:center;gap:20px;flex:1;justify-content:center">
@@ -298,11 +297,29 @@ a:hover{color:var(--red-300)}
 <div data-build="3" data-build-out="4" data-build-fx="fade" style="position:absolute;inset:0;z-index:41;background:rgba(6,7,10,.82);display:flex;align-items:center;justify-content:center;padding:60px">
 <div style="max-width:900px;background:var(--grad-accent);padding:44px 56px;border-radius:6px;box-shadow:var(--shadow-3)"><span class="apex-eyebrow" style="font-size:28px;color:rgba(255,255,255,.85)">정답</span><p style="margin:14px 0 0;font-family:var(--font-display);font-weight:700;font-size:72px;color:var(--white)">리더 포비아</p></div>
 </div>
-<div data-build="5" data-build-fx="fade" style="position:absolute;inset:0;z-index:42;background:rgba(6,7,10,.82);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:44px;padding:60px">
-<div style="max-width:1500px;background:var(--surface-inset);border-left:8px solid var(--red-500);padding:56px 72px;border-radius:6px;box-shadow:var(--shadow-3)"><p style="margin:0;font-family:var(--font-display);font-weight:700;font-size:76px;line-height:1.3;color:var(--white)">반장으로서 <span style="color:var(--red-500)">리더포비아</span>를 느끼는 순간은?</p></div>
-<div style="background:#fff;padding:18px;line-height:0;border-radius:8px;box-shadow:var(--shadow-3)"><img src="/host/assets/slido-qr.png" alt="슬라이도 QR" style="width:340px;height:340px;display:block"></div>
-</div>
 </section>
+<section data-label="리더 포비아 순간" data-speaker-notes="교육생 모바일 웹앱(02 리더 포비아 순간)에서 입력한 답변이 실시간으로 모인다. 입장과 함께 일반 BGM이 시작되고, 다음으로 1회에 정지, 슬라이드를 넘기면 자동으로 꺼진다." style="background-color:var(--bg-page);background-image:var(--texture-grid);color:var(--text-primary);font-family:var(--font-core);padding:44px 64px;display:flex;flex-direction:column;justify-content:center;gap:20px;position:relative" data-om-slide-id="phobia-moment" data-lgws-badge>
+<button type="button" data-build-start="1" onClick="{{ bgmS09Toggle }}" class="export-hidden" style="display:none">🎵 {{ bgmS09Btn }}</button>
+<div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:14px">
+<span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">LEADER PHOBIA · LIVE</span>
+<span class="apex-eyebrow" style="font-size:27px;color:var(--grid-yellow)">{{ phoCount }}</span>
+</div>
+<h2 style="margin:0;font-family:var(--font-display);font-weight:700;font-size:64px;line-height:1.15">반장으로서 <span style="color:var(--red-500)">리더포비아</span>를 느끼는 순간은?</h2>
+<sc-if value="{{ phoEmpty }}" hint-placeholder-val="{{ true }}">
+<div style="flex:1;display:flex;align-items:center;justify-content:center;background:var(--surface-inset);border:1px dashed var(--border-line)"><span class="apex-eyebrow" style="font-size:30px;color:var(--text-muted)">모바일 제출을 기다리는 중</span></div>
+</sc-if>
+<sc-if value="{{ phoAny }}" hint-placeholder-val="{{ false }}">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;flex:1;align-content:start;overflow-y:auto;min-height:0;scrollbar-width:thin;scrollbar-color:var(--red-500) transparent;overscroll-behavior:contain">
+<sc-for list="{{ phoList }}" as="b" hint-placeholder-count="0">
+<div style="background:var(--surface-card);border-left:6px solid {{ b.color }};padding:22px 28px;display:flex;flex-direction:column;gap:8px">
+<span class="apex-eyebrow" style="font-size:24px;color:{{ b.color }}">{{ b.team }}</span>
+<p style="margin:0;font-size:34px;line-height:1.4;color:var(--white);word-break:keep-all">{{ b.text }}</p>
+</div>
+</sc-for>
+</div>
+</sc-if>
+</section>
+
 
 <section class="apex-light" data-label="구글 실험" data-speaker-notes="구글의 리더십 실험. 관리자를 없앤 결과 1년도 못 되어 실험 중단." style="background:var(--bg-page);color:var(--text-primary);font-family:var(--font-core);padding:52px 72px;display:flex;flex-direction:column;justify-content:center;gap:36px" data-om-slide-id="86779f60">
 <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-hairline);padding-bottom:16px"><span class="apex-eyebrow" style="font-size:27px;color:var(--text-muted)">CASE · 차세대 리더가 없어진다면</span></div>
@@ -1926,7 +1943,7 @@ a:hover{color:var(--red-300)}
 <script type="text/x-dc" data-dc-script data-props="{&quot;centerName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;LG전자 서비스센터&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;과정 정보&quot;},&quot;courseDate&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;2026. 10.&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;과정 정보&quot;},&quot;showAnswers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;진행 옵션&quot;}}">
 /* 기본(원본) 슬라이드 순서 — data-om-slide-id 기준, 135개. 강사가 순서를 바꾸거나
    추가/삭제한 뒤 "화면 순서 기본 버전으로 되돌리기"를 누르면 이 배열로 복원된다. */
-const DEFAULT_SLIDE_ORDER = ["9bc6600a", "ecb6294b", "58f8fcb9", "a0a81a88", "fb0098e6", "135a3e47", "24cd9bc9", "7d5f5596", "c051e4a5", "86779f60", "6b87e2c1", "41762336", "f1089a93", "45149e9d", "mm-reward", "8f57dd2e", "role-tree", "66e2d046", "718666b2", "ba492d81", "5b62ec01", "b8c3b018", "c3e58b1b", "b04860ae", "7f4f97e6", "d2q-00", "d2q-01", "d2q-02", "d2q-03", "d2q-04", "d2q-05", "d2q-06", "d2q-07", "d2q-08", "d2q-09", "d2q-10", "d2q-11", "d2q-12", "16dfb8dd", "16dfb8de", "d19684b9", "b04860ae-copy1", "46385c9f", "e4ba0605", "7dbb704c", "d2w-01", "6b87e2c1-copy1", "c3e58b1b-copy1", "b04860ae-copy2", "46385c9f-copy1", "63b5361a", "22e549ac", "rk-mem-07", "2cce7414", "aed335d0", "rk-mem-08", "d2c-07", "d2c-08", "d2c-09", "d2c-11", "d2c-12", "d2c-13", "1b51048f", "4e9bd8a1", "9204f0ee", "rk-mem-13", "0754cc32", "4e459c8e", "bbf0ca49", "d2cup-00", "d2cup-01", "d2cup-02", "d2cup-03", "d2cup-04", "d2cup-05", "d2cup-06", "wrapup-team", "a67ec9c7", "491aaa0a", "aabb1fc9", "22647148", "5571ca5c", "8ff18cc0", "33dc5761", "5d679f49", "d2pr-01", "rk-prep-09", "rk-prep-10", "rk-prep-11", "rk-prep-12", "6937850d", "c0ada2c0", "d2mot-01", "2df8e9ed", "b05cf305", "910e7d53", "375c084d", "92f018b1", "415bdebe", "c86b914f", "d1a75637", "8c099017", "c539e0b0", "9e7946c9", "46898c0e", "607d99ea", "ai-guide-1", "ai-guide-2", "ai-guide-3", "d2mot-02", "d2c-01", "d2c-02", "d2c-03", "d2c-topic1", "d2c-topic2", "d2c-topic3", "d2c-topic4", "d2c-topic5", "d2c-topic6", "d2c-05", "73be0dbf", "b4e43fba", "c98c0e86", "e464fda6", "ait-case1", "ef2f5aeb", "ait-practice-ex", "37b2e5ac", "ea3e7123", "853a90b6", "b67c0a01", "aid-case1", "300dc922", "aid-practice-ex", "b3eed1e2", "a1b2c3d4", "18c29f1a", "833f525d", "d2f-01", "thank-you-01", "d2w-lunch", "d2w-break2"];
+const DEFAULT_SLIDE_ORDER = ["9bc6600a", "ecb6294b", "58f8fcb9", "a0a81a88", "fb0098e6", "135a3e47", "24cd9bc9", "7d5f5596", "c051e4a5", "phobia-moment", "86779f60", "6b87e2c1", "41762336", "f1089a93", "45149e9d", "mm-reward", "8f57dd2e", "role-tree", "66e2d046", "718666b2", "ba492d81", "5b62ec01", "b8c3b018", "c3e58b1b", "b04860ae", "7f4f97e6", "d2q-00", "d2q-01", "d2q-02", "d2q-03", "d2q-04", "d2q-05", "d2q-06", "d2q-07", "d2q-08", "d2q-09", "d2q-10", "d2q-11", "d2q-12", "16dfb8dd", "16dfb8de", "d19684b9", "b04860ae-copy1", "46385c9f", "e4ba0605", "7dbb704c", "d2w-01", "6b87e2c1-copy1", "c3e58b1b-copy1", "b04860ae-copy2", "46385c9f-copy1", "63b5361a", "22e549ac", "rk-mem-07", "2cce7414", "aed335d0", "rk-mem-08", "d2c-07", "d2c-08", "d2c-09", "d2c-11", "d2c-12", "d2c-13", "1b51048f", "4e9bd8a1", "9204f0ee", "rk-mem-13", "0754cc32", "4e459c8e", "bbf0ca49", "d2cup-00", "d2cup-01", "d2cup-02", "d2cup-03", "d2cup-04", "d2cup-05", "d2cup-06", "wrapup-team", "a67ec9c7", "491aaa0a", "aabb1fc9", "22647148", "5571ca5c", "8ff18cc0", "33dc5761", "5d679f49", "d2pr-01", "rk-prep-09", "rk-prep-10", "rk-prep-11", "rk-prep-12", "6937850d", "c0ada2c0", "d2mot-01", "2df8e9ed", "b05cf305", "910e7d53", "375c084d", "92f018b1", "415bdebe", "c86b914f", "d1a75637", "8c099017", "c539e0b0", "9e7946c9", "46898c0e", "607d99ea", "ai-guide-1", "ai-guide-2", "ai-guide-3", "d2mot-02", "d2c-01", "d2c-02", "d2c-03", "d2c-topic1", "d2c-topic2", "d2c-topic3", "d2c-topic4", "d2c-topic5", "d2c-topic6", "d2c-05", "73be0dbf", "b4e43fba", "c98c0e86", "e464fda6", "ait-case1", "ef2f5aeb", "ait-practice-ex", "37b2e5ac", "ea3e7123", "853a90b6", "b67c0a01", "aid-case1", "300dc922", "aid-practice-ex", "b3eed1e2", "a1b2c3d4", "18c29f1a", "833f525d", "d2f-01", "thank-you-01", "d2w-lunch", "d2w-break2"];
 
 class Component extends DCLogic {
   state = {
@@ -2259,6 +2276,7 @@ class Component extends DCLogic {
       if (sid === "d2f-01" && (!this._generalBgm || this._generalBgm.paused)) this._playGeneralBgm("general-bgm-s141.mp3");
       /* AI 리더십 코치 가이드: 109번(ai-guide-2) 진입 시 시작, 110번(ai-guide-3)까지 유지, 110번에서 다음 슬라이드로 넘어가면 정지(구간 밖 자동 정지) */
       if (sid === "ai-guide-2" && (!this._generalBgm || this._generalBgm.paused)) this._playGeneralBgm("general-bgm-s100.mp3");
+      if (sid === "phobia-moment" && (!this._generalBgm || this._generalBgm.paused)) { this._playGeneralBgm("general-bgm-s09.mp3"); this.setState({ bgmOn: { "09": true } }); }
       if (sid === "d2f-02") this._stopGeneralBgm();
       /* AI 리더십 코치 잠금 해제: 강사가 100번 슬라이드(607d99ea, M5 입구)에 들어서면
          이 차수의 coach 페이지 진입 잠금을 연다. 한 번 열리면 계속 열려 있다. */
@@ -2481,11 +2499,11 @@ class Component extends DCLogic {
     const DIAG_QS = Array.from({ length: 20 }, (_, i) => "diag_" + i);
     const pull = () => {
       const code = (this.state.lg.code || "").trim();
-      if (!code || !window.WSData) { this._live = { roster: [], teams: {}, diag: [], bp: [] }; return this.forceUpdate(); }
+      if (!code || !window.WSData) { this._live = { roster: [], teams: {}, diag: [], bp: [], phobia: [] }; return this.forceUpdate(); }
       Promise.all([
         WSData.getParticipants(code),
         WSData.getTeamInfoAll(code),
-        WSData.getResponses(code, DIAG_QS.concat(["bp_when", "bp_how", "bp_best"])),
+        WSData.getResponses(code, DIAG_QS.concat(["bp_when", "bp_how", "bp_best", "phobia_moment"])),
       ]).then(([participants, teamInfoArr, responses]) => {
         const teamByNo = {};
         (teamInfoArr || []).forEach(t => { teamByNo[t.team] = t; });
@@ -2508,7 +2526,12 @@ class Component extends DCLogic {
           const tn = (teamByNo[p.team] || {}).name;
           return { team: tn ? "TEAM " + p.team + " " + tn : "", teamNo: p.team, name: p.name, when: rs.bp_when || "", how: rs.bp_how, best: rs.bp_best || "" };
         }).filter(Boolean);
-        this._live = { roster: roster, teams: teams, diag: diag, bp: bp };
+        const phobia = (participants || []).map(p => {
+          const rs = byP[p.participant_id] || {};
+          const tx = (rs.phobia_moment || "").trim();
+          return tx ? { teamNo: p.team, text: tx } : null;
+        }).filter(Boolean);
+        this._live = { roster: roster, teams: teams, diag: diag, bp: bp, phobia: phobia };
         this.forceUpdate();
       }).catch(() => {});
     };
@@ -2777,6 +2800,15 @@ class Component extends DCLogic {
       name: b.name || "", when: b.when || "",
       how: b.how, best: b.best ? "효과: " + b.best : "",
     }));
+    const DEMO_PHO = [
+      { teamNo: 1, text: "팀원에게 업무를 맡기고 나서도 결국 내가 다시 확인하고 고치고 있을 때" },
+      { teamNo: 2, text: "피드백을 줘야 하는데 말을 꺼내기 어려워 미루게 될 때" },
+    ];
+    const phoRaw = this.state.loggedIn ? ((this._live && this._live.phobia) || []) : DEMO_PHO;
+    vals.phoCount = this.state.loggedIn ? (phoRaw.length ? phoRaw.length + "개 제출" : "제출 대기") : "실습 예시";
+    vals.phoEmpty = phoRaw.length === 0;
+    vals.phoAny = phoRaw.length > 0;
+    vals.phoList = phoRaw.map((b, i) => ({ key: "ph" + i, color: BPC[i % BPC.length], team: "TEAM " + (b.teamNo || "-"), text: b.text }));
     const ph = this.state.phobia || null;
     vals.phobiaOpen = !!ph;
     vals.phobiaHintOpen = () => this.setState({ phobia: "hint" });
@@ -2909,8 +2941,8 @@ class Component extends DCLogic {
             this.setState({ rsPhase: "idle", rsMsg: "지우는 중...", rsErr: false });
             /* 삭제된 기본 슬라이드는 DOM 복구가 불가능하므로(원본이 남아있지 않음) 새로고침으로
                마크업을 통째로 다시 불러온다 — 화면 순서도 함께 기본으로 되돌아간다. */
-            Promise.all([WSData.resetSession(code), WSData.resetDeckConfig(code)]).then(([ok]) => {
-              if (ok) { location.reload(); return; }
+            Promise.all([WSData.resetSession(code), WSData.resetDeckConfig(code)]).then(async ([ok]) => {
+              if (ok) { try { await WSData.markReset(code); } catch (e) {} location.reload(); return; }
               this.setState({
                 lg: { code: "", pw: "", name: "", teams: 6 }, loggedIn: false,
                 rsMsg: "삭제에 실패했습니다.", rsErr: true,

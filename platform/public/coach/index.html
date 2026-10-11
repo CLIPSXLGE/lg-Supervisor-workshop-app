@@ -773,6 +773,19 @@ class Component extends DCLogic {
     if (!code) { if (this.state.gateOpen !== false) this.state.gateOpen = false; return; }
     if (this._gateCheckedFor === code) return;
     this._gateCheckedFor = code;
+    /* 강사가 이 차수를 초기화했다면 이 기기에 남은 로그인·코치 기록을 비운다(교육생 앱과 동일 규칙). */
+    if (window.WSData && WSData.getResetEpoch) WSData.getResetEpoch(code).then(ep => {
+      let local = "";
+      try { local = localStorage.getItem("lgws-epoch") || ""; } catch (e) {}
+      if (ep && ep !== local) {
+        try {
+          const del = [];
+          for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (k && (k === "lgws-me" || k === "lgws-epoch" || k.indexOf("aiLeadCoach.v1.") === 0)) del.push(k); }
+          del.forEach(k => localStorage.removeItem(k));
+        } catch (e) {}
+        location.reload();
+      }
+    }).catch(() => {});
     const check = () => {
       if (typeof WSData === "undefined") return;
       WSData.isGateOpen(code, "ai_coach").then(open => {
