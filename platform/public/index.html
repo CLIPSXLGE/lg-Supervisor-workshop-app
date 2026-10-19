@@ -1263,6 +1263,8 @@ class Component extends DCLogic {
     try { const r = localStorage.getItem(key); if (r) m = JSON.parse(r) || []; } catch (e) {}
     this.state.coach.members = m;
     if (m.length && this.state.coach.step === "intro") this.state.coach.step = "home";
+    /* 이전에 폰에만 저장된 결과도 앱을 열면 DB로 올려 보낸다(결과 조회용). */
+    if (m.length) this._coachSyncDb(m);
   }
   _coachSave(members) {
     try { localStorage.setItem(this._coachKey(), JSON.stringify(members)); } catch (e) {}
