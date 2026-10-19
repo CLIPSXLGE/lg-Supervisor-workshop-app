@@ -1264,7 +1264,17 @@ class Component extends DCLogic {
     this.state.coach.members = m;
     if (m.length && this.state.coach.step === "intro") this.state.coach.step = "home";
   }
-  _coachSave(members) { try { localStorage.setItem(this._coachKey(), JSON.stringify(members)); } catch (e) {} }
+  _coachSave(members) {
+    try { localStorage.setItem(this._coachKey(), JSON.stringify(members)); } catch (e) {}
+    this._coachSyncDb(members);
+  }
+  /* 구성원별 분석·전략 결과를 DB(ws_coach_plans)에도 함께 기록한다(결과 조회 쿼리용).
+     로컬 저장은 항상 유지되며, DB 기록이 실패해도 화면 동작에는 영향이 없다. */
+  _coachSyncDb(members) {
+    const me = this.state.me;
+    if (!me || !me.code || !me.participantId || typeof WSData === "undefined" || !WSData.submitCoachPlan) return;
+    try { WSData.submitCoachPlan(me.code, me.participantId, { name: me.name, teamNo: me.teamNo, members }).catch(() => {}); } catch (e) {}
+  }
   _coachFlash(msg) {
     this.setState({ coach: Object.assign({}, this.state.coach, { toast: msg }) });
     clearTimeout(this._coachToastTimer);
